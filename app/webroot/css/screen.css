@@ -2461,12 +2461,15 @@ textarea:focus {
 .destinations-form .input-line {
   display: block;
   width: 100%;
+  border: 1px solid gray;
+  border-radius: 10px;
 }
 .destinations-form .input-line .form-input {
   width: 100%;
   height: 60px;
   border: 0;
-  padding: 0 240px 0 30px;
+  direction: rtl;
+  padding-right: 15px;
   font-size: 14px;
   font-family: "Raleway", sans-serif;
   letter-spacing: 0.04em;
@@ -2483,10 +2486,10 @@ textarea:focus {
 }
 .destinations-form .form-submit {
   position: absolute;
-  right: 0;
+  left: 0;
   top: 0;
-  border-top-left-radius: 0 !important;
-  border-bottom-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
 }
 @media (max-width: 768px) {
   .destinations-form .form-submit {
@@ -2544,11 +2547,11 @@ textarea:focus {
   overflow: hidden;
 }
 .btn.btn-special {
-  background: #e7434e;
+  background: #DDA0DD;
   line-height: 60px;
   border-radius: 5px;
   color: #ffffff;
-  height: 60px;
+  height: 100%;
   font-family: "Raleway", sans-serif;
   font-weight: 700;
   font-size: 14px;
@@ -2558,13 +2561,14 @@ textarea:focus {
 }
 .btn.btn-special:hover {
   background: #34495e;
+  height: 100%;
 }
-.btn.btn-special:not(.no-icon)::before {
+/*.btn.btn-special:not(.no-icon)::before {
   content: "";
   font-family: icomoon;
   display: inline-block;
   margin-right: 12.5px;
-}
+}*/
 .btn.btn-outlined {
   color: #ffffff;
   height: 40px;
@@ -2632,6 +2636,7 @@ textarea:focus {
   right: 0;
   left: 0;
   top: 0;
+  background: rgba(0, 0, 0, 0.67);
 }
 .main-header .header-content {
   display: flex;
@@ -2641,11 +2646,12 @@ textarea:focus {
 .main-header .site-nav {
   display: flex;
   align-items: center;
+ 
 }
 .main-header .site-nav .site-links li {
   display: inline-block;
   margin-right: 45px;
-  color: #ffffff;
+  color: #DDA0DD;;
   text-transform: uppercase;
   font-size: 16px;
   font-weight: 700;
@@ -2759,11 +2765,12 @@ textarea:focus {
 
 /* -------- Intro Section -------- */
 .hero-box {
-  background-image: url(../img/hero-background.jpg);
+  background-image: url(../img/projects.jpg);
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   padding: 300px 0;
+  /*background-repeat: no-repeat;*/
 }
 .hero-box .hero-text h1,
 .hero-box .hero-text p {

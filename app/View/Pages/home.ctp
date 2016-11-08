@@ -2,21 +2,26 @@
       <header class="main-header">
          <div class="container">
             <div class="header-content">
-               <a href="index.html">
-                  <img src="img/site-identity.png" alt="site identity" />
-               </a>
+               <a class="pull-left" href="http://appleseeds.org.il/"  target="_blank">
+                       <img src="img/tapuah-logo.png" alt="לוגו עמותת תפוח"/>
+               </a>             
 
                <nav class="site-nav">
+
+                   
                   <ul class="clean-list site-links">
                      <li>
-                        <a href="#">Top Destinations</a>
+                        <a href="#">קורסים</a>
                      </li>
                      <li>
-                        <a href="#">Add your boat</a>
+                        <a href="#">פרויקטים</a>
+                     </li>
+                     <li>
+                        <a href="#">פאנל ניהול</a>
                      </li>
                   </ul>
 
-                  <a href="#" class="btn btn-outlined">Sign up</a>
+                  <a href="#" class="btn btn-outlined">התחבר</a>
                </nav>
             </div>
          </div>
@@ -29,14 +34,17 @@
             <div class="hero-box">
                <div class="container">
                   <div class="hero-text align-center">
-                     <h1>Reserve a boat now!</h1>
-                     <p>and set your sails into paradise!</p>
+                     <h1>חפש פרוייקטים</h1>
+                     <p> </p>
                   </div>
 
                   <form class="destinations-form">
                      <div class="input-line">
-                        <input type="text" name="destination" value="" class="form-input check-value" placeholder="WHAT IS YOUR DESTINATION, SAILOR?" />
-                        <button type="button" name="destination-submit" class="form-submit btn btn-special">Find a boat</button>
+                        <button type="button" name="destination-submit" class="form-submit btn btn-special">
+                            <i class="fa fa-cog" aria-hidden="true"></i><span style="padding-left: 5px;">חפש פרויקט</span>
+                        </button>                        
+                        <input type="text" name="destination" value="" class="form-input" placeholder="איזה פרויקטים ברצונך לראות?" />
+
                      </div>
                   </form>
                </div>

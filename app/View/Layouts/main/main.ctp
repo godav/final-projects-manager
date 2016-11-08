@@ -8,17 +8,18 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Raleway:400,700" rel="stylesheet" />
       <link href="img/favicon.png" type="image/x-icon" rel="shortcut icon" />
-      
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
       
       <!-- Scripts and Css Loading -->
       <?php 
-            echo $this->Html->css(array( '/css/screen' ,'/css/bootstrap.min'));           
-            echo $this->Html->script(array('/js/bootstrap.min', '/js/jquery-2.2.3.min','/js/functions','/js/jquery'));
+            echo $this->Html->css(array( '/css/screen'));           
+            echo $this->Html->script(array('/js/jquery', '/js/functions'));
         ?>
       
 
    </head>
-   <body class="home" id="page">
+   <body>
         <?php 
                 echo $this->fetch('content'); 
                 

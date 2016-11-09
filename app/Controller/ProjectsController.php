@@ -6,3 +6,12 @@
  * and open the template in the editor.
  */
 
+App::uses('AppController', 'Controller');
+
+class ProjectsController extends AppController {
+    
+    function index() 
+	{
+
+	}        
+}

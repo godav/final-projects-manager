@@ -2,17 +2,19 @@
 (function(){
 	var rout = angular.module("app");
 	rout.config(function($routeProvider) {
-    $routeProvider
-    	.when('/about', {
-			templateUrl : 'app/views/about.html',
+        $routeProvider
+    	.when('/courses', {
+			templateUrl : 'partials/courses.html'
 			//template:"<h1>this is about page</h1>"
 
-		}).when('/contacts', {
-			templateUrl : 'app/views/contacts.html',
+	})
+        .when('/projects', {
+			templateUrl : 'partials/projects.html'
 			//template:"<h1>this is about page</h1>"
 
-		}).otherwise({
-			redirectTo : '/home'
+		})
+        .otherwise({
+			redirectTo : 'partials/search.html'
 		});
 
 });

@@ -11,12 +11,12 @@
                    
                   <ul class="clean-list site-links">
                      <li>
-                        <a href="#">קורסים</a>
+                        <a href="#/courses">קורסים</a>
                      </li>
                      <li>
-                        <a href="#">פרויקטים</a>
+                        <a href="#/projects">פרויקטים</a>
                      </li>
-                     <li>
+                     <li ng-class="activeWhen(path() == '/login')">
                         <a href="#">פאנל ניהול</a>
                      </li>
                   </ul>
@@ -29,52 +29,12 @@
 
       <!-- Main Content -->
       <div class="content-box">
-         <!-- Hero Section -->
-         <section class="section section-hero">
-            <div class="hero-box">
-               <div class="container">
-                  <div class="hero-text align-center">
-                     <h1>חפש פרוייקטים</h1>
-                     <p> </p>
-                  </div>
+          
+         <div ng-view>
+   
+        </div>
 
-                  <form class="destinations-form">
-                     <div class="input-line">
-                        <button type="button" name="destination-submit" class="form-submit btn btn-special">
-                            <i class="fa fa-cog" aria-hidden="true"></i><span style="padding-left: 5px;">חפש פרויקט</span>
-                        </button>                        
-                        <input type="text" name="destination" value="" class="form-input" placeholder="איזה פרויקטים ברצונך לראות?" />
 
-                     </div>
-                  </form>
-               </div>
-            </div>
-
-            <!-- Statistics Box -->
-            <div class="container">
-               <div class="statistics-box">
-                  <div class="statistics-item">
-                     <span class="value">2,300</span>
-                     <p class="title">Destinations</p>
-                  </div>
-
-                  <div class="statistics-item">
-                     <span class="value">1,000</span>
-                     <p class="title">Cities</p>
-                  </div>
-
-                  <div class="statistics-item">
-                     <span class="value">35,000</span>
-                     <p class="title">Boats</p>
-                  </div>
-
-                  <div class="statistics-item">
-                     <span class="value">50,000</span>
-                     <p class="title">Sailors</p>
-                  </div>
-               </div>
-            </div>
-         </section>
 
          <!-- Destinations Section -->
          <section class="section section-destination">

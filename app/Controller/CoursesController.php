@@ -8,7 +8,7 @@
 
 App::uses('AppController', 'Controller');
 
-class UsersController extends AppController {
+class CoursesController extends AppController {
     
     function index() 
 	{

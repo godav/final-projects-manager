@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
    <head>
       <title>ניהול פרוייקטי גמר בקורסי תפוח</title>
+      <base href="<?php echo $this->webroot; ?>">
       <meta charset="utf-8">
       <meta name="description" content="Project Manager for tapuah courses" />
       <meta name="author" content="Avner Ainouz - Godav" />
@@ -15,11 +16,14 @@
       <?php 
             echo $this->Html->css(array( '/css/screen'));           
             echo $this->Html->script(array('/js/jquery', '/js/functions'));
+            echo $this->Html->script(array('/js/angular','/js/angular-route'));
+            echo $this->Html->script(array('/angular/app/app','/angular/app/route'));
+            echo $this->Html->script(array('/angular/controllers/main','/angular/controllers/courses','/angular/controllers/projects'));
         ?>
       
 
    </head>
-   <body>
+   <body ng-controller="main">
         <?php 
                 echo $this->fetch('content'); 
                 

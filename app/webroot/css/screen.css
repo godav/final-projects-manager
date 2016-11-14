@@ -2630,12 +2630,13 @@ textarea:focus {
 /* ----------------- 9. UI Components ----------------- */
 /* ----------------- 9.1. Header ----------------- */
 .main-header {
-  position: absolute;
-  padding: 35px 0;
+  /*position: absolute;*/
+  padding: 10px 0;
   z-index: 9;
   right: 0;
   left: 0;
   top: 0;
+  height: 100px;
   background: rgba(0, 0, 0, 0.67);
 }
 .main-header .header-content {
@@ -2764,7 +2765,7 @@ textarea:focus {
 }
 
 /* -------- Intro Section -------- */
-.hero-box {
+.search-box {
   background-image: url(../img/projects.jpg);
   background-size: cover;
   background-position: center;
@@ -2772,13 +2773,13 @@ textarea:focus {
   padding: 300px 0;
   /*background-repeat: no-repeat;*/
 }
-.hero-box .hero-text h1,
-.hero-box .hero-text p {
+.search-box .hero-text h1,
+.search-box .hero-text p {
   text-transform: uppercase;
   line-height: 1em;
   color: #ffffff;
 }
-.hero-box .hero-text h1 {
+.search-box .hero-text h1 {
   font-family: "Raleway", sans-serif;
   letter-spacing: 0.08em;
   font-weight: 700;
@@ -2786,20 +2787,20 @@ textarea:focus {
   line-height: 1em;
   margin: 0 0 15px;
 }
-.hero-box .hero-text p {
+.search-box .hero-text p {
   letter-spacing: 0.04em;
   line-height: 1em;
   font-size: 30px;
   margin: 0 0 80px;
 }
 @media (max-width: 768px) {
-  .hero-box {
+  .search-box {
     padding: 200px 0;
   }
-  .hero-box .hero-text h1 {
+  .search-box .hero-text h1 {
     font-size: 36px;
   }
-  .hero-box .hero-text p {
+  .search-box .hero-text p {
     font-size: 20px;
   }
 }

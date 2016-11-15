@@ -21,7 +21,7 @@
                      </li>
                   </ul>
 
-                  <a href="#" class="btn btn-outlined">התחבר</a>
+                  <a href="#" class="btn btn-outlined" data-toggle="modal" data-target="#login-modal">התחבר</a>
                </nav>
             </div>
          </div>
@@ -29,7 +29,24 @@
 
       <!-- Main Content -->
       <div class="content-box">
-          
+            <div ng-controller="login" >     
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+    	  <div class="modal-dialog">
+				<div class="loginmodal-container">
+					<h1>התחבר לחשבון שלך</h1><br>
+				  <form>
+					<input type="text" name="user" placeholder="דואר אלקטרוני" >
+					<input type="password" name="pass" placeholder="סיסמא">
+					<input type="submit" name="login" class="login loginmodal-submit" value="התחבר">
+				  </form>
+					
+				  <div class="login-help">
+					<a href="#">הירשם</a> - <a href="#">שכחתי סיסמא</a>
+				  </div>
+				</div>
+			</div>
+	</div>
+   </div> 
          <div ng-view>
    
         </div>

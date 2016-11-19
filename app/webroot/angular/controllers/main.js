@@ -1,15 +1,18 @@
 (function(){
 	var rout = angular.module('app');
 	
-	rout.controller("main", main);
-
-	function main($scope,$http) {
-	$scope.title = "courses page";
+	rout.controller('main', main);
         
-        $scope.activeWhen = function(value) {
-            return value ? 'active' : '';
-        };
-	
-	}
-	
+	function main($scope,$http) {
+            $scope.title = "courses page";
+
+            $scope.showLogin = false;
+            $scope.toggleLoginModal = function(){
+                $scope.showLogin = !$scope.showLogin;
+            };
+            
+            
+           
+        }
+
 })();

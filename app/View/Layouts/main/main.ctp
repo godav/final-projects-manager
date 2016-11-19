@@ -15,9 +15,10 @@
       <!-- Scripts and Css Loading -->
       <?php           
             echo $this->Html->css(array('/css/bootstrap.min', '/css/screen','/css/modalLogin')); 
-            echo $this->Html->script(array('/js/jquery-2.2.3.min', '/js/bootstrap.min','/js/jquery', '/js/functions'));
+            echo $this->Html->script(array('/js/jquery-2.2.3.min', '/js/bootstrap.min', '/js/functions'));
             echo $this->Html->script(array('/js/angular','/js/angular-route'));
             echo $this->Html->script(array('/angular/app/app','/angular/app/route'));
+            echo $this->Html->script(array('/angular/directive/modalLogin','/angular/directive/modalRegister'));
             echo $this->Html->script(array('/angular/controllers/main','/angular/controllers/courses','/angular/controllers/projects','/angular/controllers/search','/angular/controllers/login'));
         ?>
       

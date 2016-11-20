@@ -7,9 +7,9 @@
         return {
             template: '<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">' + 
                         
-                    '<div class="modal-dialog">' +
+                    '<div class="modal-dialog modal-lg">' +
                          
-			'<div class="loginmodal-container">' +
+			'<div class="loginmodal-container registermodal-container">' +
                                  '<div class="modal-header pad-init">' + 
                                      '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
                                      '<h1>פתח חשבון</h1>' +
@@ -17,55 +17,63 @@
                                
                                  '<div  class="form">' +
                                      '<form id="contactform">' + 
-                                        '<p class="contact"><label for="name">Name</label></p>' +
-                                             '<input id="name" name="name" placeholder="First and last name" required="" tabindex="1" type="text">' +
-
-                                        '<p class="contact"><label for="email">Email</label></p> ' +
-                                             '<input id="email" name="email" placeholder="example@domain.com" required="" type="email">' +
-                
-                                        '<p class="contact"><label for="username">Create a username</label></p>' +
-                                             '<input id="username" name="username" placeholder="username" required="" tabindex="2" type="text">' + 
+//                                             '<input id="name" name="name" placeholder="First and last name" required="" tabindex="1" type="text">' +
+                                             '<input id="firstName" type="text" name="firstname" placeholder="שם פרטי" tabindex="1" required="">' +
+                                             '<input id="lastName" type="text" name="lastname" placeholder="שם משפחה" tabindex="2" required="">' +        
+                          
+                                             '<input id="email" name="email" placeholder="דואר אלקטרוני" required="" type="email" tabindex="3">' +
+                     
+                                             '<input id="username" name="username" placeholder="בחר שם משתמש" required="" tabindex="4" type="text">' + 
     			 
-                                        '<p class="contact"><label for="password">Create a password</label></p>' + 
-                                              '<input type="password" id="password" name="password" required="">' +
-                                        '<p class="contact"><label for="repassword">Confirm your password</label></p>' + 
-                                              '<input type="password" id="repassword" name="repassword" required="">' + 
-        
+                                             '<input type="password" id="password" name="password" placeholder="סיסמא" required="" tabindex="5">' +
+
+                                              '<input type="password" id="repassword" name="repassword" placeholder="אימות סיסמא" required="" tabindex="6">' + 
+                                              '<input id="phone" name="phone" placeholder="מספר טלפון" required="" type="text">' +
                                         '<fieldset>' +
-                                            '<label>Birthday</label>' +
-                                             '<label class="month">' + 
-                                             '<select class="select-style" name="BirthMonth">' +
-                                             '<option value="">Month</option>' +
-                                             '<option  value="01">January</option>' +
-                                             '<option value="02">February</option>' +
-                                             '<option value="03" >March</option>' +
-                                             '<option value="04">April</option>' +
-                                             '<option value="05">May</option>' +
-                                             '<option value="06">June</option>' +
-                                             '<option value="07">July</option>' +
-                                             '<option value="08">August</option>' +
-                                             '<option value="09">September</option>' +
-                                             '<option value="10">October</option>' +
-                                             '<option value="11">November</option>' +
-                                             '<option value="12" >December</option>' +
-                                             '</label>' +
-                                            '</select>' +    
-                                           '<label>Day<input class="birthday" maxlength="2" name="BirthDay"  placeholder="Day" required=""></label>' +
-                                           '<label>Year <input class="birthyear" maxlength="4" name="BirthYear" placeholder="Year" required=""></label>' +
-                                         '</fieldset>' +
+                                            '<label class="birth-day-caption">תאריך לידה</label>' +
+                                            '<div class="birth-container">' +
+                                                '<input class="birthday" maxlength="2" name="BirthDay"  placeholder="יום" required="">' +
+                                                '<label class="month">' + 
+                                                   '<select class="select-style" name="BirthMonth">' +
+                                                       '<option value="">חודש</option>' +
+                                                       '<option  value="01">ינואר</option>' +
+                                                       '<option value="02">פברואר</option>' +
+                                                       '<option value="03" >מרץ</option>' +
+                                                       '<option value="04">אפריל</option>' +
+                                                       '<option value="05">מאי</option>' +
+                                                       '<option value="06">יוני</option>' +
+                                                       '<option value="07">יולי</option>' +
+                                                       '<option value="08">אוגוסט</option>' +
+                                                       '<option value="09">ספטמבר</option>' +
+                                                       '<option value="10">אוקטובר</option>' +
+                                                       '<option value="11">נובמבר</option>' +
+                                                       '<option value="12" >דצמבר</option>' +
+                                                    '</select>' +                                                  
+                                                '</label>' +
+
+                                              '<input class="birthyear" maxlength="4" name="BirthYear" placeholder="שנה" required="">' +
+                                            '</div>'  +
+                                         '</fieldset><br>' +
   
-                                        '<select class="select-style gender" name="gender">' +
-                                        '<option value="select">i am..</option>' +
-                                        '<option value="m">Male</option>' +
-                                        '<option value="f">Female</option>' +
-                                        '<option value="others">Other</option>' +
-                                        '</select><br><br>' +
+  
+                                         '<fieldset>' +
+                                            '<input type="radio" name="gender" value="זכר"> Male' +
+                                            '<input type="radio" name="gender" value="נקבה"> Female' +
+                                         '</fieldset><br>' +   
+  
+  
+//                                        '<select class="select-style gender" name="gender">' +
+//                                        '<option value="select">i am..</option>' +
+//                                        '<option value="m">Male</option>' +
+//                                        '<option value="f">Female</option>' +
+//                                        '<option value="others">Other</option>' +
+//                                        '</select><br><br>' +
             
-                                        '<p class="contact"><label for="phone">Mobile phone</label></p>' + 
-                                        '<input id="phone" name="phone" placeholder="phone number" required="" type="text"> <br>' +
+
+                                       
                                         '<input class="buttom" name="submit" id="submit" tabindex="5" value="Sign me up!" type="submit">' + 	 
                                    '</form>' + 
-                                '</div>' + 
+                                '</div>' +  
 			
 			'</div>' +
 	           '</div>' ,

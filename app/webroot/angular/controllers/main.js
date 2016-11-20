@@ -11,7 +11,7 @@
                 $scope.showLogin = !$scope.showLogin;
             };
             
-            
+            $scope.showRegister = false;
            
         }
 

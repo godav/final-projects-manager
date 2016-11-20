@@ -30,7 +30,7 @@
       <!-- Main Content -->
       <div class="content-box">
         
-          <modall visible="showLogin" ></modall>
+          <modall visible="showLogin" reg="showRegister" ></modall>
           <modalr visible="showRegister" ></modalr>
          <div ng-view>
    

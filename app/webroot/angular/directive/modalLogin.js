@@ -18,13 +18,13 @@
                                
 				
 				  '<form>' +
-					'<input type="text" name="user" placeholder="דואר אלקטרוני" >' +
+					'<input type="text" name="user" placeholder="שם משתמש" >' +
 					'<input type="password" name="pass" placeholder="סיסמא">' +
 					'<input type="submit" name="login" class="login loginmodal-submit" value="התחבר">' +
 				  '</form>' +
 					
 				  '<div class="login-help">' +
-					'<button class="btn" data-dismiss="modal" ng-click="toggleRegisterModal()" >הירשם</button> - <button class="btn" ng-click="toggleRegisterModal()" >שכחתי סיסמא</button>' +
+					'<button id="register" class="btn" data-dismiss="modal" ng-click="toggleRegisterModal($event)" >הירשם</button> - <button class="btn" ng-click="toggleRegisterModal()" >שכחתי סיסמא</button>' +
 				  '</div>' +
 				'</div>' +
 	           '</div>' ,
@@ -32,13 +32,15 @@
             restrict: 'E',
             transclude: true,
             replace:true,
-            scope:{visible:'=', onSown:'&', onHide:'&'}, 
-            link:function postLink(scope, element, attrs){
-                 scope.showRegister = false;
-                 scope.toggleRegisterModal = function(){
-                     alert(scope.showRegister);
-                       scope.showRegister = !scope.showRegister;
-                      alert(scope.showRegister);  
+            scope:{visible: '=', reg: '='}, 
+            link:function link(scope, element, attrs){                          
+             console.log(scope);
+             console.log(element);
+             console.log(attrs);
+                 
+                scope.toggleRegisterModal = function(event){
+                 if (event.target.id ==='register')    
+                       scope.reg = true;
                 };
                 
                 $(element).modal({
@@ -55,6 +57,9 @@
                     }else{
         
                         $(element).modal('hide');
+                         
+               
+                
                     }
                 });
                 
@@ -64,11 +69,13 @@
                   });
                 });
                 
-                $(element).on('shown.bs.modal', function(){
-                  scope.$apply(function(){
-                      scope.onSown({});
-                  });
-                });
+//                $(element).on('shown.bs.modal', function(){
+//                  scope.$apply(function(){
+//                      scope.onSown({
+//                          
+//                      });
+//                  });
+//                });
 
                 $(element).on('hidden.bs.modal', function(){
                   scope.$apply(function(){
@@ -76,11 +83,27 @@
                   });
                 });
                 
-                $(element).on('hidden.bs.modal', function(){
-                  scope.$apply(function(){
-                      scope.onHide({});
-                  });
-                });
+//                $(element).on('hidden.bs.modal', function(){
+//                  scope.$apply(function(){
+//                      scope.onHide({
+//                   
+//                      });
+//                  });
+//                });
+
+//                 var r= rout.element(element.find('button.clear'));
+//                    console.log(el.find('.clear'));
+//                    clear.bind("click", function () {
+//                        alert("here");
+//                    });
+//
+//              $('#register').bind('click',  );
+
+//              $('#register').on('click', function() {
+//                scope.$apply( function() {
+//        scope.caretPosition = $el.caret();
+//      });
+//  });
             }
         };
      };

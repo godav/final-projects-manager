@@ -57,8 +57,9 @@
   
   
                                          '<fieldset>' +
-                                            '<input type="radio" name="gender" value="זכר"> Male' +
-                                            '<input type="radio" name="gender" value="נקבה"> Female' +
+                                            '<label class="gender-caption">מין</label>' +
+                                            '<input type="radio" name="gender" value="Male"><span>זכר</span>' +
+                                            '<input type="radio" name="gender" value="Female"><span>נקבה</span>' +
                                          '</fieldset><br>' +   
   
   
@@ -71,7 +72,7 @@
             
 
                                        
-                                        '<input class="buttom" name="submit" id="submit" tabindex="5" value="Sign me up!" type="submit">' + 	 
+                                        '<input class="login loginmodal-submit" name="submit" id="submit" tabindex="5" value="בצע רישום" type="submit">' + 	 
                                    '</form>' + 
                                 '</div>' +  
 			

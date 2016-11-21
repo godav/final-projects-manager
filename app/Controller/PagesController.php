@@ -74,4 +74,30 @@ class PagesController extends AppController {
 			throw new NotFoundException();
 		}
 	}
+        
+        function checklogin(){
+
+            $email = $this->request->data('project');
+            $password = $this->request->data('searchUser');
+        
+          $this->loadModel('Users');
+          
+          $register = $this->User->find('first', array(
+                                'conditions' => array('User.email' => $email,'User.password' => $password),
+                                'fields' => array('User.first_name, User.last_name')
+                 )); 
+          
+          $data['register'] = false;
+          $data['name']['fname'] = null;
+          $data['name']['lname'] = null;
+          
+          if (!empty($register)){
+               $data['register'] = true;
+               $data['name']['fname'] = $register['User']['first_name'];
+               $data['name']['lname'] = $register['User']['last_name'];
+          }                       
+        return json_encode($data);
+
+    }        
+        
 }

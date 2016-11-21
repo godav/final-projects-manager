@@ -16,8 +16,8 @@
                                      '<h1>התחבר לחשבון שלך</h1>' +
                                  '</div>' +
                                
-				
-				  '<form>' +
+		
+				  '<form ng-submit="validateUser( user)">' +
 					'<input type="text" name="user" placeholder="שם משתמש" >' +
 					'<input type="password" name="pass" placeholder="סיסמא">' +
 					'<input type="submit" name="login" class="login loginmodal-submit" value="התחבר">' +
@@ -32,16 +32,18 @@
             restrict: 'E',
             transclude: true,
             replace:true,
-            scope:{visible: '=', reg: '='}, 
+            scope:{visible: '=', reg: '=',validateUser: '&onValidate'}, 
             link:function link(scope, element, attrs){                          
-             console.log(scope);
-             console.log(element);
-             console.log(attrs);
+
                  
                 scope.toggleRegisterModal = function(event){
                  if (event.target.id ==='register')    
                        scope.reg = true;
                 };
+                
+//                 scope.validateUser = function(user,pass){
+//                 
+//                };
                 
                 $(element).modal({
                     show: false, 

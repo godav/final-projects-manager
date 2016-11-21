@@ -16,7 +16,7 @@
                      <li>
                         <a href="#/projects">פרויקטים</a>
                      </li>
-                     <li ng-class="activeWhen(path() == '/login')">
+                     <li ng-if="logedIn">
                         <a href="#">פאנל ניהול</a>
                      </li>
                   </ul>
@@ -30,7 +30,7 @@
       <!-- Main Content -->
       <div class="content-box">
         
-          <modall visible="showLogin" reg="showRegister" ></modall>
+          <modall visible="showLogin" reg="showRegister" on-validate="checkUser(email)" ></modall>
           <modalr visible="showRegister" ></modalr>
          <div ng-view>
    

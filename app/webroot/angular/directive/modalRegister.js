@@ -11,7 +11,7 @@
                          
 			'<div class="loginmodal-container registermodal-container">' +
                                  '<div class="modal-header pad-init">' + 
-                                     '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                                     '<button type="button" class="close" ng-click="toggleRegisterModal()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
                                      '<h1>פתח חשבון</h1>' +
                                  '</div>' +
                                
@@ -82,18 +82,18 @@
             restrict: 'E',
             transclude: true,
             replace:true,
-            scope:{visible:'=', onSown:'&', onHide:'&'}, 
-            link:function postLink(scope, element, attrs){
+//            scope:{visible:'=', onSown:'&', onHide:'&'}, 
+            link:function link(scope, element, attrs){
                 
-                $(element).modal({
-                    show: false, 
-                    keyboard: attrs.keyboard, 
-                    backdrop: attrs.backdrop
-                });
+//                $(element).modal({
+//                    show: false, 
+//                    keyboard: attrs.keyboard, 
+//                    backdrop: attrs.backdrop
+//                });
                 
-                scope.$watch(function(){return scope.visible;}, function(value){
-                    
-                    if(value === true){
+                scope.$watch('showRegister', function(){
+                      console.log(scope.showRegister);
+                    if(scope.showRegister === true){
                    
                         $(element).modal('show');
                     }else{
@@ -102,29 +102,29 @@
                     }
                 });
                 
-                $(element).on('shown.bs.modal', function(){
-                  scope.$apply(function(){
-                    scope.$parent[attrs.visible] = true;
-                  });
-                });
-                
-                $(element).on('shown.bs.modal', function(){
-                  scope.$apply(function(){
-                      scope.onSown({});
-                  });
-                });
-
-                $(element).on('hidden.bs.modal', function(){
-                  scope.$apply(function(){
-                    scope.$parent[attrs.visible] = false;
-                  });
-                });
-                
-                $(element).on('hidden.bs.modal', function(){
-                  scope.$apply(function(){
-                      scope.onHide({});
-                  });
-                });
+//                $(element).on('shown.bs.modal', function(){
+//                  scope.$apply(function(){
+//                    scope.$parent[attrs.visible] = true;
+//                  });
+//                });
+//                
+//                $(element).on('shown.bs.modal', function(){
+//                  scope.$apply(function(){
+//                      scope.onSown({});
+//                  });
+//                });
+//
+//                $(element).on('hidden.bs.modal', function(){
+//                  scope.$apply(function(){
+//                    scope.$parent[attrs.visible] = false;
+//                  });
+//                });
+//                
+//                $(element).on('hidden.bs.modal', function(){
+//                  scope.$apply(function(){
+//                      scope.onHide({});
+//                  });
+//                });
             }
         };
      };

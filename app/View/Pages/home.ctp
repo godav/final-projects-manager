@@ -30,12 +30,16 @@
       <!-- Main Content -->
       <div class="content-box">
         
-          <modall visible="showLogin" reg="showRegister" on-validate="checkUser(email)" ></modall>
-          <modalr visible="showRegister" ></modalr>
+          <modall visible="{{showLogin}}" ></modall>
+          <modalr visible="{{showRegister}}"></modalr>
          <div ng-view>
    
         </div>
-
+	<div ng-controller = "ManageUploadCtrl">
+				<input type = "file" file-Upload = "myFile"/>
+				<button ng-click = "uploadFile()">
+					Upload Image
+	</div>
       </div>
 
       <!-- Footer -->

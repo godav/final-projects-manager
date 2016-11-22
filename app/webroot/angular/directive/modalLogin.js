@@ -12,19 +12,19 @@
                          
 				'<div class="loginmodal-container">' +
                                  '<div class="modal-header pad-init">' + 
-                                     '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                                     '<button type="button" class="close" ng-click="toggleLoginModal()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
                                      '<h1>התחבר לחשבון שלך</h1>' +
                                  '</div>' +
                                
 		
-				  '<form ng-submit="validateUser( user)">' +
-					'<input type="text" name="user" placeholder="שם משתמש" >' +
-					'<input type="password" name="pass" placeholder="סיסמא">' +
+				  '<form ng-submit="validateUser( username,userpassword)">' +
+					'<input type="text" name="user" placeholder="שם משתמש" ng-model="username">' +
+					'<input type="password" name="pass" placeholder="סיסמא" ng-model="userpassword">' +
 					'<input type="submit" name="login" class="login loginmodal-submit" value="התחבר">' +
 				  '</form>' +
 					
 				  '<div class="login-help">' +
-					'<button id="register" class="btn" data-dismiss="modal" ng-click="toggleRegisterModal($event)" >הירשם</button> - <button class="btn" ng-click="toggleRegisterModal()" >שכחתי סיסמא</button>' +
+					'<button id="register" class="btn" data-dismiss="modal" ng-click="toggleRegisterModal()" >הירשם</button> - <button class="btn" " >שכחתי סיסמא</button>' +
 				  '</div>' +
 				'</div>' +
 	           '</div>' ,
@@ -32,44 +32,46 @@
             restrict: 'E',
             transclude: true,
             replace:true,
-            scope:{visible: '=', reg: '=',validateUser: '&onValidate'}, 
+//            scope:{visible: '=', reg: '=',validateUser: '&onValidate'}, 
             link:function link(scope, element, attrs){                          
-
-                 
-                scope.toggleRegisterModal = function(event){
-                 if (event.target.id ==='register')    
-                       scope.reg = true;
-                };
+//                console.log(scope);
+//                console.log(element);
+//                console.log(attrs);
+//                
+//                 console.log($(element));
+//                 scope.data="data";
+//                scope.toggleRegisterModal = function(event){
+//                 if (event.target.id ==='register')    
+//                       scope.reg = true;
+//                };
                 
 //                 scope.validateUser = function(user,pass){
 //                 
 //                };
+//                
+//                $(element).modal({
+//                    show: false, 
+//                    keyboard: attrs.keyboard, 
+//                    backdrop: attrs.backdrop
+//                });
                 
-                $(element).modal({
-                    show: false, 
-                    keyboard: attrs.keyboard, 
-                    backdrop: attrs.backdrop
-                });
                 
-                scope.$watch(function(){return scope.visible;}, function(value){
-                    
-                    if(value === true){
-                   
-                        $(element).modal('show');
+                scope.$watch('showLogin', function(){
+                    console.log(scope.showLogin);
+                    if(scope.showLogin===true){
+                        $(element).modal('show');              
                     }else{
-        
-                        $(element).modal('hide');
-                         
-               
-                
+                        $(element).modal('hide');                             
                     }
                 });
                 
-                $(element).on('shown.bs.modal', function(){
-                  scope.$apply(function(){
-                    scope.$parent[attrs.visible] = true;
-                  });
-                });
+//                $(element).on('shown.bs.modal', function(){
+//                    console.log('in shown');
+//                  scope.$apply(function(){
+//                      console.log(scope.$parent);
+//                    scope.$parent[attrs.visible] = true;
+//                  });
+//                });
                 
 //                $(element).on('shown.bs.modal', function(){
 //                  scope.$apply(function(){
@@ -79,11 +81,11 @@
 //                  });
 //                });
 
-                $(element).on('hidden.bs.modal', function(){
-                  scope.$apply(function(){
-                    scope.$parent[attrs.visible] = false;
-                  });
-                });
+//                $(element).on('hidden.bs.modal', function(){
+//                  scope.$apply(function(){
+//                    scope.$parent[attrs.visible] = false;
+//                  });
+//                });
                 
 //                $(element).on('hidden.bs.modal', function(){
 //                  scope.$apply(function(){

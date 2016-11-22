@@ -8,7 +8,7 @@
                 
 			var formData = new FormData();
 			formData.append('file', file);
-                        formData.append('name', "dotan");
+            
 			var request = {
 				transformRequest : angular.identity,
 				headers : {

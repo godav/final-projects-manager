@@ -36,7 +36,7 @@ class PagesController extends AppController {
  * @var array
  */
 	public $uses = array();
-
+   
 /**
  * Displays a view
  *
@@ -75,7 +75,7 @@ class PagesController extends AppController {
 		}
 	}
         
-        function checklogin(){
+        function json_checklogin(){
 
             $email = $this->request->data('project');
             $password = $this->request->data('searchUser');
@@ -98,6 +98,17 @@ class PagesController extends AppController {
           }                       
         return json_encode($data);
 
-    }        
+    }      
+    
+    
+        function fileUpload(){
+            $this->autoRender = false;
+            echo $this->request->data('file');
+            $data = $this->request->data('file');
+            pr($data);
+            // upload the file to the server
+            $fileOK = $this->uploadFiles('img/files', $this->data['file']);
+            pr($fileOK);
+        }
         
 }

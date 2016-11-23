@@ -7,23 +7,23 @@
                 .service('StorageService', function ($localStorage) {
 
             $localStorage = $localStorage.$default({
-                uInfo: []
+                uInfo: {}
             });    
 
-            var _getAll = function () {
+            var _get = function () {
               return $localStorage.uInfo;
             };
 
             var _add = function (info) {
-              $localStorage.uInfo.push(info);
-            }
+              $localStorage.uInfo =  info;
+            };
 
-            var _remove = function (info) {
-              $localStorage.uInfo.splice($localStorage.uInfo.indexOf(info), 1);
-            }
+            var _remove = function () {
+              $localStorage.uInfo = {};
+            };
 
             return {
-                getAll: _getAll,
+                get: _get,
                 add: _add,
                 remove: _remove
               };

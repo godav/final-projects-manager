@@ -5,16 +5,20 @@
         
 	function main($scope,$http,StorageService) {
             
-//              $scope.things = StorageService.getAll();
-//
-//  $scope.add = function (newThing) {
-//    StorageService.add(newThing);
-//  };
-//
-//  $scope.remove = function (thing) {
-//    StorageService.remove(thing);
-            
-            
+//              $scope.logedIn = false;
+              $scope.infoData=StorageService.get();
+              if ($scope.infoData === null)  
+                  $scope.logedIn = false;
+              else
+                  $scope.logedIn = $scope.infoData.register;
+              
+              console.log($scope.logedIn);
+              console.log($scope.infoData);
+
+//            $scope.remove = function (thing) {
+//             StorageService.remove(thing);
+//            
+//            
             
             $scope.title = "courses page";
 
@@ -30,7 +34,7 @@
                 $scope.showRegister = !$scope.showRegister;
             };
             
-            $scope.logedIn = false;
+//            $scope.logedIn = false;
             
            $scope.validateUser = function (email,pass) {
              $scope.email = email;
@@ -49,12 +53,13 @@
                 }
             }
 
-            $http.post('/projectManager/json/pages/checklogin/', loginData,config)
+            $http.post('/ProjectsManager/json/pages/checklogin/', loginData,config)
              .success(function (data, status, headers, config) {
-                $scope.PostDataResponse = data;
-                if ($scope.PostDataResponse.register)
+                StorageService.add(data);
+                $scope.infoData = data;
+                if ($scope.infoData.register)
                      $scope.showLogin = false;
-                     $scope.logedIn = true;
+//                     $scope.logedIn = true;
              })
             .error(function (data, status, header, config) {
                 $scope.ResponseDetails = "Data: " + data +
@@ -65,7 +70,11 @@
              
              };
 //            
-    
+             $scope.logOut = function(){
+                  StorageService.remove();
+                  $scope.infoData = null;
+                  $scope.logedIn = false;
+             };
         }
 
 })();

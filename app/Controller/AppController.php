@@ -33,34 +33,53 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
    	function beforeFilter()
     { 
-//        if( isset($this->params['prefix']) )
-//        {
-//        	// /json/ is for API
-//        	if( $this->params['prefix'] == 'json' )
-//        	{
-//				$this->response->header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-//
-//				$this->response->type('json');
-//
-//	        	// basically, don't render view
-//	        	$this->autoRender = false;
-//	        	// and if you happen to, you should make it ajax layout
-//	        	$this->layout = 'ajax';
-//	        }
-//
-//
-//	    }else
-//            { 
-//    	
-                $this->layout = 'main/main';
+        if( isset($this->params['prefix']) )
+        {
+        	// /json/ is for API
+        	if( $this->params['prefix'] == 'json' )
+        	{
+				$this->response->header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-//    	}     
-            
-      
+				$this->response->type('json');
+
+	        	// basically, don't render view
+	        	$this->autoRender = false;
+	        	// and if you happen to, you should make it ajax layout
+	        	$this->layout = 'ajax';
+	        }
+
+
+	    }else
+            { 
+    	
+                $this->layout = 'main/main';
+         }
     }
     
+    function appInitData(){
+		App::uses('CakeTime', 'Utility');
+
+		$backUrl = Router::url('/json', true);
+
+		$data = array(
+//			'aToken'    => $this->Session->read('bearer'),
+			'backUrl'   => $backUrl,
+			'dates'     => array(
+				'today' => CakeTime::format('today', '%Y-%m-%d'),
+				'week'  => CakeTime::format('-7 days', '%Y-%m-%d'),
+				'month' => CakeTime::format('-30 days', '%Y-%m-%d'),
+				'year'  => CakeTime::format('-365 days', '%Y-%m-%d'),
+			),
+			'webroot'	=> Router::url('/', true)
+		);
+		return $data;
+	}
     
-    
+ 	//  This Function Will Be used when app isnt fired by cake (DEVELOPMENT)
+	function json_init(){
+		$data = $this->appInitData();
+		return json_encode($data);
+	}   
     
     /**
  * uploads files to the server

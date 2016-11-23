@@ -75,28 +75,31 @@ class PagesController extends AppController {
 		}
 	}
         
-        function json_checklogin(){
+       function json_checklogin(){
+ 
+//           $this->autoRender = false;
+            $email = $this->request->data('email');
+            $password = $this->request->data('password'); 
 
-            $email = $this->request->data('project');
-            $password = $this->request->data('searchUser');
-        
-          $this->loadModel('Users');
+          $this->loadModel('User');
           
           $register = $this->User->find('first', array(
                                 'conditions' => array('User.email' => $email,'User.password' => $password),
-                                'fields' => array('User.first_name, User.last_name')
+                                'fields' => array('User.first_name, User.last_name','User.id')
                  )); 
-          
+        
           $data['register'] = false;
-          $data['name']['fname'] = null;
-          $data['name']['lname'] = null;
+          $data['fname'] = null;
+          $data['lname'] = null;
+          $data['id'] = null;
           
           if (!empty($register)){
                $data['register'] = true;
-               $data['name']['fname'] = $register['User']['first_name'];
-               $data['name']['lname'] = $register['User']['last_name'];
+               $data['fname'] = $register['User']['first_name'];
+               $data['lname'] = $register['User']['last_name'];
+               $data['id'] = $register['User']['id'];
           }                       
-        return json_encode($data);
+          return json_encode($data);
 
     }      
     

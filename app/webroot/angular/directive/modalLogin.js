@@ -24,7 +24,7 @@
 				  '</form>' +
 					
 				  '<div class="login-help">' +
-					'<button id="register" class="btn" data-dismiss="modal" ng-click="toggleRegisterModal()" >הירשם</button> - <button class="btn" " >שכחתי סיסמא</button>' +
+					'<button id="register" class="btn tran" data-dismiss="modal" ng-click="toggleRegisterModal()" >הירשם</button> - <button class="btn tran" " >שכחתי סיסמא</button>' +
 				  '</div>' +
 				'</div>' +
 	           '</div>' ,

@@ -2571,6 +2571,7 @@ textarea:focus {
   margin-right: 12.5px;
 }*/
 .btn.btn-outlined {
+  background: #DDA0DD;
   color: #ffffff;
   height: 40px;
   line-height: 38px;

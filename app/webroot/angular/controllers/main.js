@@ -11,15 +11,7 @@
                   $scope.logedIn = false;
               else
                   $scope.logedIn = $scope.infoData.register;
-              
-              console.log($scope.logedIn);
-              console.log($scope.infoData);
-
-//            $scope.remove = function (thing) {
-//             StorageService.remove(thing);
-//            
-//            
-            
+                                   
             $scope.title = "courses page";
 
             $scope.showLogin = false;

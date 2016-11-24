@@ -17,14 +17,13 @@
             echo $this->Html->css(array('/css/bootstrap.min', '/css/screen','/css/modalLogin')); 
             echo $this->Html->script(array('/js/jquery-2.2.3.min', '/js/bootstrap.min', '/js/functions'));
             echo $this->Html->script(array('/js/angular','/js/angular-route','/js/ngStorage.min'));
-            
+        
             echo $this->Html->script(array('/angular/app/app','/angular/app/route','/angular/app/services/fileService','/angular/app/services/StorageService'));
-            echo $this->Html->script(array('/angular/directive/modalLogin','/angular/directive/modalRegister','/angular/directive/fileUpload'));
-            
-            echo $this->Html->script(array('/angular/controllers/main','/angular/controllers/courses','/angular/controllers/projects','/angular/controllers/search','/angular/controllers/login','/angular/controllers/ManageUploadCtrl'));
+            echo $this->Html->script(array('/angular/directive/modalLogin','/angular/directive/modalRegister','/angular/directive/fileUpload','/angular/directive/compareTo','/angular/directive/angular-validator'));
+            echo $this->Html->script(array('/angular/controllers/main','/angular/controllers/courses','/angular/controllers/projects','/angular/controllers/search','/angular/controllers/login','/angular/controllers/ManageUploadCtrl','/angular/controllers/registeration'));
         ?>
         
-      
+     
 
    </head>
    <body ng-controller="main">

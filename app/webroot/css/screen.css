@@ -197,6 +197,7 @@ fieldset {
   margin: 0 2px;
   padding: 0.35em 0.625em 0.75em;
   border-radius: 15px;
+  margin-bottom: 20px;
 }
 
 legend {

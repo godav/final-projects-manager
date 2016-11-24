@@ -7,7 +7,7 @@
 		$scope.result="upload";
 		$scope.uploadFile = function() {
 			$scope.uploading=true;
-			var url = "/ProjectsManager/tests/";
+			var url = "tests/";
 			var file = $scope.myFile;
 			console.log("file", file);
 			fileService.uploadFileToUrl(file, url);

@@ -21,7 +21,7 @@
                      </li>
                   </ul>
                      <button class="btn btn-outlined" ng-if="!logedIn" ng-click="toggleLoginModal()">התחבר</button>
-                     <button class="btn btn-outlined" ng-if="logedIn" ng-click="">התנתק</button>
+                     <button class="btn btn-outlined" ng-if="logedIn" ng-click="logOut()">התנתק</button>
                 <!--  <a href="#" class="btn btn-outlined" data-toggle="modal" data-target="#login-modal">התחבר</a> -->
                </nav>
             </div>

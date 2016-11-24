@@ -23,43 +23,43 @@
                           
                                              '<input id="email" name="email" placeholder="דואר אלקטרוני" required="" type="email" tabindex="3">' +
                      
-                                             '<input id="username" name="username" placeholder="בחר שם משתמש" required="" tabindex="4" type="text">' + 
+//                                             '<input id="username" name="username" placeholder="בחר שם משתמש" required="" tabindex="4" type="text">' + 
     			 
-                                             '<input type="password" id="password" name="password" placeholder="סיסמא" required="" tabindex="5">' +
+                                             '<input type="password" id="password" name="password" placeholder="סיסמא" required="" tabindex="5" ngMinlength=8 ngMaxlength=20>' +
 
-                                              '<input type="password" id="repassword" name="repassword" placeholder="אימות סיסמא" required="" tabindex="6">' + 
-                                              '<input id="phone" name="phone" placeholder="מספר טלפון" required="" type="text">' +
-                                        '<fieldset>' +
-                                            '<label class="birth-day-caption">תאריך לידה</label>' +
-                                            '<div class="birth-container">' +
-                                                '<input class="birthday" maxlength="2" name="BirthDay"  placeholder="יום" required="">' +
-                                                '<label class="month">' + 
-                                                   '<select class="select-style" name="BirthMonth">' +
-                                                       '<option value="">חודש</option>' +
-                                                       '<option  value="01">ינואר</option>' +
-                                                       '<option value="02">פברואר</option>' +
-                                                       '<option value="03" >מרץ</option>' +
-                                                       '<option value="04">אפריל</option>' +
-                                                       '<option value="05">מאי</option>' +
-                                                       '<option value="06">יוני</option>' +
-                                                       '<option value="07">יולי</option>' +
-                                                       '<option value="08">אוגוסט</option>' +
-                                                       '<option value="09">ספטמבר</option>' +
-                                                       '<option value="10">אוקטובר</option>' +
-                                                       '<option value="11">נובמבר</option>' +
-                                                       '<option value="12" >דצמבר</option>' +
-                                                    '</select>' +                                                  
-                                                '</label>' +
-
-                                              '<input class="birthyear" maxlength="4" name="BirthYear" placeholder="שנה" required="">' +
-                                            '</div>'  +
-                                         '</fieldset><br>' +
+                                              '<input type="password" id="repassword" name="repassword" placeholder="אימות סיסמא" required="" tabindex="6" ngMinlength=8 ngMaxlength=20>' + 
+//                                              '<input id="phone" name="phone" placeholder="מספר טלפון" required="" type="text">' +
+//                                        '<fieldset>' +
+//                                            '<label class="birth-day-caption">תאריך לידה</label>' +
+//                                            '<div class="birth-container">' +
+//                                                '<input class="birthday" maxlength="2" name="BirthDay"  placeholder="יום" required="">' +
+//                                                '<label class="month">' + 
+//                                                   '<select class="select-style" name="BirthMonth">' +
+//                                                       '<option value="">חודש</option>' +
+//                                                       '<option  value="01">ינואר</option>' +
+//                                                       '<option value="02">פברואר</option>' +
+//                                                       '<option value="03" >מרץ</option>' +
+//                                                       '<option value="04">אפריל</option>' +
+//                                                       '<option value="05">מאי</option>' +
+//                                                       '<option value="06">יוני</option>' +
+//                                                       '<option value="07">יולי</option>' +
+//                                                       '<option value="08">אוגוסט</option>' +
+//                                                       '<option value="09">ספטמבר</option>' +
+//                                                       '<option value="10">אוקטובר</option>' +
+//                                                       '<option value="11">נובמבר</option>' +
+//                                                       '<option value="12" >דצמבר</option>' +
+//                                                    '</select>' +                                                  
+//                                                '</label>' +
+//
+//                                              '<input class="birthyear" maxlength="4" name="BirthYear" placeholder="שנה" required="">' +
+//                                            '</div>'  +
+//                                         '</fieldset><br>' +
+//  
   
-  
-                                         '<fieldset>' +
+                                         '<fieldset required="">' +
                                             '<label class="gender-caption">מין</label>' +
-                                            '<input type="radio" name="gender" value="Male"><span>זכר</span>' +
-                                            '<input type="radio" name="gender" value="Female"><span>נקבה</span>' +
+                                            '<input type="radio" name="gender" value="Male" ng-required="!gender" ng-model="gender"><span>זכר</span>' +
+                                            '<input type="radio" name="gender" value="Female" ng-required="!gender" ng-model="gender"><span>נקבה</span>' +
                                          '</fieldset><br>' +   
   
   
@@ -82,17 +82,11 @@
             restrict: 'E',
             transclude: true,
             replace:true,
-//            scope:{visible:'=', onSown:'&', onHide:'&'}, 
+
             link:function link(scope, element, attrs){
                 
-//                $(element).modal({
-//                    show: false, 
-//                    keyboard: attrs.keyboard, 
-//                    backdrop: attrs.backdrop
-//                });
-                
                 scope.$watch('showRegister', function(){
-                      console.log(scope.showRegister);
+                      console.log('showRegister:',scope.showRegister);
                     if(scope.showRegister === true){
                    
                         $(element).modal('show');
@@ -100,38 +94,9 @@
         
                         $(element).modal('hide');
                     }
-                });
-                
-//                $(element).on('shown.bs.modal', function(){
-//                  scope.$apply(function(){
-//                    scope.$parent[attrs.visible] = true;
-//                  });
-//                });
-//                
-//                $(element).on('shown.bs.modal', function(){
-//                  scope.$apply(function(){
-//                      scope.onSown({});
-//                  });
-//                });
-//
-//                $(element).on('hidden.bs.modal', function(){
-//                  scope.$apply(function(){
-//                    scope.$parent[attrs.visible] = false;
-//                  });
-//                });
-//                
-//                $(element).on('hidden.bs.modal', function(){
-//                  scope.$apply(function(){
-//                      scope.onHide({});
-//                  });
-//                });
+                });                
             }
         };
      };
-//        $scope.activeWhen = function(value) {
-//            return value ? 'active' : '';
-//        };
-	
-//	}
 	
 })();

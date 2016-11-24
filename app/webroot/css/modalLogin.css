@@ -3,12 +3,12 @@
 /****** LOGIN MODAL ******/
 .loginmodal-container {
   
-  padding: 30px;
+  padding: 15px 30px;
   max-width: 350px;
   width: 100% !important;
   background-color: #F7F7F7;
   margin: 0 auto;
-  border-radius: 2px;
+  border-radius: 15px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   font-family: roboto;
@@ -42,7 +42,7 @@
   background: #fff;
   border: 1px solid #d9d9d9;
   border-top: 1px solid #c0c0c0;
-  /* border-radius: 2px; */
+   border-radius: 15px;
   padding: 0 8px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -52,9 +52,6 @@
     margin-left:10px;
 }
 
-.loginmodal-container span{
-    margin-left:30px;
-}
 
 
 .loginmodal-container input[type=text]:hover, input[type=password]:hover {
@@ -83,9 +80,10 @@
   color: #fff;
   text-shadow: 0 1px rgba(0,0,0,0.1); 
   background-color: #DDA0DD;
-  padding: 17px 0px;
+  padding: 5px 0px;
   font-family: roboto;
   font-size: 18px;
+  border-radius: 15px !important;
   /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
 }
 
@@ -94,6 +92,7 @@
   border: 0px;
   text-shadow: 0 1px rgba(0,0,0,0.3);
   background-color: #357ae8;
+  border-radius: 15px;
   /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
 }
 
@@ -109,6 +108,7 @@
 
 .login-help{
   font-size: 12px;
+  text-align: left;
 }
 
 
@@ -152,7 +152,7 @@
                         background: #fff;
                         border: 1px solid #d9d9d9;
                         border-top: 1px solid #c0c0c0;
-                        /* border-radius: 2px; */
+                         border-radius: 15px;
                         padding: 0 8px;
                         box-sizing: border-box;
                         -moz-box-sizing: border-box;
@@ -172,7 +172,7 @@
    font-size: 16px;
    width: 100%;
   /*-webkit-appearance: button;*/
-  -webkit-border-radius: 2px;
+  -webkit-border-radius: 5px;
   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
   -webkit-padding-end: 20px;
   -webkit-padding-start: 2px;
@@ -211,4 +211,15 @@
   
   .tran{
       background: transparent;
+  }
+  
+  .modal-header{
+      margin-bottom: 10px !important;
+  }
+  
+  .erorr-msg{
+      color: red;
+      font-weight: 700;
+      border: 1px red solid;
+      text-align: center;
   }

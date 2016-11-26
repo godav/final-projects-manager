@@ -26,6 +26,24 @@
       }
     };
     
+    model.passwordValidator = function(password) {
+                console.log(password);
+		if (!password) {
+			return;
+		}
+		else if (password.length < 6) {
+			return "הסיסמא חייבת להכיל לפחות " + 6 + " תוים";
+		}
+		else if (!password.match(/[A-Z]/)) {
+			return "הסיסמא חייבת להכיל לפחות אות אנגלית גדולה אחת";
+		}
+		else if (!password.match(/[0-9]/)) {
+			return "הסיסמא חייבת להכיל לפחות ספרה אחת";
+		}
+
+		return true;
+	};
+    
     
     model.resetForm = function() {
       model.message = "";

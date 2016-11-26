@@ -1,3 +1,4 @@
+//(function (){
 angular.module('angularValidator', []);
 
 angular.module('angularValidator').directive('angularValidator', ['$injector', '$parse',
@@ -287,3 +288,5 @@ angular.module('angularValidator').directive('angularValidator', ['$injector', '
         };
     }
 ]);
+
+//})();

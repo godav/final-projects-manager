@@ -1,0 +1,73 @@
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                
+                    <div class="modal-dialog">
+                         
+				<div class="loginmodal-container">
+                                 <div class="modal-header pad-init">
+                                     <button type="button" class="close" ng-click="errLogin=false; toggleLoginModal()"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                     <h1>התחבר לחשבון שלך</h1>
+                                 </div>
+                                 
+                                  <form angular-validator-submit='registration.submit(registrationForm.$valid)' novalidate name='registrationForm' angular-validator>                                   
+                                         
+                                      <div class="form-group">
+                                             <input   name="email" placeholder="דואר אלקטרוני"
+                                                      type="email" tabindex="3" ng-model="registration.user.email"
+                                                      class = "form-control"
+                                                      validate-on="dirty"
+                                                      invalid-message="'כתובת הדואר האלקטרוני אינה תיקנית'"
+                                                      required-message="'נדרש'" required
+                                             >                                   
+                                       </div>
+                                         
+                                         <div class="form-group">
+                                             <input  type="password" name="password" placeholder="סיסמא"
+                                                     tabindex="4" 
+                                                     class = "form-control"
+                                                     ng-model="registration.user.password"
+                                                     validator = "registration.passwordValidator(registration.user.password) === true"
+                                                     invalid-message = "registration.passwordValidator(registration.user.password)"
+                                                     validate-on="dirty"
+                                                     required-message="'נדרש'" required
+                                             >   
+                                         </div>
+
+                                                                            
+                                         <div class="form-group" ng-if="!registration.success">
+                                             <button class="login loginmodal-submit" tabindex="7" type="submit">בצע רישום</button>	 
+                                         </div>
+                                         <h1 style="text-align: center; color: green" ng-if="registration.success">{{ registration.message }}</h1>
+                                         <div class="form-group" ng-if="registration.success">
+                                             <button style="background: green !important" class="login loginmodal-submit" tabindex="7" ng-click="registrationForm.reset() ; toggleRegisterModal() ; toggleLoginModal()">סגור</button>	 
+                                        </div>
+                                   </form>    
+                                    
+                                  <div class="pad-init" ng-if="errLogin">
+                                        <p class="erorr-msg">אחד מפרטי הזיהוי שהוקלדו אינם תקינים</p>
+                                   </div>
+		
+				  <form ng-submit="validateUser( username,userpassword)">
+                                      <div class="form-group">
+                                          <input type="text" name="user" placeholder="שם משתמש" ng-model="username" ng-focus="errLogin=false">
+                                      </div>
+                                      <div class="form-group">
+					  <input type="password" name="pass" placeholder="סיסמא" ng-model="userpassword" ng-focus="errLogin=false">
+                                      </div>
+                                      
+                                       <div class="form-group" ng-if="!registration.success">
+                                             <button class="login loginmodal-submit" tabindex="7" type="submit">התחבר</button>	 
+                                         </div>
+                                      
+                                         <h1 style="text-align: center; color: green" ng-if="registration.success">{{ registration.message }}</h1>
+                                     
+                                         <div class="form-group" ng-if="registration.success">
+                                             <button style="background: green !important" class="login loginmodal-submit" tabindex="7" ng-click="registrationForm.reset() ; toggleRegisterModal() ; toggleLoginModal()">סגור</button>	 
+                                        </div>
+                                      
+				  </form>
+					
+				  <div class="login-help">
+					<button id="register" class="btn tran" data-dismiss="modal" ng-click="toggleRegisterModal()" ng-focus="errLogin=false">הירשם</button> - <button class="btn tran" ng-focus="errLogin=false" >שכחתי סיסמא</button>
+				  </div>
+				</div>
+</div>

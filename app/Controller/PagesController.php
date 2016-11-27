@@ -104,6 +104,23 @@ class PagesController extends AppController {
     }      
     
     
+           function json_registerUser(){
+ 
+//           $this->autoRender = false;
+//                $fname = $this->request->data('firstname');
+//                $lname = $this->request->data('lastname');
+//                $email = $this->request->data('email');
+//                $password = $this->request->data('password'); 
+//                $gender = $this->request->data('gender');
+
+          $this->loadModel('User');
+          
+          $results = $this->User->save($this->request->data); 
+                             
+          return json_encode($results);
+
+    }      
+    
         function fileUpload(){
             $this->autoRender = false;
             echo $this->request->data('file');

@@ -34,39 +34,39 @@
 //             console.log($scope.email);
 //             console.log($scope.password);
             
-             var loginData = $.param({
-                email: $scope.email,
-                password: $scope.password
-            });
-            
-            var config = {
-                headers : {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-                }
-            };
-
-            $http.post('json/pages/checklogin', loginData,config)
-             .success(function (data, status, headers, config) {
-                StorageService.add(data);
-                $scope.infoData = data;
-                if ($scope.infoData.register){
-                     $scope.showLogin = false;
-                     $scope.logedIn = true;
-                }else{
-                     $scope.logedIn = false;
-                      $scope.errLogin = true;
-                      $scope.username = "";
-                      $scope.userpassword = ""; 
-                     
-                      
-                }
-             })
-            .error(function (data, status, header, config) {
-                $scope.ResponseDetails = "Data: " + data +
-                    "<hr />status: " + status +
-                    "<hr />headers: " + header +
-                    "<hr />config: " + config;
-            });
+//             var loginData = $.param({
+//                email: $scope.email,
+//                password: $scope.password
+//            });
+//            
+//            var config = {
+//                headers : {
+//                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+//                }
+//            };
+//
+//            $http.post('json/pages/checklogin', loginData,config)
+//             .success(function (data, status, headers, config) {
+//                StorageService.add(data);
+//                $scope.infoData = data;
+//                if ($scope.infoData.register){
+//                     $scope.showLogin = false;
+//                     $scope.logedIn = true;
+//                }else{
+//                     $scope.logedIn = false;
+//                      $scope.errLogin = true;
+//                      $scope.username = "";
+//                      $scope.userpassword = ""; 
+//                     
+//                      
+//                }
+//             })
+//            .error(function (data, status, header, config) {
+//                $scope.ResponseDetails = "Data: " + data +
+//                    "<hr />status: " + status +
+//                    "<hr />headers: " + header +
+//                    "<hr />config: " + config;
+//            });
              
              };
 //            

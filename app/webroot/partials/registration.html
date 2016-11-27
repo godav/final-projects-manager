@@ -7,30 +7,28 @@
                                      <button type="button" class="close" ng-click="toggleRegisterModal() ; registrationForm.reset() " data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                      <h1>פתח חשבון</h1>
                                  </div>
-                                 <h1>{{ registration.message }}</h1>
+                                 
                                  <div  class="form" >
                                    
                                      <form angular-validator-submit='registration.submit(registrationForm.$valid)' novalidate name='registrationForm' angular-validator>
                                    
                                              <div class="form-group">
-                                                <input type="text" name="firstname" placeholder="שם פרטי"
-                                                       class = "form-control"
-                                                       tabindex="1" ng-model="registration.user.firstname"                                                                                              
-                                                      required-message="'נדרש'" required
-                                                      
-                                                    >
+                                                <input name="firstname" placeholder="שם פרטי"
+                                                       type="text" tabindex="1" ng-model="registration.user.firstname"  
+                                                       class = "form-control"  
+                                                       required-message="'נדרש'" required                                                     
+                                                >
                                              </div>
-                                          <!--   <div ng-if="registrationForm.$submitted" ng-messages="registrationForm.firstname.$error" ng-messages-include="partials/messages.html"></div>      --> 
+                                         
                                   
                                          
                                           <div class="form-group">
-                                            <input  type="text" name="lastname" placeholder="שם משפחה"
-                                                    class = "form-control"
-                                                    tabindex="2" ng-model="registration.user.lastname"
-                                                    required-message="'נדרש'" required                                                 
-                                            >       
-                                      <!--       <div ng-if="registrationForm.$submitted" ng-messages="registrationForm.lastname.$error" ng-messages-include="partials/messages.html"></div>      -->
-                                        </div>
+                                            <input name="lastname" placeholder="שם משפחה"
+                                                   type="text" tabindex="2" ng-model="registration.user.lastname" 
+                                                   class = "form-control"  
+                                                   required-message="'נדרש'" required                                                 
+                                            >                                         
+                                          </div>
                                          
                                       <div class="form-group">
                                              <input   name="email" placeholder="דואר אלקטרוני"
@@ -39,9 +37,8 @@
                                                       validate-on="dirty"
                                                       invalid-message="'כתובת הדואר האלקטרוני אינה תיקנית'"
                                                       required-message="'נדרש'" required
-                                             >
-                                       <!--       <div ng-if="registrationForm.$submitted" ng-messages="registrationForm.email.$error" ng-messages-include="partials/messages.html"></div>      -->
-                                      </div>
+                                             >                                   
+                                       </div>
                                          
                                          <div class="form-group">
                                              <input  type="password" name="password" placeholder="סיסמא"
@@ -53,11 +50,12 @@
                                                      validate-on="dirty"
                                                      required-message="'נדרש'" required
                                              >
-                                       <!--       <div ng-if="registrationForm.$submitted" ng-messages="registrationForm.password.$error" ng-messages-include="partials/messages.html"></div> -->
+                                      
                                           
                                          </div>
                                         <div class="form-group"> 
-                                              <input  type="password" name="confirmPassword" placeholder="אימות סיסמא"                                               
+                                              <input  type="password" name="confirmPassword" placeholder="אימות סיסמא"  
+                                                       tabindex="5" 
                                                       ng-model="registration.user.confirmPassword" 
                                                       class = "form-control"
                                                       validate-on="dirty"
@@ -65,21 +63,26 @@
                                                       invalid-message="'הסיסמאות אינן תואמות'"                                             
                                                       required-message="'נדרש'" required
                                               >   
-                                          <!--    <div  ng-show=" registrationForm.confirmPassword.$invalid" ng-messages="registrationForm.confirmPassword.$error" ng-messages-include="partials/messages.html"></div> -->
+                                        
                                          </div>
                                           
-                                        <div class="form-group">   
-                                         <fieldset>
-                                            <label class="gender-caption">מין</label>
-                                            <input type="radio" name="gender" value="Male" ng-model="registration.user.gender"><span>זכר</span>
-                                            <input type="radio" name="gender" value="Female" ng-model="registration.user.gender"><span>נקבה</span>
-                                        <!--    <div ng-if="registrationForm.$submitted" ng-messages="registrationForm.gender.$error" ng-messages-include="partials/messages.html"></div> -->
-                                         </fieldset>
-                                         </div> 
+ 
+                                            <div class="form-group" id="radioGender">
+                                                <label class="gender-caption">מין</label>
+                                              
+                                                    <span>זכר</span> <input required-message="'נדרש'" type="radio" name="gender" value="M" ng-model="registration.user.gender" ng-required="!registration.user.gender" >
+                                                    <span>נקבה</span> <input required-message="'נדרש'" type="radio" name="gender" value="F" ng-model="registration.user.gender" ng-required="!registration.user.gender" >
+                                             
+                                            </div>
+
                                       
                                          
-                                         <div class="form-group">
+                                         <div class="form-group" ng-if="!registration.success">
                                              <button class="login loginmodal-submit" tabindex="7" type="submit">בצע רישום</button>	 
+                                         </div>
+                                         <h1 style="text-align: center; color: green" ng-if="registration.success">{{ registration.message }}</h1>
+                                         <div class="form-group" ng-if="registration.success">
+                                             <button style="background: green !important" class="login loginmodal-submit" tabindex="7" ng-click="registrationForm.reset() ; toggleRegisterModal() ; toggleLoginModal()">סגור</button>	 
                                         </div>
                                    </form> 
                                 </div> 

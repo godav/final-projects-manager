@@ -3,11 +3,11 @@
 
   var rout = angular.module('app');
   rout.controller("registration", registration);
-   function registration() {
+   function registration($http) {
     var model = this;
 
     model.message = "";
-
+    model.success = false;
     model.user = {
       firstname: "",
       lastname: "",
@@ -18,16 +18,57 @@
     };
 
     model.submit = function(isValid) {
-      console.log("h");
+      console.log("isValid:" + isValid);
       if (isValid) {
         model.message = "Submitted " + model.user.username;
+        
+        var registrationData = $.param({
+                first_name: model.user.firstname,
+                last_name: model.user.lastname,
+                email: model.user.email,
+                password: model.user.password,
+                gender: model.user.gender
+            });
+            
+            var config = {
+                headers : {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                }
+            };
+
+            $http.post('json/pages/registerUser', registrationData,config)
+             .success(function (data, status, headers, config) {
+                 if (data)
+                {
+                        model.success = true;
+                        model.message = "הרישום בוצע בהצלחה !";
+                }
+                    
+                    
+//                }else{
+//                     $scope.logedIn = false;
+//                      $scope.errLogin = true;
+//                      $scope.username = "";
+//                      $scope.userpassword = ""; 
+//                     
+//                      
+//                }
+             })
+            .error(function (data, status, header, config) {
+                model.ResponseDetails = "Data: " + data +
+                    "<hr />status: " + status +
+                    "<hr />headers: " + header +
+                    "<hr />config: " + config;
+            });
+        
+        
+        
       } else {
         model.message = "There are still invalid fields below";
       }
     };
     
     model.passwordValidator = function(password) {
-                console.log(password);
 		if (!password) {
 			return;
 		}

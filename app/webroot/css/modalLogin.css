@@ -48,6 +48,8 @@
   -moz-box-sizing: border-box;
 }
 
+ 
+
 .loginmodal-container input[type=radio]{
     margin-left:10px;
 }
@@ -247,4 +249,23 @@
     font-size: smaller;
     margin: 0;
     padding: 0 8px;
+}
+
+/*#radioGender .control-label {
+    display: block;
+}*/
+
+#radioGender {
+  height: 30px;
+  font-size: 16px;
+  width: 100%;
+  /*margin-bottom: 10px;*/
+  -webkit-appearance: none;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-top: 1px solid #c0c0c0;
+   border-radius: 15px;
+  padding: 0 8px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }

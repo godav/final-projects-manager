@@ -5,14 +5,14 @@
         
 	function main($scope,$http,StorageService) {
             
-              $scope.errLogin = false;
+//              $scope.errLogin = false;
               $scope.infoData=StorageService.get();
               if ($scope.infoData === null)  
                   $scope.logedIn = false;
               else
                   $scope.logedIn = $scope.infoData.register;
                                    
-            $scope.title = "courses page";
+//            $scope.title = "courses page";
 
             $scope.showLogin = false;
             $scope.toggleLoginModal = function(){
@@ -28,9 +28,9 @@
             
 //            $scope.logedIn = false;
             
-           $scope.validateUser = function (email,pass) {
-             $scope.email = email;
-             $scope.password = pass; 
+//           $scope.validateUser = function (email,pass) {
+//             $scope.email = email;
+//             $scope.password = pass; 
 //             console.log($scope.email);
 //             console.log($scope.password);
             
@@ -68,7 +68,7 @@
 //                    "<hr />config: " + config;
 //            });
              
-             };
+//             };
 //            
              $scope.logOut = function(){
                   StorageService.remove();

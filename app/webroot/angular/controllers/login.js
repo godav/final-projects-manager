@@ -4,23 +4,25 @@
   var rout = angular.module('app');
   rout.controller("login", login);
   
-   function login($http,StorageService) {
+   function login($http,StorageService,$scope) {
     var model = this;
-
+    console.log("scopeLogin " + $scope.$parent.showLogin);
+    
     model.message = "";
+    model.error = false;
     model.success = false;
     model.user = {
       email: "",
-      password: "",  
+      password: "" 
     };
 
     model.submit = function(isValid) {
    
       console.log("isValid:" + isValid);
       if (isValid) {
-        model.message = "Submitted " + model.user.username;
+//        model.message = "Submitted " + model.user.username;
         
-                 var loginData = $.param({
+                var loginData = $.param({
                 email: model.user.email,
                 password: model.user.password
             });
@@ -33,16 +35,21 @@
 
             $http.post('json/pages/checklogin', loginData,config)
              .success(function (data, status, headers, config) {
+                 console.log(data);
                 StorageService.add(data);
-                model.infoData = data;
-                if (model.infoData.register){
-                     model.showLogin = false;
-                     model.logedIn = true;
+                $scope.$parent.infoData = data;
+                if ($scope.$parent.infoData.register){
+                    model.success =true;
+                    model.message  = "שלום " + $scope.$parent.infoData.fname + " התחברת בהצלחה";
+//                     $scope.$parent.showLogin = false;
+                     $scope.$parent.logedIn = true;
                 }else{
-                     model.logedIn = false;
-                      model.errLogin = true;
-                      model.username = "";
-                      model.userpassword = ""; 
+                    model.error = true;
+                     model.message  = "פרטי ההתחברות אינם תקינים!";
+                     $scope.$parent.logedIn = false;
+//             
+//                       $scope.$parent.username = "";
+//                       $scope.$parent.userpassword = ""; 
                      
                       
                 }
@@ -56,17 +63,23 @@
         
         
         
-      } else {
-        model.message = "There are still invalid fields below";
-      }
+      } 
     };
        
-    
-
-
+    model.close = function(){
+        model.message= "";
+        model.success = false;
+        model.error = false;
     };
 
-  };
+    model.clear = function(){
+        model.message= "";
+        model.error = false;
+    };
+    
+    };
+
+
 
 //  var compareTo = function() {
 //    return {

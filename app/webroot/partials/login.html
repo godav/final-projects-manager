@@ -27,15 +27,20 @@
                      required-message="'נדרש'" required
                     >   
                 </div>
-                <h1 style="text-align: center; color: red" ng-if="loginCtrl.error">{{ loginCtrl.message }}</h1>
+                <h1 style="text-align: center; color: red; font-size: 1.4em !important;" ng-if="loginCtrl.error">{{ loginCtrl.message }}</h1>
                 <div class="form-group" ng-if="!loginCtrl.success">
                     <button class="login loginmodal-submit" tabindex="3" type="submit">התחבר</button>	 
                 </div>
-                <h1 style="text-align: center; color: green" ng-if="loginCtrl.success">{{ loginCtrl.message }}</h1>
+                <h1 style="text-align: center; color: green; font-size: 1.4em !important;" ng-if="loginCtrl.success">{{ loginCtrl.message }}</h1>
                 
                 <div class="form-group" ng-if="loginCtrl.success">
                     <button style="background: green !important" class="login loginmodal-submit" tabindex="7" ng-click="loginForm.reset(); toggleLoginModal() ; loginCtrl.close()">סגור</button>	 
                 </div>
+                
+                  <div class="login-help" ng-if="!loginCtrl.success">
+                    <button id="register" class="btn tran" data-dismiss="modal" ng-click="toggleRegisterModal() ; loginForm.reset();  loginCtrl.close()">הירשם</button> - 
+                    <button class="btn tran" ng-click="toggleRegisterModal() ; loginForm.reset();  loginCtrl.close()">שכחתי סיסמא</button>
+                  </div>
             </form>    
         </div>
     </div>

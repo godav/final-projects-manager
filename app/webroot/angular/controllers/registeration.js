@@ -68,6 +68,49 @@
       }
     };
     
+        model.checkEmail = function() {
+   
+                var Data = $.param({
+                email: model.user.email,
+            });
+            
+            var config = {
+                headers : {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                }
+            };
+
+            $http.post('json/pages/checkemail', Data,config)
+             .success(function (data, status, headers, config) {
+                 console.log(data);
+//
+//                if ($scope.$parent.infoData.register){
+//                    model.success =true;
+//                    model.message  = "שלום " + $scope.$parent.infoData.fname + " התחברת בהצלחה";
+////                     $scope.$parent.showLogin = false;
+//                     $scope.$parent.logedIn = true;
+//                }else{
+//                    model.error = true;
+//                     model.message  = "פרטי ההתחברות אינם תקינים!";
+//                     $scope.$parent.logedIn = false;
+//             
+//                       $scope.$parent.username = "";
+//                       $scope.$parent.userpassword = ""; 
+                     
+                      
+                })
+             
+            .error(function (data, status, header, config) {
+                model.ResponseDetails = "Data: " + data +
+                    "<hr />status: " + status +
+                    "<hr />headers: " + header +
+                    "<hr />config: " + config;
+            });
+        
+        
+        
+      }; 
+      
     model.passwordValidator = function(password) {
 		if (!password) {
 			return;

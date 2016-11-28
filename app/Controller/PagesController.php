@@ -103,21 +103,46 @@ class PagesController extends AppController {
 
     }      
     
+//           function json_checklogin(){
+// 
+////           $this->autoRender = false;
+//            $email = $this->request->data('email');
+//            $password = $this->request->data('password'); 
+//
+//          $this->loadModel('User');
+//          
+//          $register = $this->User->find('first', array(
+//                                'conditions' => array('User.email' => $email,'User.password' => $password),
+//                                'fields' => array('User.first_name, User.last_name','User.id')
+//                 )); 
+//        
+//          $data['register'] = false;
+//          $data['fname'] = null;
+//          $data['lname'] = null;
+//          $data['id'] = null;
+//          
+//          if (!empty($register)){
+//               $data['register'] = true;
+//               $data['fname'] = $register['User']['first_name'];
+//               $data['lname'] = $register['User']['last_name'];
+//               $data['id'] = $register['User']['id'];
+//          }                       
+//          return json_encode($data);
+//
+//    }      
     
-           function json_registerUser(){
- 
-//           $this->autoRender = false;
-//                $fname = $this->request->data('firstname');
-//                $lname = $this->request->data('lastname');
-//                $email = $this->request->data('email');
-//                $password = $this->request->data('password'); 
-//                $gender = $this->request->data('gender');
+    function json_checkemail(){
+
+          $email = $this->request->data('email');
 
           $this->loadModel('User');
           
-          $results = $this->User->save($this->request->data); 
+          $exists = $this->User->find('first', array(
+                                'conditions' => array('User.email' => $email)
+                                )
+                 ); 
                              
-          return json_encode($results);
+          return json_encode($exists);
 
     }      
     

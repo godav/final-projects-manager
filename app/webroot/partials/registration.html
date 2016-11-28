@@ -34,6 +34,7 @@
                                              <input   name="email" placeholder="דואר אלקטרוני"
                                                       type="email" tabindex="3" ng-model="registration.user.email"
                                                       class = "form-control"
+                                                      validator = "registration.checkEmail() === true"
                                                       validate-on="dirty"
                                                       invalid-message="'כתובת הדואר האלקטרוני אינה תיקנית'"
                                                       required-message="'נדרש'" required

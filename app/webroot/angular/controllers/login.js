@@ -15,7 +15,10 @@
       email: "",
       password: "" 
     };
+    
 
+       
+    
     model.submit = function(isValid) {
    
       console.log("isValid:" + isValid);

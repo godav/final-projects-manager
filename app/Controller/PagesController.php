@@ -132,15 +132,14 @@ class PagesController extends AppController {
 //    }      
     
     function json_checkemail(){
-
+   
           $email = $this->request->data('email');
 
           $this->loadModel('User');
           
           $exists = $this->User->find('first', array(
                                 'conditions' => array('User.email' => $email)
-                                )
-                 ); 
+                                )); 
                              
           return json_encode($exists);
 

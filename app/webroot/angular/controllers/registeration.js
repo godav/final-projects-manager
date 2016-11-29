@@ -5,7 +5,8 @@
   rout.controller("registration", registration);
    function registration($http) {
     var model = this;
-
+    model.old = null;
+    model.returnData=null;
     model.message = "";
     model.success = false;
     model.user = {
@@ -69,20 +70,62 @@
     };
     
         model.checkEmail = function() {
-   
-                var Data = $.param({
-                email: model.user.email,
-            });
             
+            var userEmail = model.user.email;
+            
+            if (model.old=== null)
+                    model.old = userEmail;
+                
+            
+            if (!userEmail)
+               return 'נדרש';
+            
+            if (model.old === userEmail)
+                return;
+            
+            model.old = userEmail;
+            
+            var atpos = userEmail.indexOf("@");
+            var dotpos = userEmail.lastIndexOf(".");
+            if (atpos<1 || dotpos<atpos+2 || dotpos+2>=userEmail.length)
+            {
+             
+                return 'כתובת הדואר האלקטרוני אינה תיקנית';
+            }
+            else
+            {
+ 
+                if (ajaxEmailValidator(userEmail))
+                    return 'כתובת הדואר האלקטרוני קיימת במערכת';
+                else
+                    return true;
+            }
+            
+                
+            
+            
+            
+        
+      }; 
+      
+      ajaxEmailValidator = function(userEmail)
+      {
+            console.log(userEmail);
+         
+          var emailData = $.param({
+                email: userEmail
+            });
+            console.log(emailData);
             var config = {
                 headers : {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
             };
 
-            $http.post('json/pages/checkemail', Data,config)
+             $http.post('json/pages/checkemail', emailData,config)
              .success(function (data, status, headers, config) {
                  console.log(data);
+                  model.returnData = data;
 //
 //                if ($scope.$parent.infoData.register){
 //                    model.success =true;
@@ -101,15 +144,22 @@
                 })
              
             .error(function (data, status, header, config) {
+                
                 model.ResponseDetails = "Data: " + data +
                     "<hr />status: " + status +
                     "<hr />headers: " + header +
                     "<hr />config: " + config;
+         //   return data;
+            
             });
-        
-        
-        
-      }; 
+        console.log( model.returnData);
+
+        if (model.returnData instanceof Array )
+            return false;
+        else
+            return true;
+          
+      };
       
     model.passwordValidator = function(password) {
 		if (!password) {

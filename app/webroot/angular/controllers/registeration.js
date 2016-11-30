@@ -70,20 +70,16 @@
     };
     
         model.checkEmail = function() {
-            
             var userEmail = model.user.email;
             
-            if (model.old=== null)
-                    model.old = userEmail;
-                
-            
             if (!userEmail)
-               return 'נדרש';
+               return;
             
-            if (model.old === userEmail)
+            if (model.old=== userEmail)
                 return;
-            
-            model.old = userEmail;
+
+             model.old = userEmail;
+                                                    
             
             var atpos = userEmail.indexOf("@");
             var dotpos = userEmail.lastIndexOf(".");
@@ -97,11 +93,11 @@
  
                 if (ajaxEmailValidator(userEmail))
                     return 'כתובת הדואר האלקטרוני קיימת במערכת';
-                else
-                    return true;
+
+                  
             }
             
-                
+               return true;   
             
             
             

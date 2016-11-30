@@ -3,7 +3,7 @@
 
   var rout = angular.module('app');
   rout.controller("registration", registration);
-   function registration($http) {
+   function registration($http,$scope) {
     var model = this;
     model.old = null;
     model.returnData=null;
@@ -20,6 +20,11 @@
 
     model.submit = function(isValid) {
       console.log("isValid:" + isValid);
+      
+      ajaxEmailValidator()
+       $scope.myForm.email$setValidity(fieldName, false, $scope.myForm);
+       $scope.myForm.ccNumber.$setValidity("ccNumber", false);
+       
       if (isValid) {
         model.message = "Submitted " + model.user.username;
         
@@ -69,46 +74,51 @@
       }
     };
     
-        model.checkEmail = function() {
+        model.checkEmail = function(userEmail) {
             
-            var userEmail = model.user.email;
-            
-            if (model.old=== null)
-                    model.old = userEmail;
-                
-            
+     //       var userEmail = model.user.email;
             if (!userEmail)
-               return 'נדרש';
-            
-            if (model.old === userEmail)
-                return;
-            
-            model.old = userEmail;
+               return;
+ 
             
             var atpos = userEmail.indexOf("@");
             var dotpos = userEmail.lastIndexOf(".");
             if (atpos<1 || dotpos<atpos+2 || dotpos+2>=userEmail.length)
             {
-             
                 return 'כתובת הדואר האלקטרוני אינה תיקנית';
+              
             }
-            else
-            {
- 
-                if (ajaxEmailValidator(userEmail))
-                    return 'כתובת הדואר האלקטרוני קיימת במערכת';
-                else
-                    return true;
-            }
-            
-                
-            
-            
-            
-        
+            return true;
+//            else
+//            {
+//                 if (model.old=== null)
+//                    model.old = userEmail;
+//                 
+//                if (model.old !== userEmail && ajaxEmailValidator(userEmail))
+//                {
+//                    model.old = userEmail;
+//                    model.emailMessage = 'כתובת הדואר האלקטרוני קיימת במערכת';
+//                    return false;    
+//                }
+//                else
+//                {
+//                    model.emailMessage = null;
+//                    return true;
+//                }
+//            }
       }; 
       
-      ajaxEmailValidator = function(userEmail)
+      
+//      model.emailErrorValidation = function ()
+//      {     if (model.emailMessage===null)
+//              return true;
+//            
+//          return model.emailMessage;
+//      };
+      
+      
+      
+      ajaxEmailValidator = function()
       {
             console.log(userEmail);
          

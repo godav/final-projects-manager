@@ -1,6 +1,6 @@
 
 (function(){
-	var rout = angular.module('app', ['ngRoute','ngStorage','angularValidator','ngRemoteValidate']);
+	var rout = angular.module('app', ['ngRoute','ngStorage','angularValidator']);
 	
 
 

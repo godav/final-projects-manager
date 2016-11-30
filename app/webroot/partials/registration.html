@@ -9,8 +9,7 @@
                                  </div>
                                  
                                  <div  class="form" >
-                                     
-                            
+                                   
                                      <form angular-validator-submit='registration.submit(registrationForm.$valid)' novalidate name='registrationForm' angular-validator>
                                    
                                              <div class="form-group">
@@ -35,11 +34,11 @@
                                              <input   name="email" placeholder="דואר אלקטרוני"
                                                       type="email" tabindex="3" ng-model="registration.user.email"
                                                       class = "form-control"
-                                                      validator = "registration.checkEmail() === true"
+                                                      validator = "registration.checkEmail(registration.user.email) === true"
                                                       validate-on="dirty"
-                                                      invalid-message="registration.emailErrorValidation()"
+                                                      invalid-message="registration.checkEmail(registration.user.email)"
                                                       required-message="'נדרש'" required
-                                                      
+                                                      ng-model-options="{allowInvalid:false}"
                                              >                                   
                                        </div>
                                          
@@ -89,7 +88,6 @@
                                              <button style="background: green !important" class="login loginmodal-submit" tabindex="7" ng-click="registrationForm.reset() ; toggleRegisterModal() ; toggleLoginModal()">סגור</button>	 
                                         </div>
                                    </form> 
-                              
                                 </div> 
 			
 			</div>

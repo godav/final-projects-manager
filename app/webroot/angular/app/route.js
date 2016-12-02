@@ -23,6 +23,11 @@
 			//template:"<h1>this is about page</h1>"
 
 		})
+        .when('/dashboard', {
+			templateUrl : 'partials/dashboard.html'
+			//template:"<h1>this is about page</h1>"
+
+		})
 //        .when('/login', {
 //			templateUrl : 'partials/login.html'
 //			//template:"<h1>this is about page</h1>"

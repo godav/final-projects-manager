@@ -17,7 +17,7 @@
                         <a href="#/projects">פרויקטים</a>
                      </li>
                      <li ng-if="logedIn">
-                        <a href="#">פאנל ניהול</a>
+                        <a href="#/dashboard">פאנל ניהול</a>
                      </li>
                   </ul>
                      <button class="btn btn-outlined" ng-if="!logedIn" ng-click="toggleLoginModal()">התחבר</button>

@@ -7,15 +7,18 @@
       <meta name="description" content="Project Manager for tapuah courses" />
       <meta name="author" content="Avner Ainouz - Godav" />
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Raleway:400,700" rel="stylesheet" />
-      <link href="img/favicon.png" type="image/x-icon" rel="shortcut icon" />
-      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
+  
+    
+      
    
       <!-- Scripts and Css Loading -->
       <?php           
-            echo $this->Html->css(array('/css/bootstrap.min', '/css/screen','/css/modalLogin')); 
-            echo $this->Html->script(array('/js/jquery-2.2.3.min', '/js/bootstrap.min', '/js/functions'));
+            echo $this->Html->css(array('/css/bootstrap', '/css/screen','/css/modalLogin')); 
+            echo $this->Html->css(array('/css/custom','/css/admin-dashboard')); 
+            
+            echo $this->Html->script(array('/js/jquery-3.1.1.min', '/js/bootstrap', '/js/functions'));
+            echo $this->Html->script(array('/js/custom'));
             echo $this->Html->script(array('/js/angular','/js/angular-route','/js/ngStorage.min'));
         
             echo $this->Html->script(array('/angular/app/app','/angular/app/route','/angular/app/services/fileService','/angular/app/services/StorageService'));
@@ -23,7 +26,7 @@
             echo $this->Html->script(array('/angular/controllers/main','/angular/controllers/courses','/angular/controllers/projects','/angular/controllers/search','/angular/controllers/login','/angular/controllers/ManageUploadCtrl','/angular/controllers/registeration'));
         ?>
         
-     
+        
 
    </head>
    <body ng-controller="main">

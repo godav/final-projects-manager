@@ -15,10 +15,11 @@
       <!-- Scripts and Css Loading -->
       <?php           
             echo $this->Html->css(array('/css/bootstrap', '/css/screen','/css/modalLogin')); 
-            echo $this->Html->css(array('/css/custom','/css/admin-dashboard')); 
+            echo $this->Html->css(array('/css/font-awesome','/css/slide-bar','/css/admin-dashboard')); 
+            echo $this->Html->css(array('/css/bootstrap-theme','/css/elegant-icons-style','/css/style','/css/style-responsive')); 
             
             echo $this->Html->script(array('/js/jquery-3.1.1.min', '/js/bootstrap', '/js/functions'));
-            echo $this->Html->script(array('/js/custom'));
+            echo $this->Html->script(array('/js/slide-bar'));
             echo $this->Html->script(array('/js/angular','/js/angular-route','/js/ngStorage.min'));
         
             echo $this->Html->script(array('/angular/app/app','/angular/app/route','/angular/app/services/fileService','/angular/app/services/StorageService'));

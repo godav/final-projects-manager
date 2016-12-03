@@ -33,16 +33,16 @@
 
 		/*Allow main to be next to Nav*/
 		.main{
-			position: absolute;
+			/*position: absolute;*/
 			width: calc(100% - 40px); /*keeps 100% minus nav size*/
-			margin-left: 40px;
-			float: right;
+			/*margin-left: 40px;*/
+			/*float: right;*/
 		}
 
 		/*lets nav bar to be showed on mouseover*/
-		nav.sidebar:hover + .main{
+/*		nav.sidebar:hover + .main{
 			margin-left: 200px;
-		}
+		}*/
 
 		/*Center Brand*/
 		nav.sidebar.navbar.sidebar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
@@ -124,7 +124,7 @@
 		/*Allow main to be next to Nav*/
 		.main{
 			width: calc(100% - 200px); /*keeps 100% minus nav size*/
-			margin-left: 200px;
+			/*margin-left: 200px;*/
 		}
 
 		/*Show all nav*/
@@ -146,9 +146,9 @@
 	nav:hover .forAnimate{
 		opacity: 1;
 	}
-	section{
+/*	section{
 		padding-left: 15px;
-	}
+	}*/
         
  .navbar-inverse {
 
@@ -159,5 +159,5 @@
  
  .navbar-inverse .navbar-nav > li > a {
     color: #DDA0DD !important;
- 
+    text-align: right !important;
  }

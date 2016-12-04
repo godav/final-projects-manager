@@ -92,7 +92,13 @@
                                              >                                   
                                        </div>
                                          
-                                     
+                                      <div class="form-group">
+                                            <input name="git" placeholder="ספריית GIT "
+                                                   type="text" tabindex="2" ng-model="profile.user.git" 
+                                                   class = "form-control"  
+                                                   required-message="'נדרש'" required                                                 
+                                            >                                         
+                                      </div>
                                           
  
                                             <div class="form-group" id="radioGender">
@@ -102,14 +108,19 @@
                                                     <span>נקבה</span> <input required-message="'נדרש'" type="radio" name="gender" value="F" ng-model="profile.user.gender" ng-required="!profile.user.gender" >
                                              
                                             </div>
+                                                        
+                                           <div class="form-group" name="file" class="form-group" ng-controller = "ManageUploadCtrl">
+                                                <input placeholder="בחר תמונת פרופיל" type = "file" file-Upload = "myFile"/>
+                                                <button ng-click = "uploadFile()"></button>
+                                            </div>             
 
                                         <div class="form-group">
-                                              <div class="col-lg-offset-2 col-lg-10">
+                                              <div style="text-align: center;">
                                                   <button type="submit" class="btn btn-primary">עדכון</button>
                                                   <button type="button" class="btn btn-danger">ביטול</button>
                                               </div>
                                         </div>
-                                         
+                                         <!--
                                          <div class="form-group" ng-if="!profile.success">
                                              <button class="login loginmodal-submit" tabindex="7" type="submit">בצע רישום</button>	 
                                          </div>
@@ -117,6 +128,7 @@
                                          <div class="form-group" ng-if="profile.success">
                                              <button style="background: green !important" class="login loginmodal-submit" tabindex="7" ng-click="updateForm.reset() ; toggleRegisterModal() ; toggleLoginModal()">סגור</button>	 
                                         </div>
+                                         -->
                                    </form> 
                                               </div>
                                               <!--

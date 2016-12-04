@@ -6735,7 +6735,10 @@ ul.inbox-pagination li {
 
 .profile-widget-info{
 
-    background: #324c57 !important;
+    background: #DDA0DD;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border: 1px solid gray;
 
 }
 

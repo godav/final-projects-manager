@@ -6,7 +6,7 @@
   
    function login($http,StorageService,$scope) {
     var model = this;
-    console.log("scopeLogin " + $scope.$parent.showLogin);
+//    console.log("scopeLogin " + $scope.$parent.showLogin);
     
     model.message = "";
     model.error = false;
@@ -21,7 +21,7 @@
     
     model.submit = function(isValid) {
    
-      console.log("isValid:" + isValid);
+//      console.log("isValid:" + isValid);
       if (isValid) {
 //        model.message = "Submitted " + model.user.username;
         
@@ -38,7 +38,7 @@
 
             $http.post('json/pages/checklogin', loginData,config)
              .success(function (data, status, headers, config) {
-                 console.log(data);
+//                 console.log(data);
                 StorageService.add(data);
                 $scope.$parent.infoData = data;
                 if ($scope.$parent.infoData.register){

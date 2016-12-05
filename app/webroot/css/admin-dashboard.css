@@ -7,3 +7,9 @@
     font-size: 16px !important;
     font-weight: bold;
 }
+
+.prof h1{
+    font-size: 2em !important;
+    margin: 30px !important;
+    text-align: center !important;
+}

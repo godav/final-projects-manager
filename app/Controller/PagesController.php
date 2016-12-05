@@ -155,4 +155,46 @@ class PagesController extends AppController {
             pr($fileOK);
         }
         
+        
+      function json_registerUser(){
+          
+          $response = "";
+          
+          $this->loadModel('User');
+          if ($this->data != null) 
+                $response = $this->User->save($this->data);
+                   
+          return json_encode($response);
+
+       }   
+      
+       
+       function json_updateUser(){
+          
+          $response = "";
+          
+          $this->loadModel('User');
+          if ($this->data != null) 
+                $response = $this->User->save($this->data);
+                   
+          return json_encode($response);
+
+       }   
+       
+       function json_getUserProfile(){
+          
+          $id = $this->request->data('id');
+          
+          $this->loadModel('User');
+          
+          $response = $this->User->find('first', array(
+                                        'conditions' => array('User.id' => $id)
+           ));
+             
+          return json_encode($response);
+
+       }          
+       
+   
+        
 }

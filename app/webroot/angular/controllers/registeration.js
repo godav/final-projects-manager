@@ -69,33 +69,32 @@
       }
     };
     
-        model.checkEmail = function() {
-            var userEmail = model.user.email;
-            
-            if (!userEmail)
+        model.checkEmail = function(email) {
+//            var userEmail = model.user.email;
+            var atpos = email.indexOf("@");
+            var dotpos = email.lastIndexOf(".");
+            if (!email)
                return;
             
-            if (model.old=== userEmail)
-                return;
-
-             model.old = userEmail;
+//            if (model.old=== userEmail)
+//                return;
+//
+//             model.old = userEmail;
                                                     
             
-            var atpos = userEmail.indexOf("@");
-            var dotpos = userEmail.lastIndexOf(".");
-            if (atpos<1 || dotpos<atpos+2 || dotpos+2>=userEmail.length)
+//            var atpos = email.indexOf("@");
+//            var dotpos = email.lastIndexOf(".");
+            else if ( atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length)
             {
              
                 return 'כתובת הדואר האלקטרוני אינה תיקנית';
             }
-            else
-            {
- 
-                if (ajaxEmailValidator(userEmail))
-                    return 'כתובת הדואר האלקטרוני קיימת במערכת';
-
-                  
-            }
+//            else if (ajaxEmailValidator(email)){
+//                    return 'כתובת הדואר האלקטרוני קיימת במערכת';
+//            }
+//
+//                  
+//            }
             
                return true;   
             

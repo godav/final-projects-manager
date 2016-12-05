@@ -13,7 +13,7 @@
             link:function link(scope, element, attrs){                          
                
                 scope.$watch('showLogin', function(){
-                    console.log(scope.showLogin);
+//                    console.log(scope.showLogin);
                     if(scope.showLogin===true){
                         $(element).modal('show');              
                     }else{

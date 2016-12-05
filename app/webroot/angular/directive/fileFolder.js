@@ -1,9 +1,9 @@
 "use strict";
 
 (function() {
-	angular.module("app").directive('fileUrl', fileUrl);
+	angular.module("app").directive('fileFolder', fileFolder);
 
-	function fileUrl($parse) {
+	function fileFolder($parse) {
 		return {
 			restrict : 'A',
 			link : function(scope, element, attrs) {

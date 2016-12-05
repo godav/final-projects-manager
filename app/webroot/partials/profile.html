@@ -110,7 +110,7 @@
                                             </div>
                                                         
                                            <div class="form-group" name="file" class="form-group" ng-controller = "ManageUploadCtrl">
-                                                <input name="photo" ng-model="profile.user.file" placeholder="בחר תמונת פרופיל" type = "file" file-Upload = "myFile" file-Url="{{profile.user.fileUrl}}"/>
+                                                <input name="photo" ng-model="profile.user.file" placeholder="בחר תמונת פרופיל" type = "file" file-Upload = "myFile" file-Folder="{{profile.user.folder}}"/>
                                                 <button ng-click = "uploadFile()"></button>
                                             </div>             
 

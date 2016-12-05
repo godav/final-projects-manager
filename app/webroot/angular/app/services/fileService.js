@@ -3,12 +3,12 @@
 (function() {
 	angular.module("app").service('fileService', fileService);
 	function fileService($http) {
-		this.uploadFileToUrl = function(file, uploadUrl) {
+		this.uploadFileToUrl = function(file, uploadUrl,folder) {
                     
                 
 			var formData = new FormData();
 			formData.append('file', file);
-            
+                        formData.append('folder', folder);
 			var request = {
 				transformRequest : angular.identity,
 				headers : {

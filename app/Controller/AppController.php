@@ -94,7 +94,7 @@ function uploadFiles($folder, $formdata, $itemId = null) {
 	// setup dir names absolute and relative
 	$folder_url = WWW_ROOT.$folder;
 	$rel_url = $folder;
-	
+	echo '<br><br> folder_url :$folder_url <br><br>';
 	// create the folder if it does not exist
 	if(!is_dir($folder_url)) {
 		mkdir($folder_url);

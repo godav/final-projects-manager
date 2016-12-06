@@ -32,7 +32,7 @@
 			$scope.uploading=true;
 			var url = 'json/pages/pictureUpload';
 			var file = $scope.myFile;
-                        var folder = 'img/file/' + $scope.$parent.infoData.id + '/';
+                        var folder = 'img\\file\\' + $scope.$parent.infoData.id + '\\';
 			console.log("file ", file);
                         console.log("url ", url);
                         console.log("folder ", folder);

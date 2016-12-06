@@ -203,7 +203,7 @@ class PagesController extends AppController {
               echo "<br>";
                pr($file);
             // upload the file to the server
-             $fileOK = $this->uploadFiles($folder, $file);
+             $fileOK = $this->uploadFiles($folder, $file['form']['file']);
              echo "<br>";
               pr($fileOK);
          }

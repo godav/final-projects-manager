@@ -13,3 +13,15 @@
     margin: 30px !important;
     text-align: center !important;
 }
+
+.upload-btn{
+    border-top-right-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
+    height: 30px !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+}
+.btn-purple{
+    background-color: #DDA0DD !important;
+    border-color: #DDA0DD !important;
+}

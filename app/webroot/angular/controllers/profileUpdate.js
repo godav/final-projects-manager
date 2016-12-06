@@ -3,7 +3,7 @@
 
   var rout = angular.module('app');
   rout.controller("profileUpdate", profileUpdate);
-   function profileUpdate($http,$scope ) {
+   function profileUpdate($http,$scope,fileService ) {
     var model = this;
     model.old = null;
     model.returnData=null;
@@ -21,6 +21,26 @@
       fileUrl: "",
       role:""
     };
+    
+    {
+	
+           $scope.uploading = false;
+		$scope.result="upload";
+                 console.log('before');
+		var uploadFile = function() {
+                    console.log('pressed');
+			$scope.uploading=true;
+			var url = 'json/pages/pictureUpload';
+			var file = $scope.myFile;
+                        var folder = 'img/file/' + $scope.$parent.infoData.id + '/';
+			console.log("file ", file);
+                        console.log("url ", url);
+                        console.log("folder ", folder);
+			fileService.uploadFileToUrl(file, url,folder);
+		};
+	};
+    
+    
     
     $scope.init = function() {
         model.user.id = $scope.$parent.infoData.id;
@@ -77,7 +97,7 @@
       
       if (isValid) {
         model.message = "Submitted " + model.user.username;
-        
+        uploadFile();
         var updateData = $.param({
                 id: model.user.id,
                 first_name: model.user.firstname,

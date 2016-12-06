@@ -9,6 +9,7 @@
 			var formData = new FormData();
 			formData.append('file', file);
                         formData.append('folder', folder);
+                        console.log('formdata:',formData);
 			var request = {
 				transformRequest : angular.identity,
 				headers : {

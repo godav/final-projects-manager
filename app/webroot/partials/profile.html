@@ -66,7 +66,7 @@
                                                     <form angular-validator-submit='profile.submit(updateForm.$valid)' novalidate name='updateForm' angular-validator>
                                    
                                              <div class="form-group">
-                                                <input name="firstname" placeholder="שם פרטי"
+                                                 <input name="firstname" placeholder="שם פרטי" ng-change="changeValue()"
                                                        type="text" tabindex="1" ng-model="profile.user.firstname"  
                                                        class = "form-control"  
                                                        required-message="'נדרש'" required                                                     
@@ -74,7 +74,7 @@
                                              </div>
 
                                           <div class="form-group">
-                                            <input name="lastname" placeholder="שם משפחה"
+                                            <input name="lastname" placeholder="שם משפחה" ng-change="changeValue()"
                                                    type="text" tabindex="2" ng-model="profile.user.lastname" 
                                                    class = "form-control"  
                                                    required-message="'נדרש'" required                                                 
@@ -82,18 +82,18 @@
                                           </div>
                                          
                                       <div class="form-group">
-                                             <input   name="email" placeholder="דואר אלקטרוני"
+                                             <input   name="email" placeholder="דואר אלקטרוני" ng-change="changeValue()"
                                                       type="email" tabindex="3" ng-model="profile.user.email"
                                                       class = "form-control"
                                                       validator = "profile.checkEmail(profile.user.email) === true"
-                                                      validate-on="blur"
+                                                      validate-on="dirty"
                                                       invalid-message="profile.checkEmail(profile.user.email)"
                                                       required-message="'נדרש'" required
                                              >                                   
                                        </div>
                                          
                                       <div class="form-group">
-                                            <input name="git" placeholder="ספריית GIT "
+                                            <input name="git" placeholder="ספריית GIT " ng-change="changeValue()"
                                                    type="text" tabindex="2" ng-model="profile.user.git" 
                                                    class = "form-control"  
                                                                                      
@@ -104,8 +104,8 @@
                                             <div class="form-group" id="radioGender">
                                                 <label class="gender-caption">מין</label>
                                               
-                                                    <span>זכר</span> <input required-message="'נדרש'" type="radio" name="gender" value="M" ng-model="profile.user.gender" ng-required="!profile.user.gender" >
-                                                    <span>נקבה</span> <input required-message="'נדרש'" type="radio" name="gender" value="F" ng-model="profile.user.gender" ng-required="!profile.user.gender" >
+                                                    <span>זכר</span> <input required-message="'נדרש'" type="radio" name="gender" value="M" ng-model="profile.user.gender" ng-required="!profile.user.gender" ng-change="changeValue()">
+                                                    <span>נקבה</span> <input required-message="'נדרש'" type="radio" name="gender" value="F" ng-model="profile.user.gender" ng-required="!profile.user.gender" ng-change="changeValue()">
                                              
                                             </div>
                                                         
@@ -114,10 +114,10 @@
                                                 <label class="input-group-btn">
                                                      <span class="btn btn-primary btn-purple upload-btn">
                                                          &hellip; 
-                                                            <input name="file" type="file"  style="display: none;" file-Upload = "myFile" accept="image/*">
+                                                            <input  name="file" type="file"  style="display: none;" file-Upload = "myFile" accept="image/*">
                                                     </span>
                                                 </label>
-                                                <input type="text" disabled  ng-model="profile.user.photoName" name="photo" placeholder="בחר תמונת פרופיל" style="border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important;" readonly>
+                                                <input ng-change="changeValue()" type="text" disabled  ng-model="profile.user.photoName" name="photo" placeholder="בחר תמונת פרופיל" style="border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important;" readonly>
                                             </div> 
                                          </div>
                                                         
@@ -127,7 +127,7 @@
 
                                         <div class="form-group">
                                               <div style="text-align: center;">
-                                                  <button ng-disabled="updateForm.$invalid || !updateForm.$dirty" type="submit"  class="btn btn-success">עדכון</button>
+                                                  <button ng-disabled="updateForm.$invalid || !profile.changed" type="submit"  class="btn btn-success">עדכון</button>
                                                   <button type="button" class="btn btn-danger" ng-click="updateForm.reset() ; init();">ביטול</button>
                                               </div>
                                         </div>

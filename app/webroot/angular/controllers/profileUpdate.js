@@ -3,12 +3,15 @@
 
   var rout = angular.module('app');
   rout.controller("profileUpdate", profileUpdate);
-   function profileUpdate($http,$scope,fileService,$timeout ) {
+   function profileUpdate($http,$scope,fileService,$timeout) {
     var model = this;
 //    model.old = null;
 //    model.returnData=null;
 //    model.message = "";
 //    model.success = false;
+    
+    
+
     
     var defaults = {
  
@@ -46,14 +49,17 @@
 			$scope.uploading=true;
 			var url = 'json/pages/pictureUpload';
 			var file = $scope.myFile;
-                        var folder = 'users\\img\\';
+                        var folder = 'users\\img\\profile\\';
                         var id = $scope.$parent.infoData.id ;
 
 			fileService.uploadFileToUrl(file, url,folder,id,function(response){
-                            console.log('response',response);
+                       //     console.log('response',response);
                             if (response['full']){
                                  model.user.photoName =  response['name'];
                                  model.user.photoLocation =  response['full'];
+                                 console.log('correct');
+                                             console.log(model.user.photoName);
+            console.log(model.user.photoLocation);
                             }
                          });
                                 
@@ -62,20 +68,27 @@
 		};
 	};
     
-    $scope.changeValue = function(fieldname){
-    switch (fieldname){
-        case 'firstname' : if (model.user.firstname===defaults.firstname)
-                                model.changed
-                break;
-        case 'lastname' : .... break;     
-        case 'email' : .... break;
-        case 'gender' : .... break;
-        case 'git' : .... break;
-        case 'photoName' : .... break;
-    }
- }
+    $scope.changeValue = function(){
+        if (model.user.firstname !== defaults.firstname)
+                  model.changed = true;
+        else if (model.user.lastname !== defaults.lastname)
+                  model.changed = true;    
+        else if (model.user.email !== defaults.email)
+                  model.changed = true;
+        else if (model.user.gender !== defaults.gender)
+                  model.changed = true;  
+        else if ((model.user.git !== defaults.git) && !(defaults.git===null && model.user.git===""))
+                  model.changed = true;      
+        else if (model.user.photoName !== defaults.photoName)
+                  model.changed = true;      
+        else model.changed = false; 
+        
+    
+ };
     
     $scope.init = function() {
+        
+       $scope.myFile = null;
         model.user.id = $scope.$parent.infoData.id;
               var Data = $.param({
                 id: $scope.$parent.infoData.id
@@ -118,7 +131,7 @@
                     defaults.git = data.User.git;          
                     defaults.photoName = data.User.photo_name;
                   
-                    
+                    model.changed=false;
 //                        model.success = true;
 //                        model.message = "הרישום בוצע בהצלחה !";
                 }
@@ -136,8 +149,13 @@
       
       if (isValid) {
         model.message = "Submitted " + model.user.username;
-        uploadFile();
-        var updateData = $.param({
+        var updateData=null;
+        if (model.user.photoName!==null && model.user.photoName!==""){
+            uploadFile();
+            console.log(model.user.photoName);
+            console.log(model.user.photoLocation);
+            $timeout(function () {
+            updateData = $.param({
                 id: model.user.id,
                 first_name: model.user.firstname,
                 last_name: model.user.lastname,
@@ -146,15 +164,26 @@
                 git: model.user.git,
                 photo_name: model.user.photoName,
                 photo_location: model.user.photoLocation
-                
+            }, 1000);    
+       
+        });
+      }else{
+          updateData = $.param({
+                id: model.user.id,
+                first_name: model.user.firstname,
+                last_name: model.user.lastname,
+                email: model.user.email,
+                gender: model.user.gender,
+                git: model.user.git,        
             });
-            
+
+       }    
             var config = {
                 headers : {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
             };
-
+            $timeout(function () {
             $http.post('json/pages/updateUser', updateData,config)
              .success(function (data, status, headers, config) {
                  console.log(data);
@@ -162,8 +191,9 @@
                 {
                         model.success = true;
                         model.message = "הנתונים עודכנו!";
-                        if (model.profilePicture !== model.user.photoLocation && model.user.photoLocation!==null)
-                              model.profilePicture = model.user.photoLocation;
+                        $scope.init();
+//                        if (model.profilePicture !== model.user.photoLocation && model.user.photoLocation!==null && model.changed)
+//                              model.profilePicture = model.user.photoLocation;
                 }
                     
                     
@@ -183,7 +213,7 @@
                     "<hr />config: " + config;
             });
         
-        
+        }, 3000);
         
       } else {
         model.message = "There are still invalid fields below";

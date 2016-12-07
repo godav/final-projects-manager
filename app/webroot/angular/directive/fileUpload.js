@@ -12,7 +12,10 @@
 				element.bind('change', function() {
 					scope.$apply(function() {
 						uploadFunc(scope, element[0].files[0]);
-                                                scope.profile.user.photoName = scope.myFile.name;
+                                                if (scope.myFile.name){
+                                                    scope.profile.user.photoName = scope.myFile.name;
+                                                    scope.profile.changed = true;
+                                                }
                                              //   console.log(scope.$parent);
 					});
 				});

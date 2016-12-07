@@ -94,7 +94,7 @@ function uploadFiles($folder, $formdata, $itemId = null) {
 	// setup dir names absolute and relative
 	$folder_url = WWW_ROOT.$folder;
 	$rel_url = $folder;
-	echo '<br><br> folder_url :$folder_url <br><br>';
+//	echo '<br><br> folder_url :$folder_url <br><br>';
 	// create the folder if it does not exist
 	if(!is_dir($folder_url)) {
 		mkdir($folder_url);
@@ -103,9 +103,9 @@ function uploadFiles($folder, $formdata, $itemId = null) {
 	// if itemId is set create an item folder
 	if($itemId) {
 		// set new absolute folder
-		$folder_url = WWW_ROOT.$folder.'/'.$itemId; 
+		$folder_url = WWW_ROOT.$folder.$itemId; 
 		// set new relative folder
-		$rel_url = $folder.'/'.$itemId;
+		$rel_url = $folder.$itemId;
 		// create directory
 		if(!is_dir($folder_url)) {
 			mkdir($folder_url);
@@ -135,43 +135,48 @@ function uploadFiles($folder, $formdata, $itemId = null) {
 			switch($file['error']) {
 				case 0:
 					// check filename already exists
-					if(!file_exists($folder_url.'/'.$filename)) {
+					if(!file_exists($folder_url.'\\'.$filename)) {
 						// create full filename
-						$full_url = $folder_url.'/'.$filename;
-						$url = $rel_url.'/'.$filename;
+						$full_url = $folder_url.'\\'.$filename;
+                                                $photo_name = $filename;
+						$url = $rel_url.'\\'.$filename;
 						// upload the file
 						$success = move_uploaded_file($file['tmp_name'], $url);
 					} else {
 						// create unique filename and upload file
 						ini_set('date.timezone', 'Europe/London');
 						$now = date('Y-m-d-His');
-						$full_url = $folder_url.'/'.$now.$filename;
-						$url = $rel_url.'/'.$now.$filename;
+						$full_url = $folder_url.'\\'.$now.$filename;
+                                                $photo_name = $now.$filename;
+						$url = $rel_url.'\\'.$now.$filename;
 						$success = move_uploaded_file($file['tmp_name'], $url);
 					}
 					// if upload was successful
 					if($success) {
 						// save the url of the file
-						$result['urls'][] = $url;
+                                            
+						$result['full'] = str_replace("\\","/",$url);
+                                                $result['name'] = $photo_name;
+                                              
 					} else {
-						$result['errors'][] = "Error uploaded $filename. Please try again.";
+						$result['errors'] = "Error uploaded $filename. Please try again.";
 					}
 					break;
 				case 3:
 					// an error occured
-					$result['errors'][] = "Error uploading $filename. Please try again.";
+					$result['errors'] = "Error uploading $filename. Please try again.";
 					break;
 				default:
 					// an error occured
-					$result['errors'][] = "System error uploading $filename. Contact webmaster.";
+					$result['errors'] = "System error uploading $filename. Contact webmaster.";
 					break;
 			}
 		} elseif($file['error'] == 4) {
 			// no file was selected for upload
-			$result['nofiles'][] = "No file Selected";
+			$result['nofiles'] = "No file Selected";
 		} else {
 			// unacceptable file type
-			$result['errors'][] = "$filename cannot be uploaded. Acceptable file types: gif, jpg, png.";
+			$result['errors'] = "$filename cannot be uploaded. Acceptable file types: gif, jpg, png.";
 		}
 	}
 return $result;

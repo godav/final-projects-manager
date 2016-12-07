@@ -86,7 +86,7 @@
                                                       type="email" tabindex="3" ng-model="profile.user.email"
                                                       class = "form-control"
                                                       validator = "profile.checkEmail(profile.user.email) === true"
-                                                      validate-on="dirty"
+                                                      validate-on="blur"
                                                       invalid-message="profile.checkEmail(profile.user.email)"
                                                       required-message="'נדרש'" required
                                              >                                   
@@ -114,10 +114,10 @@
                                                 <label class="input-group-btn">
                                                      <span class="btn btn-primary btn-purple upload-btn">
                                                          &hellip; 
-                                                            <input name="file" type="file"  style="display: none;" file-Upload = "myFile">
+                                                            <input name="file" type="file"  style="display: none;" file-Upload = "myFile" accept="image/*">
                                                     </span>
                                                 </label>
-                                                <input type="text" disabled  ng-model="myFile.name" name="photo" placeholder="בחר תמונת פרופיל" style="border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important;" readonly>
+                                                <input type="text" disabled  ng-model="profile.user.photoName" name="photo" placeholder="בחר תמונת פרופיל" style="border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important;" readonly>
                                             </div> 
                                          </div>
                                                         
@@ -127,8 +127,8 @@
 
                                         <div class="form-group">
                                               <div style="text-align: center;">
-                                                  <button type="submit"  class="btn btn-success">עדכון</button>
-                                                  <button type="button" class="btn btn-danger">ביטול</button>
+                                                  <button ng-disabled="updateForm.$invalid || !updateForm.$dirty" type="submit"  class="btn btn-success">עדכון</button>
+                                                  <button type="button" class="btn btn-danger" ng-click="updateForm.reset() ; init();">ביטול</button>
                                               </div>
                                         </div>
                                          <!--

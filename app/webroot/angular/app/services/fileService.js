@@ -3,13 +3,14 @@
 (function() {
 	angular.module("app").service('fileService', fileService);
 	function fileService($http) {
-		this.uploadFileToUrl = function(file, uploadUrl,folder) {
+		this.uploadFileToUrl = function(file, uploadUrl,folder,id,callback) {
                     
                 
 			var formData = new FormData();
 			formData.append('file', file);
                         formData.append('folder', folder);
-                        console.log('formdata:',formData);
+                        formData.append('id', id);
+//                        console.log('formdata:',formData);
 			var request = {
 				transformRequest : angular.identity,
 				headers : {
@@ -17,10 +18,11 @@
 				}
 			};
 			$http.post(uploadUrl, formData, request).success(function(data) {
-				console.log("data", data);
-				if (data == "ok") {
-					console.log("Yea");
-				}
+				//console.log("data", data);
+                                callback(data);
+//				if (data === "ok") {
+//					return data;
+//				}
 
 			}).error(function(data) {
 				console.log("data", data);

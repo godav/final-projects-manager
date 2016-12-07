@@ -196,16 +196,20 @@ class PagesController extends AppController {
        }          
        
          function json_pictureUpload(){
-             echo 'in';
-             $folder = $this->request->data;
+             
+             $folder = $this->request->data['folder'];
              $file = $this->request->params;
-              pr($folder);
-              echo "<br>";
-               pr($file);
+             $id = $this->request->data['id'];
+//              pr($folder);
+//              echo "<br>";
+//              pr($id);
+//              echo "<br>";
+//               pr($file);
             // upload the file to the server
-             $fileOK = $this->uploadFiles($folder, $file['form']['file']);
-             echo "<br>";
-              pr($fileOK);
+             $fileOK = $this->uploadFiles($folder, $file['form'],$id);
+             return json_encode($fileOK);
+//             echo "<br>";
+//              pr($fileOK);
          }
         
 }

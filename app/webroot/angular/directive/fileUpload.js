@@ -12,6 +12,8 @@
 				element.bind('change', function() {
 					scope.$apply(function() {
 						uploadFunc(scope, element[0].files[0]);
+                                                scope.profile.user.photoName = scope.myFile.name;
+                                             //   console.log(scope.$parent);
 					});
 				});
 			}

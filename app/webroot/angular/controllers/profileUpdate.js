@@ -3,12 +3,26 @@
 
   var rout = angular.module('app');
   rout.controller("profileUpdate", profileUpdate);
-   function profileUpdate($http,$scope,fileService ) {
+   function profileUpdate($http,$scope,fileService,$timeout ) {
     var model = this;
-    model.old = null;
-    model.returnData=null;
-    model.message = "";
-    model.success = false;
+//    model.old = null;
+//    model.returnData=null;
+//    model.message = "";
+//    model.success = false;
+    
+    var defaults = {
+ 
+      firstname: "",
+      lastname: "",
+      email: "",
+      git: "",
+      gender: "",
+      photoName: "",
+      photoLocation: "",
+
+    };
+    
+    model.changed = false;
     model.profilePicture = "";
     model.user = {
       id: "",  
@@ -17,8 +31,8 @@
       email: "",
       git: "",
       gender: "",
-      file: "",
-      fileUrl: "",
+      photoName: "",
+      photoLocation: "",
       role:""
     };
     
@@ -26,21 +40,40 @@
 	
            $scope.uploading = false;
 		$scope.result="upload";
-                 console.log('before');
+//                 console.log('before');
 		var uploadFile = function() {
-                    console.log('pressed');
+//                    console.log('pressed');
 			$scope.uploading=true;
 			var url = 'json/pages/pictureUpload';
 			var file = $scope.myFile;
-                        var folder = 'img\\file\\' + $scope.$parent.infoData.id + '\\';
-			console.log("file ", file);
-                        console.log("url ", url);
-                        console.log("folder ", folder);
-			fileService.uploadFileToUrl(file, url,folder);
+                        var folder = 'users\\img\\';
+                        var id = $scope.$parent.infoData.id ;
+
+			fileService.uploadFileToUrl(file, url,folder,id,function(response){
+                            console.log('response',response);
+                            if (response['full']){
+                                 model.user.photoName =  response['name'];
+                                 model.user.photoLocation =  response['full'];
+                            }
+                         });
+                                
+                        
+                       
 		};
 	};
     
-    
+    $scope.changeValue = function(fieldname){
+    switch (fieldname){
+        case 'firstname' : if (model.user.firstname===defaults.firstname)
+                                model.changed
+                break;
+        case 'lastname' : .... break;     
+        case 'email' : .... break;
+        case 'gender' : .... break;
+        case 'git' : .... break;
+        case 'photoName' : .... break;
+    }
+ }
     
     $scope.init = function() {
         model.user.id = $scope.$parent.infoData.id;
@@ -57,7 +90,6 @@
 
             $http.post('json/pages/getUserProfile', Data,config)
              .success(function (data, status, headers, config) {
-                 console.log(data);
                  if (data)
                 {    
                     model.user.firstname = data.User.first_name;
@@ -66,8 +98,9 @@
                     model.user.gender = data.User.gender;
                     model.user.git = data.User.git;
                     model.user.role = data.User.role;
-                    model.user.fileUrl = "img/files/" + model.user.id + "/";
-                    if (!data.User.photo)
+                    model.user.photoName = data.User.photo_name;
+                    model.user.photoLocation = data.User.photo_location;
+                    if (!data.User.photo_location)
                     {   
                         if (model.user.gender==='M')
                             model.profilePicture = 'img/man.png';
@@ -75,10 +108,16 @@
                             model.profilePicture = 'img/female.png';
                     }
                     else 
-                        model.profilePicture = data.User.photo;
+                        model.profilePicture = model.user.photoLocation;
                     
 //                    model.user.file = data.User.photo;
-                    
+                    defaults.firstname = data.User.first_name;
+                    defaults.lastname = data.User.last_name;
+                    defaults.email = data.User.email;
+                    defaults.gender = data.User.gender;
+                    defaults.git = data.User.git;          
+                    defaults.photoName = data.User.photo_name;
+                  
                     
 //                        model.success = true;
 //                        model.message = "הרישום בוצע בהצלחה !";
@@ -103,10 +142,11 @@
                 first_name: model.user.firstname,
                 last_name: model.user.lastname,
                 email: model.user.email,
-//                password: model.user.password,
                 gender: model.user.gender,
                 git: model.user.git,
-                file: model.user.file
+                photo_name: model.user.photoName,
+                photo_location: model.user.photoLocation
+                
             });
             
             var config = {
@@ -121,7 +161,9 @@
                  if (data)
                 {
                         model.success = true;
-                        model.message = "הרישום בוצע בהצלחה !";
+                        model.message = "הנתונים עודכנו!";
+                        if (model.profilePicture !== model.user.photoLocation && model.user.photoLocation!==null)
+                              model.profilePicture = model.user.photoLocation;
                 }
                     
                     
@@ -162,113 +204,41 @@
 
                return true;   
       }; 
-//      
-//      ajaxEmailValidator = function(userEmail)
-//      {
-//            console.log(userEmail);
-//         
-//          var emailData = $.param({
-//                email: userEmail
-//            });
-//            console.log(emailData);
-//            var config = {
-//                headers : {
-//                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-//                }
-//            };
-//
-//             $http.post('json/pages/checkemail', emailData,config)
-//             .success(function (data, status, headers, config) {
-//                 console.log(data);
-//                  model.returnData = data;
-////
-////                if ($scope.$parent.infoData.register){
-////                    model.success =true;
-////                    model.message  = "שלום " + $scope.$parent.infoData.fname + " התחברת בהצלחה";
-//////                     $scope.$parent.showLogin = false;
-////                     $scope.$parent.logedIn = true;
-////                }else{
-////                    model.error = true;
-////                     model.message  = "פרטי ההתחברות אינם תקינים!";
-////                     $scope.$parent.logedIn = false;
-////             
-////                       $scope.$parent.username = "";
-////                       $scope.$parent.userpassword = ""; 
-//                     
-//                      
-//                })
-//             
-//            .error(function (data, status, header, config) {
-//                
-//                model.ResponseDetails = "Data: " + data +
-//                    "<hr />status: " + status +
-//                    "<hr />headers: " + header +
-//                    "<hr />config: " + config;
-//         //   return data;
-//            
-//            });
-//        console.log( model.returnData);
-//
-//        if (model.returnData instanceof Array )
-//            return false;
-//        else
-//            return true;
-//          
-//      };
-//      
-    model.passwordValidator = function(password) {
-		if (!password) {
-			return;
-		}
-		else if (password.length < 6) {
-			return "הסיסמא חייבת להכיל לפחות " + 6 + " תוים";
-		}
-		else if (!password.match(/[A-Z]/)) {
-			return "הסיסמא חייבת להכיל לפחות אות אנגלית גדולה אחת";
-		}
-		else if (!password.match(/[0-9]/)) {
-			return "הסיסמא חייבת להכיל לפחות ספרה אחת";
-		}
 
-		return true;
-	};
+//    model.passwordValidator = function(password) {
+//		if (!password) {
+//			return;
+//		}
+//		else if (password.length < 6) {
+//			return "הסיסמא חייבת להכיל לפחות " + 6 + " תוים";
+//		}
+//		else if (!password.match(/[A-Z]/)) {
+//			return "הסיסמא חייבת להכיל לפחות אות אנגלית גדולה אחת";
+//		}
+//		else if (!password.match(/[0-9]/)) {
+//			return "הסיסמא חייבת להכיל לפחות ספרה אחת";
+//		}
+//
+//		return true;
+//	};
     
     
-    model.resetForm = function() {
-      model.message = "";
-      model.user = {
-        firstname: "",
-        lastname: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-        gender: ""     
-    };
-
-    };
+//    model.resetForm = function() {
+//      model.message = "";
+//      model.user = {
+//        firstname: "",
+//        lastname: "",
+//        email: "",
+//        password: "",
+//        confirmPassword: "",
+//        gender: ""     
+//    };
+//
+//    };
 
   };
 
-//  var compareTo = function() {
-//    return {
-//      require: "ngModel",
-//      scope: {
-//        otherModelValue: "=compareTo"
-//      },
-//      link: function(scope, element, attributes, ngModel) {
-//
-//        ngModel.$validators.compareTo = function(modelValue) {
-//          return modelValue == scope.otherModelValue;
-//        };
-//
-//        scope.$watch("otherModelValue", function() {
-//          ngModel.$validate();
-//        });
-//      }
-//    };
-//  };
-//
-//  app.directive("compareTo", compareTo);
+
 
 
 }());

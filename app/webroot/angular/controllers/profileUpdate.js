@@ -39,34 +39,34 @@
       role:""
     };
     
-    {
-	
-           $scope.uploading = false;
-		$scope.result="upload";
-//                 console.log('before');
-		var uploadFile = function() {
-//                    console.log('pressed');
-			$scope.uploading=true;
-			var url = 'json/pages/pictureUpload';
-			var file = $scope.myFile;
-                        var folder = 'users\\img\\profile\\';
-                        var id = $scope.$parent.infoData.id ;
 
-			fileService.uploadFileToUrl(file, url,folder,id,function(response){
-                       //     console.log('response',response);
-                            if (response['full']){
-                                 model.user.photoName =  response['name'];
-                                 model.user.photoLocation =  response['full'];
-                                 console.log('correct');
-                                             console.log(model.user.photoName);
-            console.log(model.user.photoLocation);
-                            }
-                         });
-                                
-                        
-                       
-		};
-	};
+	
+//           $scope.uploading = false;
+//		$scope.result="upload";
+////                 console.log('before');
+//		var uploadFile = function() {
+////                    console.log('pressed');
+//			$scope.uploading=true;
+//			var url = 'json/pages/pictureUpload';
+//			var file = $scope.myFile;
+//                        var folder = 'users\\img\\profile\\';
+//                        var id = $scope.$parent.infoData.id ;
+//
+//			fileService.uploadFileToUrl(file, url,folder,id,function(response){
+//                       //     console.log('response',response);
+//                            if (response['full']){
+//                                 model.user.photoName =  response['name'];
+//                                 model.user.photoLocation =  response['full'];
+//                                 console.log('correct');
+//                                             console.log(model.user.photoName);
+//            console.log(model.user.photoLocation);
+//                            }
+//                         });
+//                                
+//                        
+//                       
+//		};
+
     
     $scope.changeValue = function(){
         if (model.user.firstname !== defaults.firstname)
@@ -148,26 +148,34 @@
     model.submit = function(isValid) {
       
       if (isValid) {
-        model.message = "Submitted " + model.user.username;
+  //      model.message = "Submitted " + model.user.username;
         var updateData=null;
         if (model.user.photoName!==null && model.user.photoName!==""){
-            uploadFile();
-            console.log(model.user.photoName);
-            console.log(model.user.photoLocation);
-            $timeout(function () {
-            updateData = $.param({
-                id: model.user.id,
-                first_name: model.user.firstname,
-                last_name: model.user.lastname,
-                email: model.user.email,
-                gender: model.user.gender,
-                git: model.user.git,
-                photo_name: model.user.photoName,
-                photo_location: model.user.photoLocation
-            }, 1000);    
-       
-        });
-      }else{
+            var url = 'json/pages/pictureUpload';
+            var file = $scope.myFile;
+            var folder = 'users\\img\\profile\\';
+            var id = $scope.$parent.infoData.id ;
+
+            fileService.uploadFileToUrl(file, url,folder,id,function(response){
+
+                if (response['full']){
+                    model.user.photoName =  response['name'];
+                    model.user.photoLocation =  response['full'];
+
+                    updateData = $.param({
+                        id: model.user.id,
+                        first_name: model.user.firstname,
+                        last_name: model.user.lastname,
+                        email: model.user.email,
+                        gender: model.user.gender,
+                        git: model.user.git,
+                        photo_name: model.user.photoName,
+                        photo_location: model.user.photoLocation
+                    });
+                }
+            });
+
+        }else{
           updateData = $.param({
                 id: model.user.id,
                 first_name: model.user.firstname,
@@ -184,6 +192,7 @@
                 }
             };
             $timeout(function () {
+             console.log(updateData);   
             $http.post('json/pages/updateUser', updateData,config)
              .success(function (data, status, headers, config) {
                  console.log(data);
@@ -192,19 +201,7 @@
                         model.success = true;
                         model.message = "הנתונים עודכנו!";
                         $scope.init();
-//                        if (model.profilePicture !== model.user.photoLocation && model.user.photoLocation!==null && model.changed)
-//                              model.profilePicture = model.user.photoLocation;
                 }
-                    
-                    
-//                }else{
-//                     $scope.logedIn = false;
-//                      $scope.errLogin = true;
-//                      $scope.username = "";
-//                      $scope.userpassword = ""; 
-//                     
-//                      
-//                }
              })
             .error(function (data, status, header, config) {
                 model.ResponseDetails = "Data: " + data +
@@ -213,7 +210,7 @@
                     "<hr />config: " + config;
             });
         
-        }, 3000);
+        }, 1000);
         
       } else {
         model.message = "There are still invalid fields below";

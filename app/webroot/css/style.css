@@ -10,7 +10,64 @@
 
 @import url(line-icons.css);
 
+.content-main {
+	padding-left: 340px;
+	width: 100%;
+	box-sizing: border-box;
+	float: none;
+}
 
+.gallery {
+	background-image: url(../images/menu-bg-gallery.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.london { border-top: 7px solid #19beb6; }
+
+.box-icon {
+	width: 100%;
+	position: relative;
+}
+
+.london-title {
+	padding: 0 0 0 5px;
+	border-left: 2px solid #19beb6;
+	margin: 25px 0px;
+}
+.london-title h3 {
+	color: #19beb6;
+	font-size: 18px;
+	margin: 5px;
+}
+.london-title h4 {
+	font-size: 14px;
+	margin: 5px;
+}
+.location-main {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.location i { color:#19beb6; }
+.location span {
+	font-size: 15px;
+	font-weight: bold;
+	margin-left: 10px;
+}
+
+.fa-2x { font-size: 1.4em; }
+
+.user-icons i {
+	color: #ccc;
+	-webkit-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+.user-icons a { margin-right: 12px; }
+.user-icons a:last-child {	margin-right: 0; }
+.user-icons i:hover { color:#999; }
+
+
+.margin-b-30 { margin-bottom: 30px; }
 
 body {
 

@@ -27,12 +27,17 @@
 			templateUrl : 'partials/dashboard.html'
 			//template:"<h1>this is about page</h1>"
 
-		})
+	})
         .when('/profile', {
 			templateUrl : 'partials/profile.html'
 			//template:"<h1>this is about page</h1>"
 
-		})                
+	})  
+        .when('/galery', {
+                templateUrl : 'partials/galery.html'
+                //template:"<h1>this is about page</h1>"
+
+        })     
 //        .when('/login', {
 //			templateUrl : 'partials/login.html'
 //			//template:"<h1>this is about page</h1>"

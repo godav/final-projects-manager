@@ -4,8 +4,6 @@
 	angular.module("app").service('fileService', fileService);
 	function fileService($http) {
 		this.uploadFileToUrl = function(file, uploadUrl,folder,id,callback) {
-                    
-                
 			var formData = new FormData();
 			formData.append('file', file);
                         formData.append('folder', folder);

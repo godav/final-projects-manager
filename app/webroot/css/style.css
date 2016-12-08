@@ -18,12 +18,12 @@
 }
 
 .gallery {
-	background-image: url(../img/lilac-background.jpg);
+	background-image: url(../img/bg7.jpg);
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 }
 
-.london { border-top: 7px solid #DDA0DD; 
+.london { border-top: 7px solid #9400D3; 
 text-align: right;
 }
 
@@ -34,11 +34,11 @@ text-align: right;
 
 .london-title {
 	padding: 0 0 0 5px;
-	border-right: 2px solid #DDA0DD;
+	border-right: 2px solid #9400D3;
 	margin: 25px 0px;
 }
 .london-title h3 {
-	color: #DDA0DD;
+	color: #9400D3;
 	font-size: 18px;
 	margin: 5px;
 }

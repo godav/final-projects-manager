@@ -8,14 +8,14 @@
       <meta name="author" content="Avner Ainouz - Godav" />
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-  
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     
       
    
       <!-- Scripts and Css Loading -->
       <?php           
             echo $this->Html->css(array('/css/bootstrap', '/css/screen','/css/modalLogin')); 
-            echo $this->Html->css(array('/css/font-awesome','/css/slide-bar','/css/admin-dashboard')); 
+            echo $this->Html->css(array('/css/slide-bar','/css/admin-dashboard')); 
             echo $this->Html->css(array('/css/bootstrap-theme','/css/elegant-icons-style','/css/style','/css/style-responsive')); 
             
             echo $this->Html->script(array('/js/jquery-3.1.1.min', '/js/bootstrap', '/js/functions'));

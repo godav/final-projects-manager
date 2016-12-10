@@ -25,3 +25,9 @@
     background-color: #DDA0DD !important;
     border-color: #DDA0DD !important;
 }
+
+.add-btn{
+    padding: 30px;
+    float: left;
+    
+}

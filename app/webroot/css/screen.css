@@ -1996,16 +1996,10 @@ hr {
 }
 
 /* ----------------- 3. Base Styling ----------------- */
-@font-face {
-  font-family: "icomoon";
-  src: url("fonts/icomoon.eot?ligyrv");
-  src: url("fonts/icomoon.eot?ligyrv#iefix") format("embedded-opentype"), url("fonts/icomoon.ttf?ligyrv") format("truetype"), url("fonts/icomoon.woff?ligyrv") format("woff"), url("fonts/icomoon.svg?ligyrv#icomoon") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
+
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "icomoon" !important;
+
   display: inline-block;
   speak: none;
   font-style: normal;

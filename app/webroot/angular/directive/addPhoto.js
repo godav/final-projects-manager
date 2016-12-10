@@ -1,20 +1,20 @@
 (function(){
 	var rout = angular.module('app');
 	
-        rout.directive('modalr',modal);
+        rout.directive('addPhoto',addPhoto);
         
-        function modal() {
+        function addPhoto() {
         return {
-            templateUrl: 'partials/registration.html',
+            templateUrl: 'partials/addphoto.html',
             restrict: 'E',
             transclude: true,
             replace:true,
 
             link:function link(scope, element, attrs){
                 
-                scope.$watch('showRegister', function(){
+                scope.$watch('showAddPhoto', function(){
 //                      console.log('showRegister:',scope.showRegister);
-                    if(scope.showRegister === true){
+                    if(scope.showAddPhoto === true){
                    
                         $(element).modal('show');
                     }else{

@@ -25,9 +25,17 @@
 	background-size: 100% 100%;
 }
 
-.london { border-top: 7px solid #9400D3; 
+.london { 
+    border-top: 7px solid #9400D3; 
 text-align: right;
 color: black;
+padding: 5px;
+}
+
+.white-box-left30{
+    background: white;
+    margin-left: 30px; 
+    margin-bottom: 30px;
 }
 
 .box-icon {

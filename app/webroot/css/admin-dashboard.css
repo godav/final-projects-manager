@@ -24,6 +24,7 @@
 .btn-purple{
     background-color: #9400D3 !important;
     border-color: #9400D3 !important;
+    color: white !important;
 }
 
 .add-btn{
@@ -34,7 +35,12 @@
 
 .add-row{
     display: block;
-    padding: 20px;
+    padding: 30px;
     height: 50px;
     margin-bottom: 30px;
 }
+
+.pad-10-right{
+    padding-right: 10px;
+}
+

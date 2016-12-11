@@ -1,5 +1,5 @@
 <div class='user-container'>
-<nav class="navbar navbar-inverse sidebar" role="navigation">
+   <nav class="navbar navbar-inverse sidebar" role="navigation">
     <div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -33,7 +33,10 @@
 			</ul>
 		</div>
 	</div>
-</nav>
+</nav>     
+    
+    
+    
     <div class="main" ng-controller="profileUpdate as profile" ng-init="init()">
       <!--main content start-->
       <section id="main-content">
@@ -130,57 +133,10 @@
                                                   <button ng-disabled="updateForm.$invalid || !profile.changed" type="submit"  class="btn btn-success">עדכון</button>
                                                   <button type="button" class="btn btn-danger" ng-click="updateForm.reset() ; init();">ביטול</button>
                                               </div>
-                                        </div>
-                                         <!--
-                                         
-                                         
-                                         <div class="form-group" ng-if="!profile.success">
-                                             <button class="login loginmodal-submit" tabindex="7" type="submit">בצע רישום</button>	 
-                                         </div>
-                                         <h1 style="text-align: center; color: green" ng-if="profile.success">{{ profile.message }}</h1>
-                                         <div class="form-group" ng-if="profile.success">
-                                             <button style="background: green !important" class="login loginmodal-submit" tabindex="7" ng-click="updateForm.reset() ; toggleRegisterModal() ; toggleLoginModal()">סגור</button>	 
-                                        </div>
-                                         -->
+
                                    </form> 
                                               </div>
-                                              <!--
-                                              <form class="form-horizontal" role="form">                                                  
-                                                  <div class="form-group">
-                                                      <label class="col-lg-2 control-label">שם פרטי</label>
-                                                      <div class="col-lg-6">
-                                                          <input type="text" class="form-control" id="f-name" placeholder=" ">
-                                                      </div>
-                                                  </div>
-                                                  <div class="form-group">
-                                                      <label class="col-lg-2 control-label">שם משפחה</label>
-                                                      <div class="col-lg-6">
-                                                          <input type="text" class="form-control" id="l-name" placeholder=" ">
-                                                      </div>
-                                                  </div>
-                                                  
-                                                  <div class="form-group">
-                                                      <label class="col-lg-2 control-label">דואר אלקטרוני</label>
-                                                      <div class="col-lg-6">
-                                                          <input type="text" class="form-control" id="email" placeholder=" ">
-                                                      </div>
-                                                  </div>
-                                                  
-                                                  <div class="form-group">
-                                                      <label class="col-lg-2 control-label">Website URL</label>
-                                                      <div class="col-lg-6">
-                                                          <input type="text" class="form-control" id="url" placeholder="http://www.demowebsite.com ">
-                                                      </div>
-                                                  </div>
 
-                                                  <div class="form-group">
-                                                      <div class="col-lg-offset-2 col-lg-10">
-                                                          <button type="submit" class="btn btn-primary">Save</button>
-                                                          <button type="button" class="btn btn-danger">Cancel</button>
-                                                      </div>
-                                                  </div>
-                                              </form>
-                                              -->
                                           </div>
 
                       </section>
@@ -193,6 +149,7 @@
       <!--main content end-->
 </div>
 
+</div>
 
 
 

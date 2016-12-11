@@ -130,6 +130,7 @@
 		/*Show all nav*/
 		nav.sidebar{
 			margin-left: 0px;
+                        display: inline-block;
 			float: right;
 		}
 		/*Show hidden items on nav*/
@@ -158,6 +159,6 @@
  }
  
  .navbar-inverse .navbar-nav > li > a {
-    color: #DDA0DD !important;
+    color: white !important;
     text-align: right !important;
  }

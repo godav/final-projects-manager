@@ -11,10 +11,12 @@
 @import url(line-icons.css);
 
 .content-main {
-	padding-left: 340px;
-	width: 100%;
+	/*padding-left: 340px;*/
+	width: calc(100% - 200px);
 	box-sizing: border-box;
 	float: none;
+        display:inline-block;
+        height: 100%;
 }
 
 .gallery {

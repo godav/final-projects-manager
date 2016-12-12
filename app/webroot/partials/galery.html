@@ -1,4 +1,4 @@
-<div class='user-container'>
+<div class='user-container' ng-controller="">
     
 <nav class="navbar navbar-inverse sidebar" role="navigation">
     <div class="container-fluid">
@@ -38,7 +38,7 @@
     
 <div class="content-main gallery">
     <div class="add-row">
-        <button class="btn btn-purple add-btn"><i class="fa fa-cloud-upload pad-10-right" aria-hidden="true"></i>הוסף תמונה</button>
+        <button ng-click="toggleAddPhotoModal()" class="btn btn-purple add-btn"><i class="fa fa-cloud-upload pad-10-right" aria-hidden="true"></i>הוסף תמונה</button>
     </div>
     <div class="row-fit margin-b-30">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 white-box-left30">

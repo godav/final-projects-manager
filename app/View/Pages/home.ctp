@@ -33,6 +33,7 @@
         
           <modall visible="{{showLogin}}" ></modall>
           <modalr visible="{{showRegister}}"></modalr>
+          <add-photo visible="{{showAddPhoto}}"></modalr>
          <div ng-view>
    
         </div>

@@ -32,6 +32,8 @@
                   $scope.logedIn = false;
                   $location.path('partials/search.html');
              };
+             
+             
         }
 
 })();

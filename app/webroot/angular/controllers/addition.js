@@ -2,8 +2,10 @@
 (function() {
 
   var rout = angular.module('app');
-  rout.controller("registration", registration);
-   function registration($http) {
+  rout.controller("addition", addition);
+   function addition($http,$scope) {
+       
+    $scope.
     var model = this;
     model.old = null;
     model.returnData=null;

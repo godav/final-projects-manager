@@ -2657,6 +2657,10 @@ textarea:focus {
   font-family: "Raleway", sans-serif;
   letter-spacing: 0.04em;
 }
+
+.site-nav a{
+    color: white !important;
+}
 .main-header .site-nav .site-links li a:hover {
   color: #e7434e;
 }

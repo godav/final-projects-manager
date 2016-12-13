@@ -5,10 +5,15 @@
   rout.controller("addition", addition);
    function addition($http,$scope,fileService) {
        
-  
-   
-    var model = this;
-
+     var model = this;   
+       
+    model.photos = null;
+       
+   $scope.init = function(){
+      
+       getGallery();
+       console.log(model.photos);
+   } ;   
 
     model.message = "";
     model.success = false;
@@ -41,16 +46,14 @@
                                 photo_location: model.photoLocation,
                                 user_id: id
                             });
-                    }
-                });
-
-            var config = {
+                       
+                var config = {
                 headers : {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
             };
 
-            $http.post('json/pages/registerUser', photoData,config)
+            $http.post('json/pages/addPhotoToUser', photoData,config)
              .success(function (data, status, headers, config) {
                  if (data)
                 {
@@ -64,8 +67,13 @@
                     "<hr />status: " + status +
                     "<hr />headers: " + header +
                     "<hr />config: " + config;
-            });
-        
+            });        
+                            
+                    }
+                    
+                    
+                });
+      
          }
         
       } else {
@@ -73,7 +81,41 @@
       }
             
     };
-    
-  };
+
+    var getGallery = function() {
+  
+              photoData = $.param({
+                     user_id: $scope.$parent.infoData.id
+              });
+                       
+                var config = {
+                headers : {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                }
+            };
+
+            $http.post('json/pages/getUserGallery', photoData,config)
+             .success(function (data, status, headers, config) {
+                 if (data)
+                {
+                    
+                     model.photos = data;  
+//                        model.success = true;
+//                        model.message =  "התמונה הועלתה!";
+                }
+
+             })
+            .error(function (data, status, header, config) {
+                model.ResponseDetails = "Data: " + data +
+                    "<hr />status: " + status +
+                    "<hr />headers: " + header +
+                    "<hr />config: " + config;
+            });        
+                            
+
+      
+         };
+        
+        }
 
 }());

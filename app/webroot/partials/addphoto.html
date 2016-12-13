@@ -1,6 +1,6 @@
  <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         
-                    <div class="modal-dialog modal-lg" ng-controller="addition as additionv">
+                    <div class="modal-dialog modal-lg" ng-controller="addition as addition">
                          
 			<div class="loginmodal-container registermodal-container">
                                  <div class="modal-header pad-init">
@@ -21,7 +21,7 @@
                                              </div>
                                      <div class="form-group">    
                                         <textarea ng-model="addition.description" name="description" rows="3" cols="50" placeholder="תיאור התמונה"
-                                              class="form-control" 
+                                              class="form-control" tabindex="2"
                                               required-message="'נדרש'" required >
                                         </textarea>                      
                                      </div>
@@ -31,7 +31,7 @@
                                                 <label class="input-group-btn" style="vertical-align: top;">
                                                      <span class="btn btn-primary btn-purple upload-btn">
                                                          &hellip; 
-                                                            <input  name="file" type="file"  style="display: none;" photo-Upload = "myFile" accept="image/*">
+                                                            <input  name="file" type="file"  style="display: none;" photo-Upload = "myFile" accept="image/*" tabindex="3">
                                                     </span>
                                                 </label>
                                                 <input required-message="'נדרש'" required type="text" disabled  ng-model="addition.photoName" name="photo" placeholder="בחר תמונה" style="border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important;" readonly>
@@ -39,11 +39,11 @@
                                          </div>
                                          
                                          <div class="form-group" ng-if="!addition.success">
-                                             <button class="login loginmodal-submit" tabindex="7" type="submit">בצע רישום</button>	 
+                                             <button class="login loginmodal-submit" tabindex="4" type="submit">הוספה</button>	 
                                          </div>
                                          <h1 style="text-align: center; color: green" ng-if="addition.success">{{ addition.message }}</h1>
                                          <div class="form-group" ng-if="addition.success">
-                                             <button style="background: green !important" class="login loginmodal-submit" tabindex="7" ng-click="photoForm.reset() ; toggleRegisterModal() ; toggleLoginModal()">סגור</button>	 
+                                             <button style="background: green !important" class="login loginmodal-submit" tabindex="5" ng-click="photoForm.reset();toggleAddPhotoModal();">סגור</button>	 
                                         </div>
                                    </form> 
                                 </div> 

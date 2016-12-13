@@ -8,15 +8,18 @@
 			restrict : 'A',
 			link : function(scope, element, attrs) {
 				var func = $parse(attrs.photoUpload);
-				var uploadFunc = func.assign;
+				var photoFunc = func.assign;
 				element.bind('change', function() {
 					scope.$apply(function() {
-						uploadFunc(scope, element[0].files[0]);
+						photoFunc(scope, element[0].files[0]);
+                                          
                                                 if (scope.myFile.name){
-                                                    scope.photoName = scope.myFile.name;
-//                                                    scope.changed = true;
+                                          
+                                                    scope.addition.photoName = scope.myFile.name;
+                                          
+//                                              
                                                 }
-                                             //   console.log(scope.$parent);
+                            
 					});
 				});
 			}

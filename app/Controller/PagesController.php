@@ -215,10 +215,45 @@ class PagesController extends AppController {
         function json_addPhotoToUser(){
           
           $response = "";
+
+          $this->loadModel('User');
+          if ($this->data != null) {
+              
+                $data = array(
+                    'Photo' => $this->data,
+                'User' => array('id' => $this->data['user_id'])
+                );
+                pr($data);
+//                $IssueHistory->create();
+//                $IssueHistory->saveAll( $data );
+              
+               $response = $this->User->Photo->saveAll($data);
+          }
+               
+                   
+          return json_encode($response);
+
+       }   
+       
+       
+      function json_getUserGallery(){
           
+          $response = "";
+
           $this->loadModel('Photo');
-          if ($this->data != null) 
-                $response = $this->Photo->save($this->data);
+          if ($this->data != null) {
+              
+                 $response = $this->Photo->find('all',array(
+                 'conditions' => array('Photo.user_id =' => $this->data['user_id']),
+                 'order' => array('Photo.upload_date DESC')
+                 ));
+   
+//                $IssueHistory->create();
+//                $IssueHistory->saveAll( $data );
+              
+         
+          }
+               
                    
           return json_encode($response);
 

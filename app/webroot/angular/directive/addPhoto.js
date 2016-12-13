@@ -1,7 +1,7 @@
 (function(){
 	var rout = angular.module('app');
 	
-        rout.directive('addPhoto',addPhoto);
+        rout.directive('addp',addPhoto);
         
         function addPhoto() {
         return {

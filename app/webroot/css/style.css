@@ -34,7 +34,8 @@ padding: 5px;
 
 .white-box-left30{
     background: white;
-    margin-left: 30px; 
+    margin-left: 4.16%; 
+    margin-right: 4.16%;
     margin-bottom: 30px;
 }
 
@@ -569,6 +570,8 @@ table tr th { color: #688a7e;}
     font-weight: 300;
 
     font-size: 30px;
+    
+    float: left;
 
 }
 
@@ -3165,7 +3168,7 @@ div[data-role="editor-toolbar"] {
 
   border-bottom: 1px solid #ccc;
 
-  border-top: 1px solid #fff;
+  /*border-top: 1px solid #fff;*/
 
 	color: #666;
 

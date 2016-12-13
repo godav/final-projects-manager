@@ -33,7 +33,10 @@
                   $location.path('partials/search.html');
              };
              
-             
+            $scope.showAddPhoto = false;
+             $scope.toggleAddPhotoModal = function(){     
+                 $scope.showAddPhoto = !$scope.showAddPhoto;
+             }; 
         }
 
 })();

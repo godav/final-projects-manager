@@ -3,22 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/projectManager/app/webroot/angular/app/services/StorageService.js</file>
+            <file>file:/C:/xampp/htdocs/projectManager/app/webroot/css/style.css</file>
             <file>file:/C:/xampp/htdocs/projectManager/app/View/Layouts/main/main.ctp</file>
-            <file>file:/C:/xampp/htdocs/projectManager/app/webroot/angular/directive/modalRegister.js</file>
-            <file>file:/C:/xampp/htdocs/projectManager/app/Controller/TestsController.php</file>
-            <file>file:/C:/xampp/htdocs/projectManager/app/webroot/angular/directive/modalLogin.js</file>
-            <file>file:/C:/xampp/htdocs/projectManager/app/Controller/FilesController.php</file>
+            <file>file:/C:/xampp/htdocs/projectManager/app/webroot/angular/controllers/addition.js</file>
+            <file>file:/C:/xampp/htdocs/projectManager/app/webroot/partials/addphoto.html</file>
+            <file>file:/C:/xampp/htdocs/projectManager/app/webroot/partials/galery.html</file>
             <file>file:/C:/xampp/htdocs/projectManager/app/View/Pages/home.ctp</file>
             <file>file:/C:/xampp/htdocs/projectManager/app/webroot/angular/controllers/main.js</file>
-            <file>file:/C:/xampp/htdocs/projectManager/app/webroot/angular/controllers/login.js</file>
-            <file>file:/C:/xampp/htdocs/projectManager/app/Controller/PagesController.php</file>
-            <file>file:/C:/xampp/htdocs/projectManager/app/webroot/angular/app/app.js</file>
-            <file>file:/C:/xampp/htdocs/projectManager/app/webroot/angular/controllers/registeration.js</file>
-            <file>file:/C:/xampp/htdocs/projectManager/app/webroot/angular/directive/angular-validator.js</file>
-            <file>file:/C:/xampp/htdocs/projectManager/app/webroot/partials/login.html</file>
-            <file>file:/C:/xampp/htdocs/projectManager/app/Controller/AppController.php</file>
-            <file>file:/C:/xampp/htdocs/projectManager/app/webroot/partials/registration.html</file>
+            <file>file:/C:/xampp/htdocs/projectManager/app/webroot/css/admin-dashboard.css</file>
+            <file>file:/C:/xampp/htdocs/projectManager/app/webroot/partials/profile.html</file>
+            <file>file:/C:/xampp/htdocs/projectManager/app/webroot/css/screen.css</file>
+            <file>file:/C:/xampp/htdocs/projectManager/app/webroot/angular/directive/addPhoto.js</file>
+            <file>file:/C:/xampp/htdocs/projectManager/app/webroot/angular/app/route.js</file>
+            <file>file:/C:/xampp/htdocs/projectManager/app/webroot/css/slide-bar.css</file>
+            <file>file:/C:/xampp/htdocs/projectManager/app/webroot/partials/dashboard.html</file>
         </group>
     </open-files>
 </project-private>

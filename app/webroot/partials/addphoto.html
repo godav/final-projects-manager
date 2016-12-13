@@ -4,7 +4,7 @@
                          
 			<div class="loginmodal-container registermodal-container">
                                  <div class="modal-header pad-init">
-                                     <button type="button" class="close" ng-click="toggleRegisterModal() ; photoForm.reset() " data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                     <button type="button" class="close" ng-click="toggleAddPhotoModal() ; photoForm.reset() " data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                      <h1>הוספת תמונה</h1>
                                  </div>
                                  
@@ -20,18 +20,18 @@
                                                 >
                                              </div>
                                      <div class="form-group">    
-                                        <textarea ng-model="addition.description" name="description" rows="3" cols="50"
+                                        <textarea ng-model="addition.description" name="description" rows="3" cols="50" placeholder="תיאור התמונה"
                                               class="form-control" 
                                               required-message="'נדרש'" required >
                                         </textarea>                      
                                      </div>
                                          
                                           <div class="form-group" >                
-                                            <div class="input-group">
-                                                <label class="input-group-btn">
+                                            <div class="input-group" >
+                                                <label class="input-group-btn" style="vertical-align: top;">
                                                      <span class="btn btn-primary btn-purple upload-btn">
                                                          &hellip; 
-                                                            <input  name="file" type="file"  style="display: none;" file-Upload = "myFile" accept="image/*">
+                                                            <input  name="file" type="file"  style="display: none;" photo-Upload = "myFile" accept="image/*">
                                                     </span>
                                                 </label>
                                                 <input required-message="'נדרש'" required type="text" disabled  ng-model="addition.photoName" name="photo" placeholder="בחר תמונה" style="border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important;" readonly>

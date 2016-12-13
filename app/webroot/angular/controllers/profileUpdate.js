@@ -40,33 +40,6 @@
     };
     
 
-	
-//           $scope.uploading = false;
-//		$scope.result="upload";
-////                 console.log('before');
-//		var uploadFile = function() {
-////                    console.log('pressed');
-//			$scope.uploading=true;
-//			var url = 'json/pages/pictureUpload';
-//			var file = $scope.myFile;
-//                        var folder = 'users\\img\\profile\\';
-//                        var id = $scope.$parent.infoData.id ;
-//
-//			fileService.uploadFileToUrl(file, url,folder,id,function(response){
-//                       //     console.log('response',response);
-//                            if (response['full']){
-//                                 model.user.photoName =  response['name'];
-//                                 model.user.photoLocation =  response['full'];
-//                                 console.log('correct');
-//                                             console.log(model.user.photoName);
-//            console.log(model.user.photoLocation);
-//                            }
-//                         });
-//                                
-//                        
-//                       
-//		};
-
     
     $scope.changeValue = function(){
         if (model.user.firstname !== defaults.firstname)
@@ -192,10 +165,10 @@
                 }
             };
             $timeout(function () {
-             console.log(updateData);   
+  
             $http.post('json/pages/updateUser', updateData,config)
              .success(function (data, status, headers, config) {
-                 console.log(data);
+
                  if (data)
                 {
                         model.success = true;
@@ -232,36 +205,6 @@
                return true;   
       }; 
 
-//    model.passwordValidator = function(password) {
-//		if (!password) {
-//			return;
-//		}
-//		else if (password.length < 6) {
-//			return "הסיסמא חייבת להכיל לפחות " + 6 + " תוים";
-//		}
-//		else if (!password.match(/[A-Z]/)) {
-//			return "הסיסמא חייבת להכיל לפחות אות אנגלית גדולה אחת";
-//		}
-//		else if (!password.match(/[0-9]/)) {
-//			return "הסיסמא חייבת להכיל לפחות ספרה אחת";
-//		}
-//
-//		return true;
-//	};
-    
-    
-//    model.resetForm = function() {
-//      model.message = "";
-//      model.user = {
-//        firstname: "",
-//        lastname: "",
-//        email: "",
-//        password: "",
-//        confirmPassword: "",
-//        gender: ""     
-//    };
-//
-//    };
 
   };
 

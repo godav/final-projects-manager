@@ -211,5 +211,17 @@ class PagesController extends AppController {
 //             echo "<br>";
 //              pr($fileOK);
          }
+         
+        function json_addPhotoToUser(){
+          
+          $response = "";
+          
+          $this->loadModel('Photo');
+          if ($this->data != null) 
+                $response = $this->Photo->save($this->data);
+                   
+          return json_encode($response);
+
+       }   
         
 }

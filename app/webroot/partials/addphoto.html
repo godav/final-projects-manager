@@ -1,53 +1,54 @@
- <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                        
-                    <div class="modal-dialog modal-lg" ng-controller="addition as addition">
-                         
-			<div class="loginmodal-container registermodal-container">
-                                 <div class="modal-header pad-init">
-                                     <button type="button" class="close" ng-click="toggleAddPhotoModal() ; photoForm.reset() " data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                     <h1>הוספת תמונה</h1>
-                                 </div>
-                                 
-                                 <div  class="form" >
-                                   
-                                     <form angular-validator-submit='addition.submit(photoForm.$valid)' novalidate name='photoForm' angular-validator>
-                                   
-                                             <div class="form-group">
-                                                <input name="firstname" placeholder="כותרת התמונה"
-                                                       type="text" tabindex="1" ng-model="addition.title"  
-                                                       class = "form-control"  
-                                                       required-message="'נדרש'" required                                                     
-                                                >
-                                             </div>
-                                     <div class="form-group">    
-                                        <textarea ng-model="addition.description" name="description" rows="3" cols="50" placeholder="תיאור התמונה"
-                                              class="form-control" tabindex="2"
-                                              required-message="'נדרש'" required >
-                                        </textarea>                      
-                                     </div>
-                                         
-                                          <div class="form-group" >                
-                                            <div class="input-group" >
-                                                <label class="input-group-btn" style="vertical-align: top;">
-                                                     <span class="btn btn-primary btn-purple upload-btn">
-                                                         &hellip; 
-                                                            <input  name="file" type="file"  style="display: none;" photo-Upload = "myFile" accept="image/*" tabindex="3">
-                                                    </span>
-                                                </label>
-                                                <input required-message="'נדרש'" required type="text" disabled  ng-model="addition.photoName" name="photo" placeholder="בחר תמונה" style="border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important;" readonly>
-                                            </div> 
-                                         </div>
-                                         
-                                         <div class="form-group" ng-if="!addition.success">
-                                             <button class="login loginmodal-submit" tabindex="4" type="submit">הוספה</button>	 
-                                         </div>
-                                         <h1 style="text-align: center; color: green" ng-if="addition.success">{{ addition.message }}</h1>
-                                         <div class="form-group" ng-if="addition.success">
-                                             <button style="background: green !important" class="login loginmodal-submit" tabindex="5" ng-click="photoForm.reset();toggleAddPhotoModal();">סגור</button>	 
-                                        </div>
-                                   </form> 
-                                </div> 
-			
-			</div>
-	           </div>
- </div>
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-lg" ng-controller="addition as addition">
+
+        <div class="loginmodal-container registermodal-container">
+            <div class="modal-header pad-init">
+                <button type="button" class="close" ng-click="toggleAddPhotoModal(); photoForm.reset(); addition.photo.success = false; addition.photo.message = false;" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h1>הוספת תמונה</h1>
+            </div>
+
+            <div  class="form" >
+
+                <form angular-validator-submit='addition.submit(photoForm.$valid)' novalidate name='photoForm' angular-validator>
+
+                    <div class="form-group">
+                        <input name="firstname" placeholder="כותרת התמונה"
+                               type="text" tabindex="1" ng-model="addition.title"  
+                               class = "form-control"  
+                               required-message="'נדרש'" required                                                     
+                               >
+                    </div>
+                    <div class="form-group">    
+                        <textarea ng-model="addition.description" name="description" rows="3" cols="50" placeholder="תיאור התמונה"
+                                  class="form-control" tabindex="2"
+                                  required-message="'נדרש'" required >
+                        </textarea>                      
+                    </div>
+
+                    <div class="form-group" >                
+                        <div class="input-group" >
+                            <label class="input-group-btn" style="vertical-align: top;">
+                                <span class="btn btn-primary btn-purple upload-btn">
+                                    &hellip; 
+                                    <input  name="file" type="file"  style="display: none;" photo-Upload = "myFile" accept="image/*" tabindex="3">
+                                </span>
+                            </label>
+                            <input required-message="'נדרש'" required type="text" disabled  ng-model="addition.photoName" name="photo" placeholder="בחר תמונה" style="border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important;" readonly>
+                        </div> 
+                    </div>
+
+                    <div class="form-group" ng-if="!addition.photo.success">
+                        <button class="login loginmodal-submit" tabindex="4" type="submit">הוספה</button>	 
+                    </div>
+                    <h1 style="text-align: center; color: green" ng-if="addition.photo.success">{{ addition.photo.message}}</h1>
+                    <div class="form-group" style="text-align: center;" ng-if="addition.photo.success">                                         	 
+                        <button style="background: green !important; display: inline-block; width: 30%;" class="login loginmodal-submit" tabindex="5" ng-click="photoForm.reset(); addition.photo.success = false; addition.photo.message = false">חדש</button>
+                        <button style="background: red !important; display: inline-block; width: 30%;" class="login loginmodal-submit" tabindex="5" ng-click="photoForm.reset(); toggleAddPhotoModal(); addition.photo.success = false; addition.photo.message = false;">סגור</button>
+                    </div>
+                </form> 
+            </div> 
+
+        </div>
+    </div>
+</div>

@@ -1,43 +1,64 @@
 
-(function() {
+(function () {
 
-  var rout = angular.module('app');
-  rout.controller("addition", addition);
-   function addition($http,$scope,fileService) {
-       
-     var model = this;   
-       
-    model.photos = null;
-       
-   $scope.init = function(){
-      
-       getGallery();
-       console.log(model.photos);
-   } ;   
+    $('#image-popups').magnificPopup({
+        delegate: 'a',
+        type: 'image',
+        removalDelay: 500, //delay removal by X to allow out-animation
+        callbacks: {
+         beforeOpen: function() {
+            // just a hack that adds mfp-anim class to markup 
+            this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+            this.st.mainClass = this.st.el.attr('data-effect');
+            }
+        },
+        closeOnContentClick: true,
+        midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
+    });
 
-    model.message = "";
-    model.success = false;
-    
-    model.title = "";
-    model.description = "";
-    model.photoName = "";
-    model.photoLocation ="";
 
-    model.submit = function(isValid) {
-  
-      if (isValid) {
-            var photoData = null;
-            if (model.photoName!==null && model.photoName!==""){
-                var url = 'json/pages/pictureUpload';
-                var file = $scope.myFile;
-                var folder = 'users\\img\\project\\';
-                var id = $scope.$parent.infoData.id ;
+    var rout = angular.module('app');
+    rout.controller("addition", addition);
+    function addition($http, $scope, fileService,$timeout) {
 
-                fileService.uploadFileToUrl(file, url,folder,id,function(response){
+        var model = this;
 
-                    if (response['full']){
-                        model.photoName =  response['name'];
-                        model.photoLocation =  response['full'];
+        $scope.photos = null;
+
+        $scope.init = function () {
+
+            getGallery();
+//              $timeout(function () {
+//                 console.log($scope.photos);
+//              }, 1000);
+        };
+
+        model.photo = {
+            message: "",
+            success: false
+        };
+
+
+        model.title = "";
+        model.description = "";
+        model.photoName = "";
+        model.photoLocation = "";
+
+        model.submit = function (isValid) {
+
+            if (isValid) {
+                var photoData = null;
+                if (model.photoName !== null && model.photoName !== "") {
+                    var url = 'json/pages/pictureUpload';
+                    var file = $scope.myFile;
+                    var folder = 'users\\img\\project\\';
+                    var id = $scope.$parent.infoData.id;
+
+                    fileService.uploadFileToUrl(file, url, folder, id, function (response) {
+
+                        if (response['full']) {
+                            model.photoName = response['name'];
+                            model.photoLocation = response['full'];
 
                             photoData = $.param({
                                 description: model.description,
@@ -46,76 +67,71 @@
                                 photo_location: model.photoLocation,
                                 user_id: id
                             });
-                       
-                var config = {
-                headers : {
+
+                            var config = {
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                                }
+                            };
+
+                            $http.post('json/pages/addPhotoToUser', photoData, config)
+                                    .success(function (data, status, headers, config) {
+                                        if (data)
+                                        {
+                                            console.log('after');
+                                            model.photo.success = true;
+                                            model.photo.message = "התמונה הועלתה!";
+                                        }
+
+                                    })
+                                    .error(function (data, status, header, config) {
+                                        model.ResponseDetails = "Data: " + data +
+                                                "<hr />status: " + status +
+                                                "<hr />headers: " + header +
+                                                "<hr />config: " + config;
+                                    });
+                        }
+
+
+                    });
+
+                }
+
+            } else {
+                model.message = "There are still invalid fields below";
+            }
+
+        };
+
+        var getGallery = function () {
+
+            var photoData = $.param({
+                user_id: $scope.$parent.infoData.id
+            });
+
+            var config = {
+                headers: {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
             };
 
-            $http.post('json/pages/addPhotoToUser', photoData,config)
-             .success(function (data, status, headers, config) {
-                 if (data)
-                {
-                        model.success = true;
-                        model.message =  "התמונה הועלתה!";
-                }
+            $http.post('json/pages/getUserGallery', photoData, config)
+                    .success(function (data, status, headers, config) {               
+                        if (data)
+                        {
+                            $scope.photos = data;
+                            console.log($scope.photos);
+                        }               
+                    })
+                    .error(function (data, status, header, config) {
+                        model.ResponseDetails = "Data: " + data +
+                                "<hr />status: " + status +
+                                "<hr />headers: " + header +
+                                "<hr />config: " + config;
+                    });
 
-             })
-            .error(function (data, status, header, config) {
-                model.ResponseDetails = "Data: " + data +
-                    "<hr />status: " + status +
-                    "<hr />headers: " + header +
-                    "<hr />config: " + config;
-            });        
-                            
-                    }
-                    
-                    
-                });
-      
-         }
-        
-      } else {
-        model.message = "There are still invalid fields below";
-      }
-            
-    };
+        };
 
-    var getGallery = function() {
-  
-              photoData = $.param({
-                     user_id: $scope.$parent.infoData.id
-              });
-                       
-                var config = {
-                headers : {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-                }
-            };
-
-            $http.post('json/pages/getUserGallery', photoData,config)
-             .success(function (data, status, headers, config) {
-                 if (data)
-                {
-                    
-                     model.photos = data;  
-//                        model.success = true;
-//                        model.message =  "התמונה הועלתה!";
-                }
-
-             })
-            .error(function (data, status, header, config) {
-                model.ResponseDetails = "Data: " + data +
-                    "<hr />status: " + status +
-                    "<hr />headers: " + header +
-                    "<hr />config: " + config;
-            });        
-                            
-
-      
-         };
-        
-        }
+    }
 
 }());

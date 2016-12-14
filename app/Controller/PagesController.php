@@ -77,7 +77,7 @@ class PagesController extends AppController {
         
        function json_checklogin(){
  
-//           $this->autoRender = false;
+           $this->autoRender = false;
             $email = $this->request->data('email');
             $password = $this->request->data('password'); 
 
@@ -101,38 +101,10 @@ class PagesController extends AppController {
           }                       
           return json_encode($data);
 
-    }      
-    
-//           function json_checklogin(){
-// 
-////           $this->autoRender = false;
-//            $email = $this->request->data('email');
-//            $password = $this->request->data('password'); 
-//
-//          $this->loadModel('User');
-//          
-//          $register = $this->User->find('first', array(
-//                                'conditions' => array('User.email' => $email,'User.password' => $password),
-//                                'fields' => array('User.first_name, User.last_name','User.id')
-//                 )); 
-//        
-//          $data['register'] = false;
-//          $data['fname'] = null;
-//          $data['lname'] = null;
-//          $data['id'] = null;
-//          
-//          if (!empty($register)){
-//               $data['register'] = true;
-//               $data['fname'] = $register['User']['first_name'];
-//               $data['lname'] = $register['User']['last_name'];
-//               $data['id'] = $register['User']['id'];
-//          }                       
-//          return json_encode($data);
-//
-//    }      
+    }              
     
     function json_checkemail(){
-   
+         $this->autoRender = false;
           $email = $this->request->data('email');
 
           $this->loadModel('User');
@@ -152,12 +124,12 @@ class PagesController extends AppController {
             pr($data);
             // upload the file to the server
             $fileOK = $this->uploadFiles('img/files', $this->data['file']);
-            pr($fileOK);
+//            pr($fileOK);
         }
         
         
       function json_registerUser(){
-          
+          $this->autoRender = false;
           $response = "";
           
           $this->loadModel('User');
@@ -170,7 +142,7 @@ class PagesController extends AppController {
       
        
        function json_updateUser(){
-          
+          $this->autoRender = false;
           $response = "";
           
           $this->loadModel('User');
@@ -182,7 +154,7 @@ class PagesController extends AppController {
        }   
        
        function json_getUserProfile(){
-          
+          $this->autoRender = false;
           $id = $this->request->data('id');
           
           $this->loadModel('User');
@@ -197,23 +169,18 @@ class PagesController extends AppController {
        
          function json_pictureUpload(){
              
+            $this->autoRender = false;
+
              $folder = $this->request->data['folder'];
              $file = $this->request->params;
              $id = $this->request->data['id'];
-//              pr($folder);
-//              echo "<br>";
-//              pr($id);
-//              echo "<br>";
-//               pr($file);
             // upload the file to the server
              $fileOK = $this->uploadFiles($folder, $file['form'],$id);
              return json_encode($fileOK);
-//             echo "<br>";
-//              pr($fileOK);
          }
          
         function json_addPhotoToUser(){
-          
+          $this->autoRender = false;
           $response = "";
 
           $this->loadModel('User');
@@ -223,21 +190,16 @@ class PagesController extends AppController {
                     'Photo' => $this->data,
                 'User' => array('id' => $this->data['user_id'])
                 );
-                pr($data);
-//                $IssueHistory->create();
-//                $IssueHistory->saveAll( $data );
-              
+         
                $response = $this->User->Photo->saveAll($data);
           }
-               
-                   
+                                  
           return json_encode($response);
-
        }   
        
        
       function json_getUserGallery(){
-          
+          $this->autoRender = false;
           $response = "";
 
           $this->loadModel('Photo');
@@ -246,17 +208,10 @@ class PagesController extends AppController {
                  $response = $this->Photo->find('all',array(
                  'conditions' => array('Photo.user_id =' => $this->data['user_id']),
                  'order' => array('Photo.upload_date DESC')
-                 ));
-   
-//                $IssueHistory->create();
-//                $IssueHistory->saveAll( $data );
-              
-         
+                 ));            
           }
-               
-                   
+          
           return json_encode($response);
-
        }   
         
 }

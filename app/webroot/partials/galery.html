@@ -1,70 +1,88 @@
 <div class='user-container gallery' >
-    
-<nav class="navbar navbar-inverse sidebar" role="navigation">
-    <div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">Brand</a>
-		</div>
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">סטטיסטיקטות<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
-                                <li ><a href="#/profile">פרופיל<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
-				<li ><a href="#/galery">ניהול גלריה<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <span class="caret"></span><span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-cog"></span></a>
-					<ul class="dropdown-menu forAnimate" role="menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li class="divider"></li>
-						<li><a href="#">Separated link</a></li>
-						<li class="divider"></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul>
-				</li>
-				
-			</ul>
-		</div>
-	</div>
-</nav>    
-    
+    <nav class="navbar navbar-inverse sidebar" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Brand</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">סטטיסטיקטות<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+                    <li ><a href="#/profile">פרופיל<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
+                    <li ><a href="#/galery">ניהול גלריה<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <span class="caret"></span><span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-cog"></span></a>
+                        <ul class="dropdown-menu forAnimate" role="menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>    
+
     <div class="content-main" ng-controller="addition"  ng-init="init()">
-    <div class="add-row">
-        <button ng-click="toggleAddPhotoModal()" class="btn btn-purple add-btn"><i class="fa fa-cloud-upload pad-10-right" aria-hidden="true"></i>הוסף תמונה</button>
-    </div>
-    <div class="row-fit margin-b-30" >
-        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 white-box-left30" style="float: left !important" ng-repeat="photo in photos" >
-            <div class="box london">
-                <div class="box-icon">
-                    <img src="{{photo.Photo.photo_location}}" alt="Image" class="img-responsive">
-                </div>
-                <div class="info float-container">
-                    <div class="col-sm-12 london-title">
-                        <h3 class="text-uppercase">{{photo.Photo.title}}</h3>                     
+        <div class="add-row">
+            <button ng-click="toggleAddPhotoModal()" class="btn btn-purple add-btn"><i class="fa fa-cloud-upload pad-10-right" aria-hidden="true"></i>הוסף תמונה</button>
+        </div>
+        <div class="row-fit margin-b-30"  id="image-popups">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 white-box-left30" style="float: left !important" ng-repeat="photo in photos" >
+                <div class="box london">
+                    <div class="box-icon"> 
+                        <a data-source="{{photo.Photo.photo_location}}" class="with-caption image-link" title="The caption" href="{{photo.Photo.photo_location}}" >
+                           <img src="{{photo.Photo.photo_location}}" alt="Image" width="172" height="115">
+                        </a>
                     </div>
-                    <p>{{photo.Photo.description}}</p><hr />
-                    <div class="col-sm-12 location-main"> 
-                        <div class="pull-left user-icons">
-                            <a href="#"><i class="fa fa-star fa-2x"></i></a>
-                            <a href="#"><i class="fa fa-user fa-2x"></i></a>
-                            <a href="#"><i class="fa fa-twitter fa-2x"></i></a>
+                    <div class="info float-container">
+                        <div class="col-sm-12 london-title">
+                            <h3 class="text-uppercase">{{photo.Photo.title}}</h3>                     
+                        </div>
+                        <p>{{photo.Photo.description}}</p><hr />
+                        <div class="col-sm-12 location-main"> 
+                            <div class="pull-left user-icons">
+                                <a href="#"><i class="fa fa-star fa-2x"></i></a>
+                                <a href="#"><i class="fa fa-user fa-2x"></i></a>
+                                <a href="#"><i class="fa fa-twitter fa-2x"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
 </div>
-
-
-
-</div>
+<script>
+ 
+       $('.with-caption').magnificPopup({
+		type: 'image',
+		closeOnContentClick: true,
+		closeBtnInside: false,
+		mainClass: 'mfp-with-zoom mfp-img-mobile',
+		image: {
+			verticalFit: true,
+			titleSrc: function(item) {
+				return item.el.attr('title') + ' &middot; <a class="image-source-link" href="'+item.el.attr('data-source')+'>image source</a>';
+			}
+		},
+		zoom: {
+			enabled: true
+		}
+	});
+  
+</script>
+<!-- http://dimsemenov.com/plugins/magnific-popup/documentation.html#image-type-->

@@ -46,3 +46,50 @@
     padding-right: 10px;
 }
 
+/* 
+
+====== Newspaper effect ======
+
+*/
+.mfp-newspaper {
+  
+  /* start state */
+  .mfp-with-anim {
+    opacity: 0;
+    -webkit-transition: all 0.2s ease-in-out; 
+    transition: all 0.5s;
+    
+    transform: scale(0) rotate(500deg);
+  }
+  
+  &.mfp-bg {
+    opacity: 0;
+	  transition: all 0.5s;
+  }
+  
+  /* animate in */
+  &.mfp-ready {
+    .mfp-with-anim {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+    &.mfp-bg {
+      opacity: 0.8;
+    }
+  }
+  
+  /* animate out */
+  &.mfp-removing {
+    
+    .mfp-with-anim {
+      transform: scale(0) rotate(500deg);
+      opacity: 0;
+    }
+    &.mfp-bg {
+      opacity: 0;
+    }
+    
+  }
+  
+}
+

@@ -17,6 +17,7 @@
                     if(scope.showAddPhoto === true){
                    
                         $(element).modal('show');
+                        console.log(scope);
                     }else{
         
                         $(element).modal('hide');

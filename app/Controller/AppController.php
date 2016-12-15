@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Application level Controller
  *
@@ -18,7 +19,6 @@
  * @since         CakePHP(tm) v 0.2.9
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
 App::uses('Controller', 'Controller');
 
 /**
@@ -31,154 +31,160 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-   	function beforeFilter()
-    { 
-        if( isset($this->params['prefix']) )
-        {
-        	// /json/ is for API
-        	if( $this->params['prefix'] == 'json' )
-        	{
-				$this->response->header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-				$this->response->type('json');
+    function beforeFilter() {
+        if (isset($this->params['prefix'])) {
+            // /json/ is for API
+            if ($this->params['prefix'] == 'json') {
+                $this->response->header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-	        	// basically, don't render view
-	        	$this->autoRender = false;
-	        	// and if you happen to, you should make it ajax layout
-	        	$this->layout = 'ajax';
-	        }
+                $this->response->type('json');
 
+                // basically, don't render view
+                $this->autoRender = false;
+                // and if you happen to, you should make it ajax layout
+                $this->layout = 'ajax';
+            }
+        } else {
 
-	    }else
-            { 
-    	
-                $this->layout = 'main/main';
-         }
+            $this->layout = 'main/main';
+        }
     }
-    
-    function appInitData(){
-		App::uses('CakeTime', 'Utility');
 
-		$backUrl = Router::url('/json', true);
+    function appInitData() {
+        App::uses('CakeTime', 'Utility');
 
-		$data = array(
+        $backUrl = Router::url('/json', true);
+
+        $data = array(
 //			'aToken'    => $this->Session->read('bearer'),
-			'backUrl'   => $backUrl,
-			'dates'     => array(
-				'today' => CakeTime::format('today', '%Y-%m-%d'),
-				'week'  => CakeTime::format('-7 days', '%Y-%m-%d'),
-				'month' => CakeTime::format('-30 days', '%Y-%m-%d'),
-				'year'  => CakeTime::format('-365 days', '%Y-%m-%d'),
-			),
-			'webroot'	=> Router::url('/', true)
-		);
-		return $data;
-	}
-    
- 	//  This Function Will Be used when app isnt fired by cake (DEVELOPMENT)
-	function json_init(){
-		$data = $this->appInitData();
-		return json_encode($data);
-	}   
-    
+            'backUrl' => $backUrl,
+            'dates' => array(
+                'today' => CakeTime::format('today', '%Y-%m-%d'),
+                'week' => CakeTime::format('-7 days', '%Y-%m-%d'),
+                'month' => CakeTime::format('-30 days', '%Y-%m-%d'),
+                'year' => CakeTime::format('-365 days', '%Y-%m-%d'),
+            ),
+            'webroot' => Router::url('/', true)
+        );
+        return $data;
+    }
+
+    //  This Function Will Be used when app isnt fired by cake (DEVELOPMENT)
+    function json_init() {
+        $data = $this->appInitData();
+        return json_encode($data);
+    }
+
     /**
- * uploads files to the server
- * @params:
- *		$folder 	= the folder to upload the files e.g. 'img/files'
- *		$formdata 	= the array containing the form files
- *		$itemId 	= id of the item (optional) will create a new sub folder
- * @return:
- *		will return an array with the success of each file upload
- */
-function uploadFiles($folder, $formdata, $itemId = null) {
-	// setup dir names absolute and relative
-	$folder_url = WWW_ROOT.$folder;
-	$rel_url = $folder;
+     * uploads files to the server
+     * @params:
+     * 		$folder 	= the folder to upload the files e.g. 'img/files'
+     * 		$formdata 	= the array containing the form files
+     * 		$itemId 	= id of the item (optional) will create a new sub folder
+     * @return:
+     * 		will return an array with the success of each file upload
+     */
+    function uploadFiles($folder, $formdata, $itemId = null) {
+        // setup dir names absolute and relative
+        $folder_url = WWW_ROOT . $folder;
+        $rel_url = $folder;
 //	echo '<br><br> folder_url :$folder_url <br><br>';
-	// create the folder if it does not exist
-	if(!is_dir($folder_url)) {
-		mkdir($folder_url);
-	}
-		
-	// if itemId is set create an item folder
-	if($itemId) {
-		// set new absolute folder
-		$folder_url = WWW_ROOT.$folder.$itemId; 
-		// set new relative folder
-		$rel_url = $folder.$itemId;
-		// create directory
-		if(!is_dir($folder_url)) {
-			mkdir($folder_url);
-		}
-	}
-	
-	// list of permitted file types, this is only images but documents can be added
-	$permitted = array('image/gif','image/jpeg','image/pjpeg','image/png');
-	
-	// loop through and deal with the files
-	foreach($formdata as $file) {
-		// replace spaces with underscores
-		$filename = str_replace(' ', '_', $file['name']);
-		// assume filetype is false
-		$typeOK = false;
-		// check filetype is ok
-		foreach($permitted as $type) {
-			if($type == $file['type']) {
-				$typeOK = true;
-				break;
-			}
-		}
-		
-		// if file type ok upload the file
-		if($typeOK) {
-			// switch based on error code
-			switch($file['error']) {
-				case 0:
-					// check filename already exists
-					if(!file_exists($folder_url.'\\'.$filename)) {
-						// create full filename
-						$full_url = $folder_url.'\\'.$filename;
-                                                $photo_name = $filename;
-						$url = $rel_url.'\\'.$filename;
-						// upload the file
-						$success = move_uploaded_file($file['tmp_name'], $url);
-					} else {
-						// create unique filename and upload file
-						ini_set('date.timezone', 'Europe/London');
-						$now = date('Y-m-d-His');
-						$full_url = $folder_url.'\\'.$now.$filename;
-                                                $photo_name = $now.$filename;
-						$url = $rel_url.'\\'.$now.$filename;
-						$success = move_uploaded_file($file['tmp_name'], $url);
-					}
-					// if upload was successful
-					if($success) {
-						// save the url of the file
-                                            
-						$result['full'] = str_replace("\\","/",$url);
-                                                $result['name'] = $photo_name;
-                                              
-					} else {
-						$result['errors'] = "Error uploaded $filename. Please try again.";
-					}
-					break;
-				case 3:
-					// an error occured
-					$result['errors'] = "Error uploading $filename. Please try again.";
-					break;
-				default:
-					// an error occured
-					$result['errors'] = "System error uploading $filename. Contact webmaster.";
-					break;
-			}
-		} elseif($file['error'] == 4) {
-			// no file was selected for upload
-			$result['nofiles'] = "No file Selected";
-		} else {
-			// unacceptable file type
-			$result['errors'] = "$filename cannot be uploaded. Acceptable file types: gif, jpg, png.";
-		}
-	}
-return $result;
-}
+        // create the folder if it does not exist
+        if (!is_dir($folder_url)) {
+            mkdir($folder_url);
+        }
+
+        // if itemId is set create an item folder
+        if ($itemId) {
+            // set new absolute folder
+            $folder_url = WWW_ROOT . $folder . $itemId;
+            // set new relative folder
+            $rel_url = $folder . $itemId;
+            // create directory
+            if (!is_dir($folder_url)) {
+                mkdir($folder_url);
+            }
+        }
+
+        // list of permitted file types, this is only images but documents can be added
+        $permitted = array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/png');
+
+        // loop through and deal with the files
+        foreach ($formdata as $file) {
+            // replace spaces with underscores
+            $filename = str_replace(' ', '_', $file['name']);
+            // assume filetype is false
+            $typeOK = false;
+            // check filetype is ok
+            foreach ($permitted as $type) {
+                if ($type == $file['type']) {
+                    $typeOK = true;
+                    break;
+                }
+            }
+
+            // if file type ok upload the file
+            if ($typeOK) {
+                // switch based on error code
+                switch ($file['error']) {
+                    case 0:
+                        // check filename already exists
+                        if (!file_exists($folder_url . '\\' . $filename)) {
+                            // create full filename
+                            $full_url = $folder_url . '\\' . $filename;
+                            $photo_name = $filename;
+                            $url = $rel_url . '\\' . $filename;
+                            // upload the file
+                            $success = move_uploaded_file($file['tmp_name'], $url);
+                        } else {
+                            // create unique filename and upload file
+                            ini_set('date.timezone', 'Europe/London');
+                            $now = date('Y-m-d-His');
+                            $full_url = $folder_url . '\\' . $now . $filename;
+                            $photo_name = $now . $filename;
+                            $url = $rel_url . '\\' . $now . $filename;
+                            $success = move_uploaded_file($file['tmp_name'], $url);
+                        }
+                        // if upload was successful
+                        if ($success) {
+                            // save the url of the file
+
+                            $result['full'] = str_replace("\\", "/", $url);
+                            $result['name'] = $photo_name;
+                        } else {
+                            $result['errors'] = "Error uploaded $filename. Please try again.";
+                        }
+                        break;
+                    case 3:
+                        // an error occured
+                        $result['errors'] = "Error uploading $filename. Please try again.";
+                        break;
+                    default:
+                        // an error occured
+                        $result['errors'] = "System error uploading $filename. Contact webmaster.";
+                        break;
+                }
+            } elseif ($file['error'] == 4) {
+                // no file was selected for upload
+                $result['nofiles'] = "No file Selected";
+            } else {
+                // unacceptable file type
+                $result['errors'] = "$filename cannot be uploaded. Acceptable file types: gif, jpg, png.";
+            }
+        }
+        return $result;
+    }
+
+    function deleteFiles($file_to_delete) {
+         $this->autoRender = false;
+       
+        $file_str = WWW_ROOT . str_replace("/", "\\", $file_to_delete);
+        
+        if (file_exists($file_str)) {
+
+            $response = unlink($file_str) ? true : false;
+        }
+       return $response;  
+    }
 }

@@ -5,21 +5,14 @@
 
 
     var rout = angular.module('app');
-    rout.controller("addition", addition);
-    function addition($http, $scope, fileService,$rootScope) {
+    rout.controller("dashboard", dashboard);
+    function dashboard($http, $scope) {
 
-        var model = this;
-
-        model.photo = {
-            message: "",
-            success: false
-        };
-
-
-        model.title = "";
-        model.description = "";
-        model.photoName = "";
-        model.photoLocation = "";
+    https://api.github.com/repos/godav/final-projects-manager/commits
+    
+    https://api.github.com/repos/godav/final-projects-manager/stats/contributors
+    
+    
 
         model.submit = function (isValid) {
 

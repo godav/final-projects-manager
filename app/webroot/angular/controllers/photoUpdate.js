@@ -5,8 +5,8 @@
 
 
     var rout = angular.module('app');
-    rout.controller("addition", addition);
-    function addition($http, $scope, fileService,$rootScope) {
+    rout.controller("photoUpdate", photoUpdate);
+    function photoUpdate($http, $scope, fileService,$rootScope) {
 
         var model = this;
 
@@ -26,7 +26,7 @@
             if (isValid) {
                 var photoData = null;
                 if (model.photoName !== null && model.photoName !== "") {
-                    var url = 'json/pages/pictureUpload';
+                    var url = 'json/pages/pictureUpdate';
                     var file = $scope.myFile;
                     var folder = 'users\\img\\project\\';
                     var id = $scope.$parent.infoData.id;

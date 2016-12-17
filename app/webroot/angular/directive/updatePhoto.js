@@ -1,26 +1,27 @@
 (function(){
 	var rout = angular.module('app');
 	
-        rout.directive('addp',addPhoto);
+        rout.directive('updatep',updatePhoto);
         
-        function addPhoto() {
+        function updatePhoto() {
         return {
-            templateUrl: 'partials/addphoto.html',
+            templateUrl: 'partials/updatephoto.html',
             restrict: 'E',
             transclude: true,
             replace:true,
 
             link:function link(scope, element, attrs){
                 
-                scope.$watch('showAddPhoto', function(){
+                scope.$watch('showUpdatePhoto', function(){
 //                      console.log('showRegister:',scope.showRegister);
-                    if(scope.showAddPhoto === true){
+                    if(scope.showUpdatePhoto === true){
                    
                         $(element).modal('show');
                       
                     }else{
            
-              
+//                        scope.updated = false;
+//                        scope.apply();
                         $(element).modal('hide');
                     }
                 });                

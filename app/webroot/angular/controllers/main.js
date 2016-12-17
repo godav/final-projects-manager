@@ -3,7 +3,7 @@
 	
 	rout.controller('main', main);
         
-	function main($scope,$http,StorageService,$location) {
+	function main($scope,$rootScope,StorageService,$location) {
             
 //              $scope.errLogin = false;
               $scope.infoData=StorageService.get();
@@ -37,6 +37,21 @@
              $scope.toggleAddPhotoModal = function(){     
                  $scope.showAddPhoto = !$scope.showAddPhoto;
              }; 
+             
+              $scope.showUpdatePhoto = false;
+             $scope.toggleUpdatePhotoModal = function(){     
+                 $scope.showUpdatePhoto = !$scope.showUpdatePhoto;
+             }; 
+             
+             //used to know when photo add modal was submitted to update gallery
+//             $scope.updated = false;
+//             
+//             $scope.$watch("updated", function (newValue, oldValue) {
+//                if ($scope.updated)
+//                {
+//                     $rootScope.$broadcast('galleryUpdated');
+//                }
+//        });
         }
 
 })();

@@ -1,158 +1,165 @@
 <div class='user-container'>
-   <nav class="navbar navbar-inverse sidebar" role="navigation">
-    <div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">Brand</a>
-		</div>
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">סטטיסטיקטות<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
-                                <li ><a href="#/profile">פרופיל<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
-				<li ><a href="#/galery">ניהול גלריה<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <span class="caret"></span><span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-cog"></span></a>
-					<ul class="dropdown-menu forAnimate" role="menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li class="divider"></li>
-						<li><a href="#">Separated link</a></li>
-						<li class="divider"></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul>
-				</li>
-				
-			</ul>
-		</div>
-	</div>
-</nav>     
-    
-    
-    
-    <div class="main" ng-controller="profileUpdate as profile" ng-init="init()">
-      <!--main content start-->
-      <section id="main-content">
-          <section class="wrapper">
+    <nav class="navbar navbar-inverse sidebar" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Brand</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">סטטיסטיקטות<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+                    <li ><a href="#/profile">פרופיל<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
+                    <li ><a href="#/galery">ניהול גלריה<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <span class="caret"></span><span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-cog"></span></a>
+                        <ul class="dropdown-menu forAnimate" role="menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
 
-              <div class="row">
-                <!-- profile-widget -->
-                <div class="col-lg-12">
-                    <div class="profile-widget profile-widget-info">
-                          <div class="panel-body">
-                            <div class="col-lg-2 col-sm-2 pull-right" >
-                              <h4>{{profile.user.firstname}} {{profile.user.lastname}}</h4>               
-                              <div class="follow-ava">
-                                  <img ng-src="{{profile.profilePicture}}" alt="">
-                              </div>
-                              <h6>{{profile.user.role}}</h6>
-                            </div>            
-                          </div>
+                </ul>
+            </div>
+        </div>
+    </nav>     
+
+
+
+    <div class="main" ng-controller="profileUpdate as profile" ng-init="init()">
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
+
+                <div class="row">
+                    <!-- profile-widget -->
+                    <div class="col-lg-12">
+                        <div class="profile-widget profile-widget-info">
+                            <div class="panel-body">
+                                <div class="col-lg-2 col-sm-2 pull-right" >
+                                    <h4>{{profile.user.firstname}} {{profile.user.lastname}}</h4>               
+                                    <div class="follow-ava">
+                                        <img ng-src="{{profile.profilePicture}}" alt="">
+                                    </div>
+                                    <h6>{{profile.user.role}}</h6>
+                                </div>            
+                            </div>
+                        </div>
                     </div>
                 </div>
-              </div>
-              <!-- page start-->
-              <div class="row">
-                 <div class="col-lg-12">
+                <!-- page start-->
+                <div class="row">
+                    <div class="col-lg-12">
 
-                                    <section class="panel" style="direction: rtl;">                                          
-                                          <div class="panel-body bio-graph-info prof">
-                                              <h1>פרטי פרופיל</h1>
-                                              <div  class="form loginmodal-container updateProfile-container" >
-                                                    <form angular-validator-submit='profile.submit(updateForm.$valid)' novalidate name='updateForm' angular-validator>
-                                   
-                                             <div class="form-group">
-                                                 <input name="firstname" placeholder="שם פרטי" ng-change="changeValue()"
-                                                       type="text" tabindex="1" ng-model="profile.user.firstname"  
-                                                       class = "form-control"  
-                                                       required-message="'נדרש'" required                                                     
-                                                >
-                                             </div>
+                        <section class="panel" style="direction: rtl;">                                          
+                            <div class="panel-body bio-graph-info prof">
+                                <h1>פרטי פרופיל</h1>
+                                <div  class="form loginmodal-container updateProfile-container" >
+                                    <form angular-validator-submit='profile.submit(updateForm.$valid)' novalidate name='updateForm' angular-validator>
 
-                                          <div class="form-group">
+                                        <div class="form-group">
+                                            <input name="firstname" placeholder="שם פרטי" ng-change="changeValue()"
+                                                   type="text" tabindex="1" ng-model="profile.user.firstname"  
+                                                   class = "form-control"  
+                                                   required-message="'נדרש'" required                                                     
+                                                   >
+                                        </div>
+
+                                        <div class="form-group">
                                             <input name="lastname" placeholder="שם משפחה" ng-change="changeValue()"
                                                    type="text" tabindex="2" ng-model="profile.user.lastname" 
                                                    class = "form-control"  
                                                    required-message="'נדרש'" required                                                 
-                                            >                                         
-                                          </div>
-                                         
-                                      <div class="form-group">
-                                             <input   name="email" placeholder="דואר אלקטרוני" ng-change="changeValue()"
-                                                      type="email" tabindex="3" ng-model="profile.user.email"
-                                                      class = "form-control"
-                                                      validator = "profile.checkEmail(profile.user.email) === true"
-                                                      validate-on="dirty"
-                                                      invalid-message="profile.checkEmail(profile.user.email)"
-                                                      required-message="'נדרש'" required
-                                             >                                   
-                                       </div>
-                                         
-                                      <div class="form-group">
-                                            <input name="git" placeholder="ספריית GIT " ng-change="changeValue()"
-                                                   type="text" tabindex="2" ng-model="profile.user.git" 
+                                                   >                                         
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input   name="email" placeholder="דואר אלקטרוני" ng-change="changeValue()"
+                                                     type="email" tabindex="3" ng-model="profile.user.email"
+                                                     class = "form-control"
+                                                     validator = "profile.checkEmail(profile.user.email) === true"
+                                                     validate-on="dirty"
+                                                     invalid-message="profile.checkEmail(profile.user.email)"
+                                                     required-message="'נדרש'" required
+                                                     >                                   
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input name="gitproject" placeholder="פרויקט GIT " ng-change="changeValue()"
+                                                   type="text" tabindex="4" ng-model="profile.user.gitproject" 
                                                    class = "form-control"  
-                                                                                     
-                                            >                                         
-                                      </div>
-                                          
- 
-                                            <div class="form-group" id="radioGender">
-                                                <label class="gender-caption">מין</label>
-                                              
-                                                    <span>זכר</span> <input required-message="'נדרש'" type="radio" name="gender" value="M" ng-model="profile.user.gender" ng-required="!profile.user.gender" ng-change="changeValue()">
-                                                    <span>נקבה</span> <input required-message="'נדרש'" type="radio" name="gender" value="F" ng-model="profile.user.gender" ng-required="!profile.user.gender" ng-change="changeValue()">
-                                             
-                                            </div>
-                                                        
-                                         <div class="form-group" >                
+
+                                                   >                                         
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input name="gituser" placeholder="שם משתמש GIT " ng-change="changeValue()"
+                                                   type="text" tabindex="5" ng-model="profile.user.gituser" 
+                                                   class = "form-control"  
+
+                                                   >                                         
+                                        </div>                   
+
+
+                                        <div class="form-group" id="radioGender">
+                                            <label class="gender-caption">מין</label>
+
+                                            <span>זכר</span> <input required-message="'נדרש'" type="radio" name="gender" value="M" ng-model="profile.user.gender" ng-required="!profile.user.gender" ng-change="changeValue()">
+                                            <span>נקבה</span> <input required-message="'נדרש'" type="radio" name="gender" value="F" ng-model="profile.user.gender" ng-required="!profile.user.gender" ng-change="changeValue()">
+
+                                        </div>
+
+                                        <div class="form-group" >                
                                             <div class="input-group">
                                                 <label class="input-group-btn">
-                                                     <span class="btn btn-primary btn-purple upload-btn">
-                                                         &hellip; 
-                                                            <input  name="file" type="file"  style="display: none;" file-Upload = "myFile" accept="image/*">
+                                                    <span class="btn btn-primary btn-purple upload-btn">
+                                                        &hellip; 
+                                                        <input  name="file" type="file"  style="display: none;" file-Upload = "myFile" accept="image/*">
                                                     </span>
                                                 </label>
                                                 <input ng-change="changeValue()" type="text" disabled  ng-model="profile.user.photoName" name="photo" placeholder="בחר תמונת פרופיל" style="border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important;" readonly>
                                             </div> 
-                                         </div>
-                                                        
-                        
-                                            <!--   <button ng-click ="uploadFile()"></button> -->
-                                                 
+                                        </div>
+
+
+                                        <!--   <button ng-click ="uploadFile()"></button> -->
+
 
                                         <div class="form-group">
-                                              <div style="text-align: center;">
-                                                  <button ng-disabled="updateForm.$invalid || !profile.changed" type="submit"  class="btn btn-success">עדכון</button>
-                                                  <button type="button" class="btn btn-danger" ng-click="updateForm.reset() ; init();">ביטול</button>
-                                              </div>
+                                            <div style="text-align: center;">
+                                                <button ng-disabled="updateForm.$invalid || !profile.changed" type="submit"  class="btn btn-success">עדכון</button>
+                                                <button type="button" class="btn btn-danger" ng-click="updateForm.reset(); init();">ביטול</button>
+                                            </div>
 
-                                   </form> 
-                                              </div>
+                                    </form> 
+                                </div>
 
-                                          </div>
+                            </div>
 
-                      </section>
-                 </div>
-              </div>
+                        </section>
+                    </div>
+                </div>
 
-              <!-- page end-->
-          </section>
-      </section>
-      <!--main content end-->
+                <!-- page end-->
+            </section>
+        </section>
+        <!--main content end-->
+    </div>
+
 </div>
 
-</div>
 
 
 
 
-
-   

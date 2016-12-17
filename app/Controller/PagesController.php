@@ -228,5 +228,22 @@ class PagesController extends AppController {
 
         return json_encode($response);
     }
+    
+    
+        function json_getDashBoard() {
+        $this->autoRender = false;
+        $id = $this->request->data('id');
+
+        $this->loadModel('User');
+
+        $data = $this->User->find('first', array(
+            'conditions' => array('User.id' => $id)
+        ));
+        
+        $response['gituser'] = $data['User']['gituser'];
+        $response['gitproject'] = $data['User']['gitproject'];       
+
+        return json_encode($response);
+    }
 
 }

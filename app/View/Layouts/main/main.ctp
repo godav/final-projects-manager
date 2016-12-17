@@ -27,7 +27,8 @@
             echo $this->Html->script(array('/angular/directive/modalLogin','/angular/directive/modalRegister','/angular/directive/fileUpload','/angular/directive/angular-validator','/angular/directive/addPhoto','/angular/directive/photoUpload'));
             echo $this->Html->script(array('/angular/controllers/main','/angular/controllers/courses','/angular/controllers/projects','/angular/controllers/search','/angular/controllers/login'));
             echo $this->Html->script(array('/angular/controllers/registeration','/angular/controllers/profileUpdate','/angular/controllers/addition'));
-             echo $this->Html->script(array('/angular/controllers/userGallery'));
+             echo $this->Html->script(array('/angular/controllers/userGallery','/angular/controllers/highcharts'));
+             
         ?>
    
 

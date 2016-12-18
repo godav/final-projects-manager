@@ -228,9 +228,8 @@ class PagesController extends AppController {
 
         return json_encode($response);
     }
-    
-    
-        function json_getDashBoard() {
+
+    function json_getDashBoard() {
         $this->autoRender = false;
         $id = $this->request->data('id');
 
@@ -239,9 +238,16 @@ class PagesController extends AppController {
         $data = $this->User->find('first', array(
             'conditions' => array('User.id' => $id)
         ));
-        
+
         $response['gituser'] = $data['User']['gituser'];
-        $response['gitproject'] = $data['User']['gitproject'];       
+        $response['gitproject'] = $data['User']['gitproject'];
+
+        $this->loadModel('Photo');
+        $count = $this->Photo->find('count', array(
+            'conditions' => array('Photo.user_id' => $id)
+        ));
+        
+        $response['count'] = $count;
 
         return json_encode($response);
     }

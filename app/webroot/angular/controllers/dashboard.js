@@ -15,6 +15,8 @@
         $scope.commits = 0;
         $scope.addition = 0;
         $scope.deletion = 0;
+        $scope.photos = 0;
+
         var addition = [];
         var deletion = [];
         var categories = [];
@@ -26,6 +28,7 @@
             $scope.commits = 0;
             $scope.addition = 0;
             $scope.deletion = 0;
+            $scope.photos = 0;
 
             addition = [];
             deletion = [];
@@ -45,9 +48,10 @@
                     .success(function (data, status, headers, config) {
                         if (data)
                         {
-
+                            console.log(data);
                             $scope.gituser = data.gituser;
                             $scope.gitproject = data.gitproject;
+                            $scope.photos = data.count;
 
                             $http.get("https://api.github.com/repos/" + $scope.gituser + "/" + $scope.gitproject + "/stats/contributors")
                                     .then(function (response) {
@@ -77,6 +81,36 @@
                                         init_git_chart();
                                     });
 
+                            $http.get("https://api.github.com/repos/" + $scope.gituser + "/" + $scope.gitproject + "/commits")
+                                    .then(function (response) {
+
+
+                                        console.log(response);
+//
+                                        if (response.data.length > 0)
+                                        {
+                                            var data = response.data;
+
+                                            var commitsData = [];
+
+
+                                            for (var key in data) {
+                                                var commit = {
+                                                    message: data[key].commit.message,
+                                                    date: extractDate(data[key].commit.committer.date),
+                                                    time: extractTime(data[key].commit.committer.date)
+                                                };
+                                                commitsData.push(commit);
+                                         
+                                            }
+                                            
+                                            console.log(commitsData);
+//                                            $scope.addition = numberWithCommas(sumAdd);
+//                                            $scope.deletion = numberWithCommas(sumDel);
+                                        }
+//                                        init_git_chart();
+                                    });
+
                         }
 
                     })
@@ -86,6 +120,7 @@
                                 "<hr />headers: " + header +
                                 "<hr />config: " + config;
                     });
+
 
 
 
@@ -198,6 +233,22 @@
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
+
+        function extractDate(timestamp)
+        {
+
+            var d = new Date(timestamp);
+            return d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear();
+
+        }
+
+        function extractTime(timestamp)
+        {
+            var d = new Date(timestamp);
+            var hours = (d.getHours() < 10) ? "0" + d.getHours() : d.getHours();
+            var minutes = (d.getMinutes() < 10) ? "0" + d.getMinutes() : d.getMinutes();
+            return hours + ":" + minutes;
+        }
 //        model.submit = function (isValid) {
 //
 //            if (isValid) {
@@ -263,5 +314,16 @@
 
     }
 
-}());
 
+}());
+//
+
+
+
+//var d = new Date(1245398693390);
+//var formattedDate = d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear();
+//var hours = (d.getHours() < 10) ? "0" + d.getHours() : d.getHours();
+//var minutes = (d.getMinutes() < 10) ? "0" + d.getMinutes() : d.getMinutes();
+//var formattedTime = hours + ":" + minutes;
+//
+//formattedDate = formattedDate + " " + formattedTime;

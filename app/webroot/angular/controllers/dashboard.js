@@ -16,34 +16,32 @@
         $scope.addition = 0;
         $scope.deletion = 0;
         $scope.photos = 0;
+        $scope.current_page = 1;
+//        $scope.commitsData = [];
 
         var addition = [];
         var deletion = [];
         var categories = [];
         $scope.init = function () {
-
+            $scope.current_page = 1;
             $scope.git_user = "";
             $scope.git_project = "";
-
             $scope.commits = 0;
             $scope.addition = 0;
             $scope.deletion = 0;
             $scope.photos = 0;
-
+            $scope.commitsData = [];
             addition = [];
             deletion = [];
             categories = [];
-
             userData = $.param({
                 id: $scope.$parent.infoData.id
             });
-
             var config = {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
             };
-
             $http.post('json/pages/getDashBoard', userData, config)
                     .success(function (data, status, headers, config) {
                         if (data)
@@ -52,27 +50,21 @@
                             $scope.gituser = data.gituser;
                             $scope.gitproject = data.gitproject;
                             $scope.photos = data.count;
-
                             $http.get("https://api.github.com/repos/" + $scope.gituser + "/" + $scope.gitproject + "/stats/contributors")
                                     .then(function (response) {
 //                                        $scope.details = response.data;
 
                                         $scope.commits = response.data[0].total;
-
                                         if (response.data[0].weeks.length > 0)
                                         {
                                             var weeks = response.data[0].weeks;
-
                                             var sumAdd = 0;
                                             var sumDel = 0;
-
                                             for (var key in weeks) {
                                                 addition.push(weeks[key].a);
                                                 sumAdd += weeks[key].a;
-
                                                 deletion.push(-1 * parseInt(weeks[key].d));
                                                 sumDel += (weeks[key].d);
-
                                                 categories.push(parseInt(key) + 1);
                                             }
                                             $scope.addition = numberWithCommas(sumAdd);
@@ -80,8 +72,7 @@
                                         }
                                         init_git_chart();
                                     });
-
-                            $http.get("https://api.github.com/repos/" + $scope.gituser + "/" + $scope.gitproject + "/commits")
+                            $http.get("https://api.github.com/repos/" + $scope.gituser + "/" + $scope.gitproject + "/commits?page=1&per_page=10")
                                     .then(function (response) {
 
 
@@ -90,27 +81,21 @@
                                         if (response.data.length > 0)
                                         {
                                             var data = response.data;
-
-                                            var commitsData = [];
-
-
                                             for (var key in data) {
                                                 var commit = {
                                                     message: data[key].commit.message,
                                                     date: extractDate(data[key].commit.committer.date),
                                                     time: extractTime(data[key].commit.committer.date)
                                                 };
-                                                commitsData.push(commit);
-                                         
+                                                $scope.commitsData.push(commit);
                                             }
-                                            
-                                            console.log(commitsData);
+
+                                            console.log($scope.commitsData);
 //                                            $scope.addition = numberWithCommas(sumAdd);
 //                                            $scope.deletion = numberWithCommas(sumDel);
                                         }
 //                                        init_git_chart();
                                     });
-
                         }
 
                     })
@@ -120,18 +105,55 @@
                                 "<hr />headers: " + header +
                                 "<hr />config: " + config;
                     });
-
-
-
-
 //
 //            $http.get("http://www.omdbapi.com/?s=" + $scope.search)
 //                    .then(function (response) {
 //                        $scope.related = response.data;
 //                    });
         };
+        $scope.next = function () {
+            $scope.current_page++;
+            $http.get("https://api.github.com/repos/" + $scope.gituser + "/" + $scope.gitproject + "/commits?page=" + $scope.current_page + "&per_page=10")
+                    .then(function (response) {
+                        if (response.data.length > 0)
+                        {
+                            $scope.commitsData = [];
+                            var data = response.data;
+                            for (var key in data) {
+                                var commit = {
+                                    message: data[key].commit.message,
+                                    date: extractDate(data[key].commit.committer.date),
+                                    time: extractTime(data[key].commit.committer.date)
+                                };
+                                $scope.commitsData.push(commit);
+                            }
+                        } else
+                            $scope.current_page--;
+                        //   $scope.current_page++;
+                    });
+        };
+        $scope.prev = function () {
+            if ($scope.current_page === 1)
+                return;
+            $scope.current_page--;
+            $http.get("https://api.github.com/repos/" + $scope.gituser + "/" + $scope.gitproject + "/commits?page=" + $scope.current_page + "&per_page=10")
+                    .then(function (response) {
+                        if (response.data.length > 0)
+                        {
+                            $scope.commitsData = [];
+                            var data = response.data;
+                            for (var key in data) {
+                                var commit = {
+                                    message: data[key].commit.message,
+                                    date: extractDate(data[key].commit.committer.date),
+                                    time: extractTime(data[key].commit.committer.date)
+                                };
+                                $scope.commitsData.push(commit);
+                            }
+                        }
 
-
+                    });
+        };
 //    https://api.github.com/repos/godav/final-projects-manager/commits
 //    
 //    
@@ -228,7 +250,6 @@
                     data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
                 }]
         });
-
         function numberWithCommas(x) {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
@@ -239,7 +260,6 @@
 
             var d = new Date(timestamp);
             return d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear();
-
         }
 
         function extractTime(timestamp)

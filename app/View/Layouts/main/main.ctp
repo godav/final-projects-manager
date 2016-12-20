@@ -11,7 +11,7 @@
       <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
       
-   
+
       <!-- Scripts and Css Loading -->
       <?php           
             echo $this->Html->css(array('/css/bootstrap', '/css/screen','/css/modalLogin')); 
@@ -20,7 +20,7 @@
             echo $this->Html->css(array('/css/AdminLTE'));
             
             echo $this->Html->script(array('/js/jquery-3.1.1.min', '/js/bootstrap', '/js/functions'));
-            echo $this->Html->script(array('/js/slide-bar','/js/jquery.magnific-popup'));
+            echo $this->Html->script(array('/js/slide-bar','/js/jquery.magnific-popup','/js/underscore-min'));
             echo $this->Html->script(array('/js/angular','/js/angular-route','/js/ngStorage.min','/js/highcharts'));
             
             echo $this->Html->script(array('/angular/app/app','/angular/app/route','/angular/app/services/fileService','/angular/app/services/StorageService'));

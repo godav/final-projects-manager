@@ -19,6 +19,8 @@
             gender: "",
             photoName: "",
             photoLocation: "",
+            url: "",
+            projectDescription: ""
         };
 
         model.changed = false;
@@ -33,7 +35,9 @@
             gender: "",
             photoName: "",
             photoLocation: "",
-            role: ""
+            role: "",
+            url: "",
+            projectDescription: ""
         };
 
         $scope.changeValue = function () {
@@ -48,6 +52,10 @@
             else if ((model.user.gituser !== defaults.gituser) && !(defaults.gituser === null && model.user.gituser === ""))
                 model.changed = true;
             else if ((model.user.gitproject !== defaults.gitproject) && !(defaults.gitproject === null && model.user.gitproject === ""))
+                model.changed = true;
+            else if ((model.user.url !== defaults.url) && !(defaults.url === null && model.user.url === ""))
+                model.changed = true;
+            else if ((model.user.projectDescription !== defaults.projectDescription) && !(defaults.projectDescription === null && model.user.projectDescription === ""))
                 model.changed = true;
             else if (model.user.photoName !== defaults.photoName)
                 model.changed = true;
@@ -82,6 +90,8 @@
                             model.user.gender = data.User.gender;
                             model.user.gituser = data.User.gituser;
                             model.user.gitproject = data.User.gitproject;
+                            model.user.url = data.User.url;
+                            model.user.projectDescription = data.User.project_description;
                             model.user.role = data.User.role;
                             model.user.photoName = data.User.photo_name;
                             model.user.photoLocation = data.User.photo_location;
@@ -102,6 +112,8 @@
                             defaults.gituser = data.User.gituser;
                             defaults.gitproject = data.User.gitproject;
                             defaults.photoName = data.User.photo_name;
+                            defaults.url = data.User.url;
+                            defaults.projectDescription = data.User.project_description;
 
                             model.changed = false;
 //                        model.success = true;
@@ -122,7 +134,7 @@
             if (isValid) {
                 //      model.message = "Submitted " + model.user.username;
                 var updateData = null;
-                
+
                 if (model.user.photoName !== defaults.photoName) {
                     var url = 'json/pages/pictureUpload';
                     var file = $scope.myFile;
@@ -144,7 +156,9 @@
                                 gituser: model.user.gituser,
                                 gitproject: model.user.gitproject,
                                 photo_name: model.user.photoName,
-                                photo_location: model.user.photoLocation
+                                photo_location: model.user.photoLocation,
+                                url: model.user.url,
+                                project_description: model.user.projectDescription
                             });
                         }
                     });
@@ -157,7 +171,9 @@
                         email: model.user.email,
                         gender: model.user.gender,
                         gituser: model.user.gituser,
-                        gitproject: model.user.gitproject
+                        gitproject: model.user.gitproject,
+                        url: model.user.url,
+                        project_description: model.user.projectDescription
                     });
 
                 }
@@ -206,6 +222,7 @@
             return true;
         };
 
-    };
+    }
+    ;
 
 }());

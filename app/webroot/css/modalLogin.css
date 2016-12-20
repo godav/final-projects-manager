@@ -22,7 +22,7 @@
 
 .updateProfile-container {
  
-    max-width: 50% !important;
+    max-width: 80% !important;
     /*width: 50% !important;*/
     margin: 0 auto;
     border-radius: 0 !important;
@@ -44,7 +44,7 @@
   position: relative;
 }
 
-.loginmodal-container input[type=text], input[type=password],input[type=email],input[type=file] {
+.loginmodal-container input[type=text], input[type=password],input[type=email],input[type=file],input[type=url] {
   height: 30px;
   font-size: 16px;
   width: 100%;

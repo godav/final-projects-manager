@@ -251,5 +251,19 @@ class PagesController extends AppController {
 
         return json_encode($response);
     }
+    
+    
+        function json_getProjects() {
+        $this->autoRender = false;
+       
+
+        $this->loadModel('User');
+        $this->loadModel('Photo');
+       $response= $this->User->find('all')->Photo->find('first',array('order'=> array('photos.upload_date DESC')));
+       
+
+
+        return json_encode($response);
+    }
 
 }

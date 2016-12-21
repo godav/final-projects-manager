@@ -1,10 +1,10 @@
  <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         
-                    <div class="modal-dialog modal-lg" ng-controller="registration as registration">
+     <div class="modal-dialog modal-lg" ng-controller="registration as registration" ng-init="init()">
                          
 			<div class="loginmodal-container registermodal-container">
                                  <div class="modal-header pad-init">
-                                     <button type="button" class="close" ng-click="toggleRegisterModal() ; registrationForm.reset() " data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                     <button type="button" class="close" ng-click="toggleRegisterModal() ; registrationForm.reset() ; init()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                      <h1>פתח חשבון</h1>
                                  </div>
                                  
@@ -85,7 +85,7 @@
                                          </div>
                                          <h1 style="text-align: center; color: green" ng-if="registration.success">{{ registration.message }}</h1>
                                          <div class="form-group" ng-if="registration.success">
-                                             <button style="background: green !important" class="login loginmodal-submit" tabindex="7" ng-click="registrationForm.reset() ; toggleRegisterModal() ; toggleLoginModal()">סגור</button>	 
+                                             <button style="background: green !important" class="login loginmodal-submit" tabindex="7" ng-click="registrationForm.reset() ; toggleRegisterModal() ; toggleLoginModal() ; init()">סגור</button>	 
                                         </div>
                                    </form> 
                                 </div> 

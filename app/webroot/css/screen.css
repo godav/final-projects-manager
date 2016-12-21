@@ -3220,6 +3220,7 @@ textarea:focus {
 .btn-load{
         position: relative;
     margin-top: 20px;
+    margin-bottom: 20px;
     height: 60px;
     line-height: 58px;
     border-radius: 5px;
@@ -3233,4 +3234,9 @@ textarea:focus {
     padding: 0 40px;
         background-color: #9400D3;
         display: inline-block;
+}
+
+.btn-load:hover{
+    
+    font-size: 16px;
 }

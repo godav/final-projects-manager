@@ -260,9 +260,48 @@ class PagesController extends AppController {
         $this->User->hasMany['Photo']['limit'] = 1;
         $this->User->hasMany['Photo']['order'] = 'upload_date DESC';
         $this->User->hasMany['Photo']['fields'] = 'photo_name,title,description,photo_location';
-        $response = $this->User->find('all', array('fields' => array('User.id', 'User.first_name', 'User.last_name','User.gitproject')));
+        $response = $this->User->find('all', array('fields' => array('User.id', 'User.first_name', 'User.last_name', 'User.gitproject')));
 
         return json_encode($response);
+    }
+
+    function json_getSearch() {
+        $this->autoRender = false;
+
+        $this->loadModel('User');
+        $search = $this->request->data('search');
+        $pieces = explode(" ", $search);
+        
+        $str = "";
+                
+        foreach ($pieces as $value) {
+           $str = $str . "User.first_name LIKE " . \"=>\" ."'%". $value . "%'" . ",";
+        }
+        echo $str;
+        $conditions = rtrim($str, ",");
+        echo $conditions;
+        
+//        'conditions' => array(
+//        'OR' => array(
+//        'material_id LIKE' => '%4',
+//        'material_id LIKE' => '%5',
+//        )
+//        )
+//        column1 LIKE '%word1%'
+//        OR column1 LIKE '%word2%'
+//        OR column1 LIKE '%word3%'
+
+        $this->User->hasMany['Photo']['limit'] = 1;
+        $this->User->hasMany['Photo']['order'] = 'upload_date DESC';
+        $this->User->hasMany['Photo']['fields'] = 'photo_name,title,description,photo_location';
+        $response = $this->User->find('all', array(
+            'conditions'=>array('OR' => array($conditions
+            
+        )),
+            'fields' => array('User.id', 'User.first_name', 'User.last_name', 'User.gitproject')));
+
+        pr($response);
+//        return json_encode($response);
     }
 
 }

@@ -10,14 +10,16 @@
 
                    
                   <ul class="clean-list site-links">
-                     <li>
-                        <a href="#/courses">קורסים</a>
-                     </li>
-                     <li>
-                        <a href="#/projects">פרויקטים</a>
-                     </li>
+                    
+
                      <li ng-if="logedIn">
                         <a href="#/dashboard">פאנל ניהול</a>
+                     </li>
+                                          <li>
+                        <a href="#/projects">פרויקטים</a>
+                     </li>
+                                          <li>
+                        <a href="#/search">חיפוש</a>
                      </li>
                   </ul>
                      <button class="btn btn-outlined" ng-if="!logedIn" ng-click="toggleLoginModal()">התחבר</button>
@@ -38,42 +40,12 @@
          <div ng-view>
    
         </div>
-	<div ng-controller = "ManageUploadCtrl">
-				<input type = "file" file-Upload = "myFile"/>
-				<button ng-click = "uploadFile()">
-					Upload Image
-	</div>
       </div>
 
       <!-- Footer -->
-      <footer class="main-footer">
+      <footer class="footer-main">
          <div class="container">
             <div class="row">
-               <div class="col-md-5">
-                  <div class="widget widget_links">
-                     <h5 class="widget-title">Top Locations</h5>
-                     <ul>
-                        <li><a href="#">Lorem impsum dolor</a></li>
-                        <li><a href="#">Sit amet consectetur</a></li>
-                        <li><a href="#">Adipisicing elit</a></li>
-                        <li><a href="#">Eiusmod tempor</a></li>
-                        <li><a href="#">incididunt ut labore</a></li>
-                     </ul>
-                  </div>
-               </div>
-
-               <div class="col-md-5">
-                  <div class="widget widget_links">
-                     <h5 class="widget-title">Featured Boats</h5>
-                     <ul>
-                        <li><a href="#">Lorem impsum dolor</a></li>
-                        <li><a href="#">Sit amet consectetur</a></li>
-                        <li><a href="#">Adipisicing elit</a></li>
-                        <li><a href="#">Eiusmod tempor</a></li>
-                     </ul>
-                  </div>
-               </div>
-
                <div class="col-md-9">
                   <div class="widget widget_social">
                      <h5 class="widget-title">Subscribe to our newsletter</h5>
@@ -94,19 +66,6 @@
                         <li>
                            <a href="#"><i class="icon-google-plus"></i></a>
                         </li>
-                     </ul>
-                  </div>
-               </div>
-
-               <div class="col-md-5">
-                  <div class="widget widget_links">
-                     <h5 class="widget-title">Contact us</h5>
-                     <ul>
-                        <li><a href="#">Lorem impsum dolor</a></li>
-                        <li><a href="#">Sit amet consectetur</a></li>
-                        <li><a href="#">Adipisicing elit</a></li>
-                        <li><a href="#">Eiusmod tempor</a></li>
-                        <li><a href="#">incididunt ut labore</a></li>
                      </ul>
                   </div>
                </div>

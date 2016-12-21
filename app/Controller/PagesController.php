@@ -246,22 +246,21 @@ class PagesController extends AppController {
         $count = $this->Photo->find('count', array(
             'conditions' => array('Photo.user_id' => $id)
         ));
-        
+
         $response['count'] = $count;
 
         return json_encode($response);
     }
-    
-    
-        function json_getProjects() {
+
+    function json_getProjects() {
         $this->autoRender = false;
-       
 
         $this->loadModel('User');
-        $this->loadModel('Photo');
-       $response= $this->User->find('all')->Photo->find('first',array('order'=> array('photos.upload_date DESC')));
-       
 
+        $this->User->hasMany['Photo']['limit'] = 1;
+        $this->User->hasMany['Photo']['order'] = 'upload_date DESC';
+        $this->User->hasMany['Photo']['fields'] = 'photo_name,title,description,photo_location';
+        $response = $this->User->find('all', array('fields' => array('User.id', 'User.first_name', 'User.last_name','User.gitproject')));
 
         return json_encode($response);
     }

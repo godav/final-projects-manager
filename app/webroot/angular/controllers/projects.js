@@ -17,7 +17,7 @@
             $http.get('json/pages/getProjects')
                     .success(function (data, status, headers, config) {
                         console.log(data);
-                        
+                        $scope.projectsData = data;
 //                        if (data)
 //                        {
 //                            model.user.firstname = data.User.first_name;

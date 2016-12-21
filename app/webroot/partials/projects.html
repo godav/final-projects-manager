@@ -1,6 +1,6 @@
 
 
-         <section class="section section-boats" ng-controller="projects" ng-init='init()'>
+         <section class="section section-boats" style="height: calc(100vh - 100px)" ng-controller="projects" ng-init='init()'>
             
          <!-- Title -->
             <div class="section-title">
@@ -11,167 +11,35 @@
             </div>
 
             <!-- Content -->
-            <div class="container">
+            <div class="container" style="margin-top: 25px;">
                <div class="row">
-                  <div class="col-md-16 col-xs-24">
+                   <div class="col-lg-4 col-md-8 col-sm-12 col-xs-24" ng-repeat="project in projectsData" style="direction: rtl;" ng-if="project.Photo[0]">
                      <div class="destination-box">
                         <div class="box-cover">
                            <a href="#">
-                              <img src="img/destination-1.jpg" alt="destination image" />
+                              <img src="{{project.Photo[0].photo_location}}" alt="project image" />
                            </a>
                         </div>
 
-                        <span class="boats-qty">730</span>
+                         <span class="boats-qty"><p ng-if="project.User.gitproject">{{project.User.gitproject}}</p><p ng-if="!project.User.gitproject">Project name missing</p></span>
 
                         <div class="box-details">
                            <div class="box-meta">
-                              <h4 class="city">Figueira da Fox</h4>
-                              <p class="country">Portugal</p>
+                              <h4 class="city">{{project.Photo[0].title}}</h4>
+                              <p class="country">נוצר על ידי: {{project.User.first_name}} {{project.User.last_name}}  </p>
                            </div>
                         </div>
                      </div>
                   </div>
 
-                  <div class="col-md-8 col-sm-12 col-xs-24">
-                     <div class="destination-box">
-                        <div class="box-cover">
-                           <a href="#">
-                              <img src="img/destination-2.jpg" alt="destination image" />
-                           </a>
-                        </div>
-
-                        <span class="boats-qty">621</span>
-
-                        <div class="box-details">
-                           <div class="box-meta">
-                              <h4 class="city">Ibiza</h4>
-                              <p class="country">Spain</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-
-                  <div class="col-md-8 col-sm-12 col-xs-24">
-                     <div class="destination-box">
-                        <div class="box-cover">
-                           <a href="#">
-                              <img src="img/destination-3.jpg" alt="destination image" />
-                           </a>
-                        </div>
-
-                        <span class="boats-qty">543</span>
-
-                        <div class="box-details">
-                           <div class="box-meta">
-                              <h4 class="city">Palma de Mallorca</h4>
-                              <p class="country">Spain</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-
-                  <div class="col-md-8 col-sm-12 col-xs-24">
-                     <div class="destination-box">
-                        <div class="box-cover">
-                           <a href="#">
-                              <img src="img/destination-4.jpg" alt="destination image" />
-                           </a>
-                        </div>
-
-                        <span class="boats-qty">495</span>
-
-                        <div class="box-details">
-                           <div class="box-meta">
-                              <h4 class="city">Portofino</h4>
-                              <p class="country">Italy</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-
-                  <div class="col-md-8 col-sm-12 col-xs-24">
-                     <div class="destination-box">
-                        <div class="box-cover">
-                           <a href="#">
-                              <img src="img/destination-5.jpg" alt="destination image" />
-                           </a>
-                        </div>
-
-                        <span class="boats-qty">402</span>
-
-                        <div class="box-details">
-                           <div class="box-meta">
-                              <h4 class="city">Port Hercules</h4>
-                              <p class="country">Monaco</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-
-                  <div class="load-destinations-box">
-                     <div class="col-md-8 col-sm-12 col-xs-24">
-                        <div class="destination-box">
-                           <div class="box-cover">
-                              <a href="#">
-                                 <img src="img/destination-4.jpg" alt="destination image" />
-                              </a>
-                           </div>
-
-                           <span class="boats-qty">495</span>
-
-                           <div class="box-details">
-                              <div class="box-meta">
-                                 <h4 class="city">Portofino</h4>
-                                 <p class="country">Italy</p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-
-                     <div class="col-md-8 col-sm-12 col-xs-24">
-                        <div class="destination-box">
-                           <div class="box-cover">
-                              <a href="#">
-                                 <img src="img/destination-5.jpg" alt="destination image" />
-                              </a>
-                           </div>
-
-                           <span class="boats-qty">402</span>
-
-                           <div class="box-details">
-                              <div class="box-meta">
-                                 <h4 class="city">Port Hercules</h4>
-                                 <p class="country">Monaco</p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-
-                     <div class="col-md-8 col-sm-12 col-xs-24">
-                        <div class="destination-box">
-                           <div class="box-cover">
-                              <a href="#">
-                                 <img src="img/destination-3.jpg" alt="destination image" />
-                              </a>
-                           </div>
-
-                           <span class="boats-qty">543</span>
-
-                           <div class="box-details">
-                              <div class="box-meta">
-                                 <h4 class="city">Palma de Mallorca</h4>
-                                 <p class="country">Spain</p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
+               
                   </div>
                </div>
 
                <div class="align-center">
-                  <a href="#" class="btn btn-default btn-load-destination"><span class="text">טען פרויקטים נוספים</span><i class="icon-spinner6"></i></a>
+                   <button class="btn-load"><span class="text">טען פרויקטים נוספים</span></button>
                </div>
-            </div>            
+                      
          </section>
   	
 

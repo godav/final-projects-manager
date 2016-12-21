@@ -2676,18 +2676,18 @@ textarea:focus {
 }
 
 /* ----------------- 9.2. Footer ----------------- */
-.main-footer {
+.footer-main {
   background-image: url(../img/footer-pattern.png);
   background-repeat: repeat-x;
   background-color: #404040;
   padding: 60px 0;
 }
 @media (max-width: 768px) {
-  .main-footer {
+  .footer-main {
     padding: 30px 0;
   }
 }
-.main-footer .widget .widget-title {
+.footer-main .widget .widget-title {
   color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -2696,31 +2696,31 @@ textarea:focus {
   font-size: 14px;
   margin: 0 0 20px;
 }
-.main-footer .widget ul:not(.social-block) {
+.footer-main .widget ul:not(.social-block) {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.main-footer .widget ul:not(.social-block) li {
+.footer-main .widget ul:not(.social-block) li {
   display: block;
   font-size: 14px;
   letter-spacing: 0.04em;
   color: #ffffff;
   line-height: 1.2em;
 }
-.main-footer .widget ul:not(.social-block) li a:hover {
+.footer-main .widget ul:not(.social-block) li a:hover {
   color: #e7434e;
 }
-.main-footer .widget ul:not(.social-block) li:not(:last-of-type) {
+.footer-main .widget ul:not(.social-block) li:not(:last-of-type) {
   margin-bottom: 12.5px;
 }
 @media (max-width: 992px) {
-  .main-footer .widget {
+  .footer-main .widget {
     margin: 0 0 45px;
   }
 }
 @media (max-width: 992px) {
-  .main-footer {
+  .footer-main {
     padding: 60px 0 15px;
   }
 }
@@ -3047,7 +3047,7 @@ textarea:focus {
   top: 30px;
 }
 .destination-box .boats-qty::before {
-  content: "";
+  /*content: "";*/
   font-family: icomoon;
   display: inline-block;
   margin-right: 10px;
@@ -3215,4 +3215,22 @@ textarea:focus {
 }
 .social-block li i:hover.icon-google-plus {
   background: #dd4b39;
+}
+
+.btn-load{
+        position: relative;
+    margin-top: 20px;
+    height: 60px;
+    line-height: 58px;
+    border-radius: 5px;
+    border: 1px solid white;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: "Raleway", sans-serif;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 0.04em;
+    padding: 0 40px;
+        background-color: #9400D3;
+        display: inline-block;
 }

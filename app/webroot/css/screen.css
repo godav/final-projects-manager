@@ -2628,7 +2628,7 @@ textarea:focus {
 /* ----------------- 9. UI Components ----------------- */
 /* ----------------- 9.1. Header ----------------- */
 .main-header {
-  /*position: absolute;*/
+  /*position: absolute !important;*/
   padding: 10px 0;
   z-index: 9;
   right: 0;
@@ -2772,7 +2772,7 @@ textarea:focus {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  padding: 300px 0;
+  /*padding: 300px 0;*/
   /*background-repeat: no-repeat;*/
 }
 .search-box .hero-text h1,
@@ -3239,4 +3239,11 @@ textarea:focus {
 .btn-load:hover{
     
     font-size: 16px;
+}
+
+.search-icon{
+    text-align: center;
+vertical-align: middle;
+
+margin-top: 50px;
 }

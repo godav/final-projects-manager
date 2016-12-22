@@ -279,44 +279,30 @@ class PagesController extends AppController {
                 'User.first_name LIKE' => '%' . $value . '%'
             );
         }
-        
+
         foreach ($pieces as $value) {
             $conditions[] = array(
                 'User.last_name LIKE' => '%' . $value . '%'
             );
         }
-        
+
         foreach ($pieces as $value) {
             $conditions[] = array(
                 'User.gitproject LIKE' => '%' . $value . '%'
             );
         }
-        
+
         foreach ($pieces as $value) {
             $conditions[] = array(
                 'User.gituser LIKE' => '%' . $value . '%'
             );
         }
-        
+
         foreach ($pieces as $value) {
             $conditions[] = array(
                 'User.project_description LIKE' => '%' . $value . '%'
             );
         }
- 
-//                foreach ($pieces as $value) {
-//            $conditions[] = array(
-//                'Photo.title LIKE' => '%' . $value . '%'
-//            );
-//        }
-        
-//         $p_conditions = array();
-//         
-//        foreach ($pieces as $value) {
-//            $p_conditions = $p_conditions . 'Photo.title LIKE' => '%' . $value . '%';
-//            ;
-//        }        
-
 
         $this->User->hasMany['Photo']['limit'] = 1;
         $this->User->hasMany['Photo']['order'] = 'upload_date DESC';
@@ -328,6 +314,25 @@ class PagesController extends AppController {
 
 //        pr($response);
         return json_encode($response);
+    }
+
+    function json_getStats() {
+
+        $this->autoRender = false;
+
+        $this->loadModel('User');
+        $counts = [];
+        $counts['users'] = $this->User->find('count');
+        $counts['projects'] = $this->User->find('count', array(
+            'conditions' => array('not' => array('User.gitproject' => null))
+        ));
+
+        $this->loadModel('Photo');
+        $counts['photos'] = $this->Photo->find('count');
+
+
+
+        return json_encode($counts);
     }
 
 }

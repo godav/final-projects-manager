@@ -1,60 +1,38 @@
-(function(){
-	var rout = angular.module("app");
-	
-	rout.controller("search", search);
+(function () {
+    var rout = angular.module("app");
 
-	function search($scope,$http,$location) {
-	
+    rout.controller("search", search);
+
+    function search($scope, $rootScope, $http) {
+
         $scope.search = "";
-        
-          
-            $scope.current_page = 1;
-            $scope.projectsData = [];
-            $scope.allProjects = [];
-        
-        $scope.find = function(){
-            
-      
-                 var searchData = $.param({
-                    search: $scope.search
+        $scope.photos = 0;
+        $scope.users = 0;
+        $scope.projects = 0;
+
+        $http.get('json/pages/getStats')
+                .then(function (response) {
+                    if (response)
+                    {
+                        $scope.photos = response.data.photos;
+                        $scope.users = response.data.users;
+                        $scope.projects = response.data.projects;
+
+                    }
+
                 });
 
-                var config = {
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-                    }
-                };
 
-                $http.post('json/pages/getSearch', searchData, config)
-                        .success(function (data, status, headers, config) {
-                            if (data)
-                            {
-                                
-                              
-                        $scope.projectsData = data;
-                        $scope.total_pages = Math.ceil(data.length / 6);
-                        
-                        $location.path( '/#search-results' );
-                   
-// http://stackoverflow.com/questions/39086657/pass-json-data-from-one-controller-to-other-angularjs                  
-                   
-                   
-                            }
 
-                        })
-                        .error(function (data, status, header, config) {
-                            $scope.ResponseDetails = "Data: " + data +
-                                    "<hr />status: " + status +
-                                    "<hr />headers: " + header +
-                                    "<hr />config: " + config;
-                        });
+        $scope.find = function () {
+
+            $rootScope.search_query = $scope.search;
 
         };
-	
-         $scope.more = function(){
-            $scope.current_page++;
-        };
-        
-	}
-	
-})();
+
+
+
+
+    }
+}
+)();

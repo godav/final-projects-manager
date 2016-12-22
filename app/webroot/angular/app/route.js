@@ -19,7 +19,8 @@
 
 		})
         .when('/search', {
-			templateUrl : 'partials/search.html'
+			templateUrl : 'partials/search.html',
+                        controller : "search"
 			//template:"<h1>this is about page</h1>"
 
 		})
@@ -38,8 +39,9 @@
                 //template:"<h1>this is about page</h1>"
 
         })   
-         .when('/search-results', {
-                templateUrl : 'partials/search-results.html'
+         .when('/search_results', {
+                templateUrl : 'partials/search_results.html',
+                controller : "searchResults"
                 //template:"<h1>this is about page</h1>"
 
         })     

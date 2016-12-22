@@ -3,9 +3,14 @@
 	
 	rout.controller("search", search);
 
-	function search($scope,$http) {
+	function search($scope,$http,$location) {
 	
         $scope.search = "";
+        
+          
+            $scope.current_page = 1;
+            $scope.projectsData = [];
+            $scope.allProjects = [];
         
         $scope.find = function(){
             
@@ -25,7 +30,14 @@
                             if (data)
                             {
                                 
-                                console.log(data);
+                              
+                        $scope.projectsData = data;
+                        $scope.total_pages = Math.ceil(data.length / 6);
+                        
+                        $location.path( '/#search-results' );
+                   
+// http://stackoverflow.com/questions/39086657/pass-json-data-from-one-controller-to-other-angularjs                  
+                   
                    
                             }
 
@@ -39,6 +51,10 @@
 
         };
 	
+         $scope.more = function(){
+            $scope.current_page++;
+        };
+        
 	}
 	
 })();

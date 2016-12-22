@@ -18,10 +18,10 @@
             
             $http.get('json/pages/getProjects')
                     .success(function (data, status, headers, config) {
-                        console.log(data);
+                   
                         $scope.projectsData = data;
                         $scope.total_pages = Math.ceil(data.length / 6);
-                        console.log($scope.total_pages);
+                   
 
 
                     })

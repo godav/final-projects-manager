@@ -271,37 +271,63 @@ class PagesController extends AppController {
         $this->loadModel('User');
         $search = $this->request->data('search');
         $pieces = explode(" ", $search);
-        
-        $str = "";
-                
+
+        $conditions = array();
+
         foreach ($pieces as $value) {
-           $str = $str . "User.first_name LIKE " . \"=>\" ."'%". $value . "%'" . ",";
+            $conditions[] = array(
+                'User.first_name LIKE' => '%' . $value . '%'
+            );
         }
-        echo $str;
-        $conditions = rtrim($str, ",");
-        echo $conditions;
         
-//        'conditions' => array(
-//        'OR' => array(
-//        'material_id LIKE' => '%4',
-//        'material_id LIKE' => '%5',
-//        )
-//        )
-//        column1 LIKE '%word1%'
-//        OR column1 LIKE '%word2%'
-//        OR column1 LIKE '%word3%'
+        foreach ($pieces as $value) {
+            $conditions[] = array(
+                'User.last_name LIKE' => '%' . $value . '%'
+            );
+        }
+        
+        foreach ($pieces as $value) {
+            $conditions[] = array(
+                'User.gitproject LIKE' => '%' . $value . '%'
+            );
+        }
+        
+        foreach ($pieces as $value) {
+            $conditions[] = array(
+                'User.gituser LIKE' => '%' . $value . '%'
+            );
+        }
+        
+        foreach ($pieces as $value) {
+            $conditions[] = array(
+                'User.project_description LIKE' => '%' . $value . '%'
+            );
+        }
+ 
+//                foreach ($pieces as $value) {
+//            $conditions[] = array(
+//                'Photo.title LIKE' => '%' . $value . '%'
+//            );
+//        }
+        
+//         $p_conditions = array();
+//         
+//        foreach ($pieces as $value) {
+//            $p_conditions = $p_conditions . 'Photo.title LIKE' => '%' . $value . '%';
+//            ;
+//        }        
+
 
         $this->User->hasMany['Photo']['limit'] = 1;
         $this->User->hasMany['Photo']['order'] = 'upload_date DESC';
         $this->User->hasMany['Photo']['fields'] = 'photo_name,title,description,photo_location';
+//        $this->User->hasMany['Photo']['conditions'] = "OR ($p_conditions)";
         $response = $this->User->find('all', array(
-            'conditions'=>array('OR' => array($conditions
-            
-        )),
+            'conditions' => array('OR' => $conditions),
             'fields' => array('User.id', 'User.first_name', 'User.last_name', 'User.gitproject')));
 
-        pr($response);
-//        return json_encode($response);
+//        pr($response);
+        return json_encode($response);
     }
 
 }

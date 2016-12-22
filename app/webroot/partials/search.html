@@ -1,46 +1,48 @@
 
-         <section class="section section-search" ng-controller="search">
-            <div class="search-box">
-               <div class="container">
-                  <div class="hero-text align-center">
-                     <h1>חפש פרוייקטים</h1>
-                     <p> </p>
-                  </div>
+<section class="section section-search" ng-controller="search">
+    <div class="search-box">
+        <div class="container">
+            <div class="hero-text align-center">
+                <h1>חפש פרוייקטים</h1>
+                <p> </p>
+            </div>
 
-                  <form class="destinations-form">
-                     <div class="input-line">
-                         <button ng-click="find()" type="button" name="destination-submit" class="form-submit btn btn-special">
+            <form class="destinations-form">
+                <div class="input-line">
+               
+                        <button ng-click="find()" type="button" name="destination-submit" class="form-submit btn btn-special">
                             <i class="fa fa-cog" aria-hidden="true"></i><span style="padding-left: 5px;">חפש פרויקט</span>
-                        </button>                        
-                         <input ng-model="search" type="text" name="search" value="" class="form-input" placeholder="איזה פרויקטים ברצונך לראות?" />
+                        </button> 
+                                   
+                    <input ng-model="search" type="text" name="search" value="" class="form-input" placeholder="איזה פרויקטים ברצונך לראות?" />
 
-                     </div>
-                  </form>
-               </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Statistics Box -->
+    <div class="container">
+        <div class="statistics-box">
+            <div class="statistics-item">
+                <span class="value">2,300</span>
+                <p class="title">Destinations</p>
             </div>
 
-            <!-- Statistics Box -->
-            <div class="container">
-               <div class="statistics-box">
-                  <div class="statistics-item">
-                     <span class="value">2,300</span>
-                     <p class="title">Destinations</p>
-                  </div>
-
-                  <div class="statistics-item">
-                     <span class="value">1,000</span>
-                     <p class="title">Cities</p>
-                  </div>
-
-                  <div class="statistics-item">
-                     <span class="value">35,000</span>
-                     <p class="title">Boats</p>
-                  </div>
-
-                  <div class="statistics-item">
-                     <span class="value">50,000</span>
-                     <p class="title">Sailors</p>
-                  </div>
-               </div>
+            <div class="statistics-item">
+                <span class="value">1,000</span>
+                <p class="title">Cities</p>
             </div>
-         </section>
+
+            <div class="statistics-item">
+                <span class="value">35,000</span>
+                <p class="title">Boats</p>
+            </div>
+
+            <div class="statistics-item">
+                <span class="value">50,000</span>
+                <p class="title">Sailors</p>
+            </div>
+        </div>
+    </div>
+</section>

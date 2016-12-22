@@ -37,6 +37,11 @@
                 templateUrl : 'partials/galery.html'
                 //template:"<h1>this is about page</h1>"
 
+        })   
+         .when('/search-results', {
+                templateUrl : 'partials/search-results.html'
+                //template:"<h1>this is about page</h1>"
+
         })     
 //        .when('/login', {
 //			templateUrl : 'partials/login.html'

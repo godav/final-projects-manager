@@ -265,6 +265,22 @@ class PagesController extends AppController {
         return json_encode($response);
     }
 
+     function json_getUserPhotos() {
+        $this->autoRender = false;
+        
+        $id = $this->request->data('id');
+//      echo "this id :" . $id;
+        $this->loadModel('User');
+        $this->User->hasMany['Photo']['order'] = 'upload_date DESC';
+//        $this->User->hasMany['Photo']['fields'] = 'id,photo_name,title,description,photo_location';
+        $response = $this->User->find('first', array('conditions' => array('User.id' =>$id),
+            'fields' => array('User.first_name', 'User.last_name', 'User.gitproject','User.project_description','User.url','User.photo_location','User.gender')
+            ));
+//        pr($response);
+        return json_encode($response);
+    }
+    
+    
     function json_getSearch() {
         $this->autoRender = false;
 

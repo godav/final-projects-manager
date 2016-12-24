@@ -21,7 +21,7 @@
                    
                         $scope.projectsData = data;
                         $scope.total_pages = Math.ceil(data.length / 6);
-                   
+//                        console.log('pppp:',$scope.projectsData);
 
 
                     })

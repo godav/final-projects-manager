@@ -1,0 +1,27 @@
+
+header {
+	overflow: hidden;
+}
+
+header hgroup {
+	width: 80%;
+	float: left;
+	padding: 35px 0;
+}
+
+header figure {
+	width: 20%;
+	float: right;
+        padding: 35px 0 10px 0;
+}
+
+
+.grid_16 {
+	clear: both;
+}
+
+h3 {
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 10px;
+	margin:30px 0 10px 0;
+}

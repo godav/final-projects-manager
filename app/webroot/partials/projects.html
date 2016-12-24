@@ -16,7 +16,7 @@
                    <div class="col-lg-4 col-md-8 col-sm-12 col-xs-24" ng-repeat="project in projectsData" ng-if="$index < (current_page*6)" style="direction: rtl;" ng-if="project.Photo[0]">
                      <div class="destination-box">
                         <div class="box-cover">
-                           <a href="#">
+                           <a href="#/project_review/{{project.User.id}}">
                               <img src="{{project.Photo[0].photo_location}}" alt="project image" />
                            </a>
                         </div>

@@ -1,0 +1,82 @@
+
+
+<section class="section section-boats" style="height: 100%; min-height: calc(100vh - 100px); margin-bottom: 0; direction: rtl;" ng-controller="projectReview">
+
+
+    <div class="container">
+
+        <!-- Portfolio Item Heading -->
+        <header >
+
+            <hgroup>
+                <h1 style="margin-top: 0; padding-right: 25px;">{{user.last_name}} {{user.first_name}}</h1>
+                <h2 style=" padding-right: 25px;">{{user.gitproject}}</h2>
+            </hgroup>
+
+            <figure>
+                <img src="{{user.photo_location}}" alt="profile picture">
+            </figure>
+            <hgroup style="width: 100%; padding: 10px 0 35px 0;">
+                <h3 style="margin-top: 0;  ">תיאור הפרויקט</h3>
+                <p>{{user.project_description}}</p>
+            </hgroup>
+        </header> 
+
+        <hr style="border-top: 1px solid #ccc;"> 
+        <!-- Portfolio Item Row -->
+        <div class="row">
+            
+            
+            
+                <div class="col-md-7">
+                    <img class="img-responsive" src="{{current.photo_location}}" alt="">
+                </div>
+
+                <div class="col-md-5">
+                    <h2 style="margin-top: 0; text-align: center; text-decoration: underline;">שלב בפרויקט</h2>
+                    <h3 >{{current.title}}</h3>
+                    <p style="overflow-wrap: break-word;">{{current.description}}</p>
+                    <h3>תאריך העלאה</h3>
+                    <p>{{date}}</p>
+                    <h3>שעת העלאה</h3>
+                    <p>{{time}}</p>
+
+                </div>
+
+        </div>
+        <!-- /.row -->
+        <hr style="border-top: 1px solid #ccc;"> 
+        <!-- Related Projects Row -->
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                    <h3 style="margin: 0; padding: 0; border: 0;">תמונות נוספות</h3>
+
+                </div>
+                <div class="content" style="position: relative; margin-bottom: 10px">
+                    <botton class="carousel-prev" ng-click="prev()" ng-disabled=!hasPrev>
+                        <img src="img/chevron-left.png" alt=""/>
+                    </botton>  
+
+                    <div class="col-sm-3 col-xs-6" ng-repeat="image in carousel" id="carousel">
+                        <div class="item" ng-click="change(image)">
+                            <img class="img-responsive" src="{{ image.photo_location}}" alt="">                   
+                            <span>{{ image.title}}</span>
+                            <p>{{ image.description}}</p>
+                        </div>
+
+                    </div>
+                    <botton class="carousel-next" ng-click="next()" ng-disabled=!hasNext>
+                        <img  src="img/chevron-right.png" alt=""/>
+                    </botton> 
+                </div>
+
+
+            </div>
+            <!-- /.row -->
+
+
+        </div>
+    </section>
+

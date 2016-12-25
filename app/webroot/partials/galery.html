@@ -4,13 +4,13 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#/dashboard">סטטיסטיקטות<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+                    <li class="active"><a href="#/dashboard">סטטיסטיקטות<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-stats"></span></a></li>
                     <li ><a href="#/profile">פרופיל<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
-                    <li ><a href="#/galery">ניהול גלריה<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
+                    <li ><a href="#/galery">ניהול גלריה<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-picture"></span></a></li>
                 </ul>
             </div>
         </div>
-    </nav>    
+    </nav>     
 
     <div class="content-main" ng-controller="userGallery"  ng-init="init()">
         <div class="add-row">
@@ -28,7 +28,7 @@
                         <div class="col-sm-12 london-title">
                             <h3 class="text-uppercase">{{photo.Photo.title}}</h3>                     
                         </div>
-                        <p>{{photo.Photo.description}}</p><hr />
+                        <p style="margin: 5px; word-wrap:break-word; overflow-wrap: break-word">{{photo.Photo.description}}</p><hr />
                         <div class="col-sm-12 location-main"> 
                             <div class="pull-left user-icons">
                                 <button ng-click="deletePhoto(photo.Photo.id,photo.Photo.photo_location)"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></button>

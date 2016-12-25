@@ -2684,7 +2684,7 @@ textarea:focus {
 }
 @media (max-width: 768px) {
     .footer-main {
-        padding: 30px 0;
+        /*padding: 30px 0;*/
     }
 }
 .footer-main .widget .widget-title {
@@ -2721,7 +2721,7 @@ textarea:focus {
 }
 @media (max-width: 992px) {
     .footer-main {
-        padding: 60px 0 15px;
+        padding: 0 0 15px;
     }
 }
 
@@ -3322,4 +3322,26 @@ opacity:0.6;
     right: -3%;
     width: 4%;
     height: 100%;
+}
+
+.logo-mini{
+    width: 100px !important;
+    height: 50px !important;
+}
+
+.git-empty{
+    text-align: center;
+    font-size: 42px;
+    color: red; 
+    direction: rtl;
+    margin-top: 50px;
+}
+
+.form-control{
+    color: black !important;
+}
+
+.modal-content{
+        width: 30%;
+    margin: 0 auto;
 }

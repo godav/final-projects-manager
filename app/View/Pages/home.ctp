@@ -46,25 +46,27 @@
       <footer class="footer-main">
          <div class="container">
             <div class="row">
-               <div class="col-md-9">
+               <div class="col-md-12">
                   <div class="widget widget_social">
-                     <h5 class="widget-title">Subscribe to our newsletter</h5>
-                     <form class="subscribe-form">
-                        <div class="input-line">
-                           <input type="text" name="subscribe-email" value="" placeholder="Your email address" />
-                        </div>
-                        <button type="button" name="subscribe-submit" class="btn btn-special no-icon">Subscribe</button>
-                     </form>
-
-                     <ul class="clean-list social-block">
+                      <hgroup style="float:right; text-align: right;">
+                    <h5 class="widget-title">נבנה על ידי: אינוז אבנר</h5>
+                    <a href="https://godav@github.com/godav/final-projects-manager.git" target="_blank" ><h5 class="widget-title">GIT ספריית </h5> </a>
+                   </hgroup> 
+ <ul class="clean-list social-block" style="float:left">
                         <li>
-                           <a href="#"><i class="icon-facebook"></i></a>
+                            <a href="http://appleseeds.org.il/"  target="_blank">
+                                 <img class="logo-mini" src="img/tapuah-logo.png" alt="לוגו עמותת תפוח"/>
+                            </a>     
                         </li>
                         <li>
-                           <a href="#"><i class="icon-twitter"></i></a>
+                            <a href="http://www.intel.co.il/content/www/il/he/education/community-v1.html"  target="_blank">
+                                <img class="logo-mini" src="img/intel.png" alt="לוגו אינטל"/>
+                            </a>  
                         </li>
                         <li>
-                           <a href="#"><i class="icon-google-plus"></i></a>
+                           <a href="http://enoshi-tcarmel.org/"  target="_blank">
+                               <img class="logo-mini" src="img/hon.jpg" alt="לוגו הון אנושי"/>
+                            </a>     
                         </li>
                      </ul>
                   </div>

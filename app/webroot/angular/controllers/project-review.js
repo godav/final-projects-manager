@@ -9,17 +9,12 @@
 //        var str = $routeParams.id;
 //        console.log(str.replace(':', ''));
 
-
-
-
         $scope.carousel = [];
         $scope.hasNext = false;
         $scope.hasPrev = false;
         $scope.start = 0;
         $scope.end = 0;
         $scope.current = null;
-
-
 
         var searchData = $.param({
             id: parseInt($routeParams.id)

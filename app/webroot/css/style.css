@@ -41,6 +41,7 @@
     margin-left: 4.16%; 
     margin-right: 4.16%;
     margin-bottom: 30px;
+    float  : right;
 }
 
 .box-icon {
@@ -50,8 +51,8 @@
 
 .london-title {
     padding: 0 0 0 5px;
-    border-right: 2px solid #9400D3;
-    margin: 25px 0px;
+    /*border-right: 2px solid #9400D3;*/
+    margin: 15px 0px;
 }
 .london-title h3 {
     color: #9400D3;
@@ -6812,7 +6813,7 @@ ul.inbox-pagination li {
 
 .profile-widget-info{
 
-    background: #DDA0DD;
+    background: #9400D3;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
     border: 1px solid gray;

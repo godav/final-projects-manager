@@ -4,9 +4,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#/dashboard">סטטיסטיקטות<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+                    <li class="active"><a href="#/dashboard">סטטיסטיקטות<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-stats"></span></a></li>
                     <li ><a href="#/profile">פרופיל<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
-                    <li ><a href="#/galery">ניהול גלריה<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
+                    <li ><a href="#/galery">ניהול גלריה<span style="font-size:16px;" class="pull-left hidden-xs showopacity glyphicon glyphicon-picture"></span></a></li>
                 </ul>
             </div>
         </div>
@@ -21,14 +21,14 @@
                     <!-- small box -->
                     <div class="small-box bg-aqua">
                         <div class="inner">
-                            <h3>{{addition}}</h3>
+                            <h3 style="border-bottom:0">{{addition}}</h3>
 
                             <p>Rows added to git project</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-android-add-circle"></i>
                         </div>
-                     
+
                     </div>
                 </div>
                 <!-- ./col -->
@@ -36,14 +36,14 @@
                     <!-- small box -->
                     <div class="small-box bg-red">
                         <div class="inner">
-                            <h3>{{deletion}}</h3>
+                            <h3 style="border-bottom:0">{{deletion}}</h3>
 
                             <p>Rows deleted from git project</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-trash-a"></i>
                         </div>
-                    
+
                     </div>
                 </div>
                 <!-- ./col -->                
@@ -51,14 +51,14 @@
                     <!-- small box -->
                     <div class="small-box bg-green">
                         <div class="inner">
-                            <h3>{{commits}}</h3>
+                            <h3 style="border-bottom:0">{{commits}}</h3>
 
                             <p>Commits in the project</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-android-upload"></i>
                         </div>
-                     
+
                     </div>
                 </div>
                 <!-- ./col -->
@@ -66,14 +66,14 @@
                     <!-- small box -->
                     <div class="small-box bg-yellow">
                         <div class="inner">
-                            <h3>{{photos}}</h3>
+                            <h3 style="border-bottom:0">{{photos}}</h3>
 
                             <p>Photo Uploaded to project</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-images"></i>
                         </div>
-                    
+
                     </div>
                 </div>
                 <!-- ./col -->
@@ -81,11 +81,14 @@
             </div>
             <!-- /.row -->
 
-
-
+            <div ng-if="commitsData.length === 0" class="row">
+                <div  class="col-lg-12">
+                    <p class="git-empty">אין נתוני GIT יש לעדכן פרופיל</p>
+                </div>
+            </div>
             <!-- Graphs row -->
-            <div class="row">
-           
+            <div class="row" ng-if="commitsData.length > 0">
+
                 <!-- Left col -->                            
                 <div  class="col-lg-6"  id="git-chart" style="position: relative; height: 55vh; margin-bottom: 15px;"></div>
                 <!-- /.Left col -->
@@ -93,13 +96,13 @@
                 <!-- Right col -->
                 <div  class="col-lg-6" id="commit-chart" style="position: relative; height: 55vh; margin-bottom: 15px;"></div>
                 <!-- /.Right col -->
-         
+
             </div>
             <!-- /.row (Graphs row) -->
 
             <div class="row">
                 <!-- commits table col -->
-                <section class="col-lg-12 connectedSortable" ng-if="commitsData.length>0">
+                <section class="col-lg-12 connectedSortable" ng-if="commitsData.length > 0">
                     <div class="box">
                         <div class="box-header with-border">
                             <h3 class="box-title" style="float: right; direction: rtl;">רשימת COMMITS בפרויקט</h3>
@@ -108,8 +111,8 @@
                         <div class="box-body">
                             <table class="table table-bordered" style="text-align: right">
                                 <tr>
-                                    
-                                    
+
+
                                     <th style="width: 10%; text-align: right;">שעה</th>
                                     <th style="width: 10%; text-align: right;">תאריך</th>
                                     <th style="width: 65%; text-align: right;">נושא  </th>
@@ -119,9 +122,9 @@
                                     <td>{{item.time}}</td>
                                     <td>{{item.date}}</td>
                                     <td>{{item.message}}</td>
-                                    <td>.{{$index + 1+(current_page-1)*10}}</td>
+                                    <td>.{{$index + 1 + (current_page - 1) * 10}}</td>
                                 </tr>
-  
+
                             </table>
                         </div>
                         <!-- /.box-body -->

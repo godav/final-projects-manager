@@ -3,12 +3,51 @@
 
     var rout = angular.module('app');
     rout.controller("profileUpdate", profileUpdate);
-    function profileUpdate($http, $scope, fileService, $timeout) {
+
+    function profileUpdate($http, $scope, fileService, $timeout, $modal) {
+
         var model = this;
-//    model.old = null;
-//    model.returnData=null;
-//    model.message = "";
-//    model.success = false;
+
+        $scope.open = function () {
+
+            $scope.opts = {
+                backdrop: true,
+                backdropClick: true,
+                dialogFade: true,
+                keyboard: true,
+                size: 'sm',
+                templateUrl: 'partials/modalMessage.html',
+                controller: ModalInstanceCtrl,
+                resolve: {} // empty storage
+            };
+
+            var modalInstance = $modal.open($scope.opts);
+
+//            modalInstance.result.then(function () {
+//                //on ok button press 
+//            }, function () {
+//                //on cancel button press
+//                console.log("Modal Closed");
+//            });
+
+        };
+
+
+//    modalInstance = $modal.open({
+//      templateUrl: 'partials/modalMessage.html',
+//      controller: ModalInstanceCtrl,
+//      backdrop: true,
+//      keyboard: true,
+//      backdropClick: true,
+//      size: 'lg'
+//      
+//    });
+//  };
+
+
+
+
+
 
         var defaults = {
             firstname: "",
@@ -116,6 +155,7 @@
                             defaults.projectDescription = data.User.project_description;
 
                             model.changed = false;
+
 //                        model.success = true;
 //                        model.message = "הרישום בוצע בהצלחה !";
                         }
@@ -189,8 +229,9 @@
 
                                 if (data)
                                 {
-                                    model.success = true;
-                                    model.message = "הנתונים עודכנו!";
+                                    $scope.open();
+//                                    model.success = true;
+//                                    model.message = "הנתונים עודכנו!";
                                     $scope.init();
                                 }
                             })
@@ -223,6 +264,14 @@
         };
 
     }
-    ;
 
-}());
+
+    var ModalInstanceCtrl = function ($scope, $modalInstance,$timeout) {
+
+        $timeout(function () {
+            $modalInstance.close();
+        }, 2000);
+
+
+    };
+})();

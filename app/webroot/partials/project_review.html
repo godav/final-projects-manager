@@ -11,6 +11,7 @@
             <hgroup>
                 <h1 style="margin-top: 0; padding-right: 25px;">{{user.last_name}} {{user.first_name}}</h1>
                 <h2 style=" padding-right: 25px;">{{user.gitproject}}</h2>
+                <h2 ng-if="user.gitproject==='' || user.gitproject===null " style=" padding-right: 25px;">אין פרויקט GIT זמין</h2>
             </hgroup>
 
             <figure>
@@ -19,6 +20,7 @@
             <hgroup style="width: 100%; padding: 10px 0 35px 0;">
                 <h3 style="margin-top: 0;  ">תיאור הפרויקט</h3>
                 <p>{{user.project_description}}</p>
+                <p ng-if="user.project_description==='' || user.project_description===null ">אין תיעוד.</p>
             </hgroup>
         </header> 
 

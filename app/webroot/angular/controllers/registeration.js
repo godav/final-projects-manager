@@ -3,10 +3,23 @@
 
     var rout = angular.module('app');
     rout.controller("registration", registration);
-    function registration($http) {
+    function registration($http,$scope) {
         var model = this;
+            $scope.uniqueEmail = true;
+           model.old = null;
+            model.returnData = null;
+            model.message = "";
+            model.success = false;
+            model.user = {
+                firstname: "",
+                lastname: "",
+                email: "",
+                password: "",
+                confirmPassword: "",
+                gender: ""
+            };
 
-        model.init = function () {
+        $scope.init = function () {
             model.old = null;
             model.returnData = null;
             model.message = "";
@@ -25,7 +38,7 @@
 
 
         model.submit = function (isValid) {
-            console.log("isValid:" + isValid);
+//            console.log("isValid:" + isValid);
             if (isValid) {
                 model.message = "Submitted " + model.user.username;
 
@@ -76,6 +89,7 @@
         };
 
         model.checkEmail = function (email) {
+
 //            var userEmail = model.user.email;
             var atpos = email.indexOf("@");
             var dotpos = email.lastIndexOf(".");
@@ -95,9 +109,11 @@
 
                 return 'כתובת הדואר האלקטרוני אינה תיקנית';
             }
-//            else if (ajaxEmailValidator(email)){
-//                    return 'כתובת הדואר האלקטרוני קיימת במערכת';
-//            }
+            else if (!$scope.uniqueEmail){
+
+//             
+                    return 'כתובת הדואר האלקטרוני קיימת במערכת';
+            }
 //
 //                  
 //            }
@@ -124,9 +140,10 @@
             };
 
             $http.post('json/pages/checkemail', emailData, config)
-                    .success(function (data, status, headers, config) {
-                        console.log(data);
-                        model.returnData = data;
+                    .success(function (newdata, status, headers, config) {
+                        console.log(newdata);
+                        model.returnData = newdata;
+                        oldEmail = userEmail;
 //
 //                if ($scope.$parent.infoData.register){
 //                    model.success =true;

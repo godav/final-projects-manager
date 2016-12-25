@@ -104,6 +104,8 @@ class PagesController extends AppController {
 
     function json_checkemail() {
         $this->autoRender = false;
+    $response = [];
+
         $email = $this->request->data('email');
 
         $this->loadModel('User');
@@ -111,8 +113,13 @@ class PagesController extends AppController {
         $exists = $this->User->find('first', array(
             'conditions' => array('User.email' => $email)
         ));
-
-        return json_encode($exists);
+        
+        
+        $response['status'] = true;
+        
+        if ($exists)
+           $response['status'] = false; 
+        return json_encode($response);
     }
 
     function fileUpload() {
@@ -260,6 +267,7 @@ class PagesController extends AppController {
         $this->User->hasMany['Photo']['limit'] = 1;
         $this->User->hasMany['Photo']['order'] = 'upload_date DESC';
         $this->User->hasMany['Photo']['fields'] = 'photo_name,title,description,photo_location';
+
         $response = $this->User->find('all', array('fields' => array('User.id', 'User.first_name', 'User.last_name', 'User.gitproject')));
 
         return json_encode($response);

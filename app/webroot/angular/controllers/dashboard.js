@@ -51,79 +51,80 @@
                     .success(function (data, status, headers, config) {
                         if (data)
                         {
-                            console.log(data);
+//                            console.log(data);
                             $scope.gituser = data.gituser;
                             $scope.gitproject = data.gitproject;
                             $scope.photos = data.count;
-                            $http.get("https://api.github.com/repos/" + $scope.gituser + "/" + $scope.gitproject + "/stats/contributors")
-                                    .then(function (response) {
+                            if ($scope.gituser !== null && $scope.gituser !== "" && $scope.gitproject !== null && $scope.gitproject !== "") {
+                                $http.get("https://api.github.com/repos/" + $scope.gituser + "/" + $scope.gitproject + "/stats/contributors")
+                                        .then(function (response) {
 //                                        $scope.details = response.data;
-
-                                        $scope.commits = response.data[0].total;
-                                        if (response.data[0].weeks.length > 0)
-                                        {
-                                            var weeks = response.data[0].weeks;
-                                            var sumAdd = 0;
-                                            var sumDel = 0;
-                                            for (var key in weeks) {
-                                                addition.push(weeks[key].a);
-                                                sumAdd += weeks[key].a;
-                                                deletion.push(-1 * parseInt(weeks[key].d));
-                                                sumDel += (weeks[key].d);
-                                                categories.push(parseInt(key) + 1);
-                                            }
-                                            $scope.addition = numberWithCommas(sumAdd);
-                                            $scope.deletion = numberWithCommas(sumDel);
                                         
-                                        init_git_chart();
-                                        }
-                                    });
-                            $http.get("https://api.github.com/repos/" + $scope.gituser + "/" + $scope.gitproject + "/commits?page=1&per_page=10")
-                                    .then(function (response) {
+                                            $scope.commits = response.data[0].total;
+                                            if (response.data[0].weeks.length > 0)
+                                            {
+                                                var weeks = response.data[0].weeks;
+                                                var sumAdd = 0;
+                                                var sumDel = 0;
+                                                for (var key in weeks) {
+                                                    addition.push(weeks[key].a);
+                                                    sumAdd += weeks[key].a;
+                                                    deletion.push(-1 * parseInt(weeks[key].d));
+                                                    sumDel += (weeks[key].d);
+                                                    categories.push(parseInt(key) + 1);
+                                                }
+                                                $scope.addition = numberWithCommas(sumAdd);
+                                                $scope.deletion = numberWithCommas(sumDel);
 
-                                        if (response.data.length > 0)
-                                        {
-                                            var data = response.data;
-                                            for (var key in data) {
-                                                var commit = {
-                                                    message: data[key].commit.message,
-                                                    date: extractDate(data[key].commit.committer.date),
-                                                    time: extractTime(data[key].commit.committer.date)
-                                                };
-                                                $scope.commitsData.push(commit);
+                                                init_git_chart();
                                             }
+                                        });
+                                $http.get("https://api.github.com/repos/" + $scope.gituser + "/" + $scope.gitproject + "/commits?page=1&per_page=10")
+                                        .then(function (response) {
+                                         
+                                            if (response.data.length > 0)
+                                            {
+                                                var data = response.data;
+                                                for (var key in data) {
+                                                    var commit = {
+                                                        message: data[key].commit.message,
+                                                        date: extractDate(data[key].commit.committer.date),
+                                                        time: extractTime(data[key].commit.committer.date)
+                                                    };
+                                                    $scope.commitsData.push(commit);
+                                                }
 
-                                        }
-                                    });
-                            var rawCommits = "";
-                            var editCommits = [];
-
-                            $http.get("https://api.github.com/repos/" + $scope.gituser + "/" + $scope.gitproject + "/commits?per_page=100")
-                                    .then(function (response) {
-                                        if (response.data.length > 0)
-                                        {
-                                            rawCommits = response.data;
-                                            for (var key in rawCommits) {
-                                                var commit = {
-                                                    date: extractDate(rawCommits[key].commit.committer.date)
-                                                };
-                                                editCommits.push(commit);
                                             }
+                                        });
+                                var rawCommits = "";
+                                var editCommits = [];
+
+                                $http.get("https://api.github.com/repos/" + $scope.gituser + "/" + $scope.gitproject + "/commits?per_page=100")
+                                        .then(function (response) {
+                                            if (response.data.length > 0)
+                                            {
+                                                rawCommits = response.data;
+                                                for (var key in rawCommits) {
+                                                    var commit = {
+                                                        date: extractDate(rawCommits[key].commit.committer.date)
+                                                    };
+                                                    editCommits.push(commit);
+                                                }
 //                    
 
-                                            var tempList = _.countBy(editCommits, 'date');
+                                                var tempList = _.countBy(editCommits, 'date');
 
 
-                                            for (var key in tempList) {
-                                                var tDate = key.split("-");
+                                                for (var key in tempList) {
+                                                    var tDate = key.split("-");
 
-                                                $scope.commitsTime.push([Date.UTC(tDate[2], parseInt(tDate[1]) - 1, tDate[0]), tempList[key]]);
+                                                    $scope.commitsTime.push([Date.UTC(tDate[2], parseInt(tDate[1]) - 1, tDate[0]), tempList[key]]);
+                                                }
+
+                                                init_commits_chart();
                                             }
-                                        
-                                        init_commits_chart();
-                                        }
-                                    });
-
+                                        });
+                            }
                         }
 
                     })
@@ -178,7 +179,7 @@
 
                     });
         };
-   
+
         function init_git_chart()
         {
 
@@ -285,7 +286,6 @@
                         }
                     }
                 },
-
                 series: [{
                         type: 'area',
                         name: 'Commits',

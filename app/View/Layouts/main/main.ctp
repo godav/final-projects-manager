@@ -20,8 +20,8 @@
             echo $this->Html->css(array('/css/AdminLTE','/css/print'));
             
             echo $this->Html->script(array('/js/jquery-3.1.1.min', '/js/bootstrap', '/js/functions'));
-            echo $this->Html->script(array('/js/slide-bar','/js/jquery.magnific-popup','/js/underscore-min'));
-            echo $this->Html->script(array('/js/angular','/js/angular-route','/js/ngStorage.min','/js/highcharts','/js/ui-bootstrap.min'));
+            echo $this->Html->script(array('/js/slide-bar','/js/jquery.magnific-popup','/js/underscore-min','/js/masonry.pkgd.min','/js/imagesloaded.3.1.8.min'));
+            echo $this->Html->script(array('/js/angular','/js/angular-route','/js/ngStorage.min','/js/highcharts','/js/ui-bootstrap.min','/js/angular-masonry'));
             
             echo $this->Html->script(array('/angular/app/app','/angular/app/route','/angular/app/services/fileService','/angular/app/services/StorageService'));
             echo $this->Html->script(array('/angular/directive/modalLogin','/angular/directive/modalRegister','/angular/directive/fileUpload','/angular/directive/angular-validator','/angular/directive/addPhoto','/angular/directive/photoUpload','/angular/directive/ngRemoteValidate'));

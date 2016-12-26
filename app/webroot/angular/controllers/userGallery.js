@@ -16,7 +16,7 @@
         };
 
 
-         $scope.getGallery = function () {
+        $scope.getGallery = function () {
 
             var photoData = $.param({
                 user_id: $scope.$parent.infoData.id
@@ -33,7 +33,7 @@
                         if (data)
                         {
 
-                                $scope.photos = data;
+                            $scope.photos = data;
 
 
                         }
@@ -82,9 +82,10 @@
         };
 
         $scope.$watch("photos", function (newValue, oldValue) {
-            
-            
+
+
             $timeout(function () {
+       
 
                 $('.with-caption').magnificPopup({
                     type: 'image',
@@ -106,7 +107,9 @@
         });
 
 
-        $scope.$on('galleryUpdated', function(event, args) {
+
+
+        $scope.$on('galleryUpdated', function (event, args) {
 
 
             $scope.getGallery();

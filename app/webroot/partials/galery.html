@@ -16,24 +16,25 @@
         <div class="add-row">
             <button ng-click="toggleAddPhotoModal()" class="btn btn-purple add-btn"><i class="fa fa-cloud-upload pad-10-right" aria-hidden="true"></i>הוסף תמונה</button>
         </div>
-        <div class="row-fit margin-b-30"  id="image-popups">
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 white-box-left30" ng-repeat="photo in photos" >
-                <div class="box london">
+
+        <div class='gallery-container'>
+            <div masonry class="masonry">
+                <div class="box-g london" ng-repeat="photo in photos">
                     <div class="box-icon"> 
                         <a class="with-caption image-link" title="{{photo.Photo.title}}" href="{{photo.Photo.photo_location}}" >
-                           <img class="vertical-25" src="{{photo.Photo.photo_location}}" alt="Image">
+                            <img class="vertical-25" src="{{photo.Photo.photo_location}}" alt="Image">
                         </a>
                     </div>
                     <div class="info float-container">
                         <div class="col-sm-12 london-title">
-                            <h3 class="text-uppercase">{{photo.Photo.title}}</h3>                     
+                            <h3 class="text-uppercase" style="word-wrap:break-word; overflow-wrap: break-word">{{photo.Photo.title}}</h3>                     
                         </div>
                         <p style="margin: 5px; word-wrap:break-word; overflow-wrap: break-word">{{photo.Photo.description}}</p><hr />
                         <div class="col-sm-12 location-main"> 
                             <div class="pull-left user-icons">
-                                <button ng-click="deletePhoto(photo.Photo.id,photo.Photo.photo_location)"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></button>
-                                <a href="#"><i class="fa fa-user fa-2x"></i></a>
-                                <a href="#"><i class="fa fa-twitter fa-2x"></i></a>
+                                <button style='background: transparent;' ng-click="deletePhoto(photo.Photo.id, photo.Photo.photo_location)"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></button>
+                           <!--     <a href="#"><i class="fa fa-user fa-2x"></i></a>
+                                <a href="#"><i class="fa fa-twitter fa-2x"></i></a> -->
                             </div>
                         </div>
                     </div>
@@ -41,5 +42,7 @@
             </div>
 
         </div>
+
+
     </div>
 </div>

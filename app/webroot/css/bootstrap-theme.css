@@ -4844,7 +4844,7 @@ body.modal-open,
 .modal {
   display: none;
   overflow: auto;
-  overflow-y: scroll;
+  overflow-y: hidden;
   position: fixed;
   top: 0;
   right: 0;
